@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { Inter } from 'next/font/google'
 import abi from '../contracts/CreateVote.json'
 import { ethers } from 'ethers';
+import axios from 'axios';
 
 import GiveVote from '@/components/GiveVote';
 import { GetAllVote } from '@/components/GetAllVote';
 import Navbar from '@/components/layout/Navbar';
+import {MovieCard} from '@/components/MovieCard';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -82,12 +84,37 @@ export default function Home() {
       console.log(error);
     }
   }
+  const [moviedata, setMoviedata] = useState(null)
+ 
+  
+  const fetchData = async () => {
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+    const res = await axios.get(url);
+    setMoviedata(res.data);
+  }
+  useEffect(() => {
+    fetchData();
+  }, [])
+  
   return (
     <main className={`${inter.className}`}>
       <Navbar connectwallet={connectwallet} state={state} />
       {/* <p>Connected Account:- {account}</p> */}
-        <GiveVote state={state} />
+        {/* <GiveVote state={state} /> */}
       {/* <GetAllVote state={state} /> */}
+
+      {/* <div>
+        <MovieCard />
+      </div>   */}
+{
+console.log("ok")}
+
+      <div className='gap-x-2 mx-32 grid grid-cols-4 laptop:grid-cols-2 '>
+        { moviedata && moviedata.results.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
+   
     </main>
   )
 }
