@@ -5,14 +5,21 @@ const GiveVote = ({state}) => {
     const giveVote = async (e) => {
         e.preventDefault();
         
-        const { contract } = state;
-        const name = e.target.vote.value;
+        try{
 
-        const amount = {value:ethers.utils.parseEther(e.target.amount.value)}
-        
-        const transaction = await contract.givevote(name,amount);
-        await transaction.wait();
-        alert("Vote Given Successfully");
+            const { contract } = state;
+            const name = e.target.vote.value;
+            
+            const amount = {value:ethers.utils.parseEther(e.target.amount.value)}
+            
+            const transaction = await contract.givevote(name,amount);
+            await transaction.wait();
+            
+            alert("Vote Given Successfully");
+        }
+        catch(error){
+            console.log("error in give vote");
+        }
     }
     
   return (
@@ -28,11 +35,11 @@ const GiveVote = ({state}) => {
             {/* <input type="number" className="h-12 pl-5 w-80 text-black" name="amount" placeholder="Enter youe amount" /> */}
              {/* select amount */}
                 <select name="amount" className="h-12 pl-5 w-80 text-black">
-                    <option value="0.1">0.1</option>
-                    <option value="0.2">0.2</option>
-                    <option value="0.3">0.3</option>
-                    <option value="0.4">0.4</option>
-                    <option value="0.5">0.5</option>
+                    <option value="0.1">0.01</option>
+                    <option value="0.2">0.02</option>
+                    <option value="0.3">0.03</option>
+                    <option value="0.4">0.04</option>
+                    <option value="0.5">0.05</option>
                 </select>
             </div>
             <button type="submit" className="mt-5 p-3 px-16 bg-sky-500 hover:bg-sky-700">Give Vote</button>
