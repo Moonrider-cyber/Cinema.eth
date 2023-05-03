@@ -9,3 +9,6 @@ The system also includes a leaderboard that displays the top voted movies and TV
 To use the system, users must have a Metamask wallet and some Ether. Users can vote by sending a small amount of Ether to the smart contract address associated with the movie or TV series they want to vote for. The smart contract automatically records the vote and updates the vote count for the corresponding movie or TV series.
 
 Overall, ETHCinemaNation provides a transparent and secure way for movie and TV series enthusiasts to vote for their favorite shows, and for content creators to get valuable feedback on their work.
+
+
+![image](https://user-images.githubusercontent.com/81921291/236003674-78508209-78bc-4558-a9c9-3d5cd16d04f3.png)
