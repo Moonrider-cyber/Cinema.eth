@@ -7,14 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {},
-    device: {
-      'tablet': '640px',
-      // => @media (min-width: 640px) { ... }
-      
-      'laptop': '1024px',
+    screens: {
+      'sm': '440px',
+      // => @media (min-width: 440px) { ... }
 
-      'desktop': '1280px',
-    },
+      'md': '768px',      
+      'lg': '1024px',
+      'xl': '1280px',
+    }
   },
   plugins: [],
 }
+

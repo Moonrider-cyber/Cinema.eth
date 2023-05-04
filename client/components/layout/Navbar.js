@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavBar = ({connectwallet,state}) => {
+const NavBar = ({connectwallet,state,account}) => {
     const [open, setOpen] = React.useState(false);
     
     let iswalletconnected = false;
@@ -14,7 +14,7 @@ const NavBar = ({connectwallet,state}) => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center border-b-2 border-none py-6 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
-                <a href="#">
+                <a href="/">
                   <span className="sr-only">Workflow</span>
                   <img
                     className="h-8 w-auto sm:h-10"
@@ -63,7 +63,7 @@ const NavBar = ({connectwallet,state}) => {
                 </a> */}
                 {iswalletconnected ? (
                 <>
-                wallet is connected
+                {account}
                 </>
                 ) : (        
                 <button
@@ -75,6 +75,7 @@ const NavBar = ({connectwallet,state}) => {
               </button>
               
                 )}
+
               </div>
             </div>
           </div>
