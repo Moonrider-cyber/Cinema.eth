@@ -10,5 +10,4 @@ To use the system, users must have a Metamask wallet and some Ether. Users can v
 
 Overall, ETHCinemaNation provides a transparent and secure way for movie and TV series enthusiasts to vote for their favorite shows, and for content creators to get valuable feedback on their work.
 
-
-![image](https://user-images.githubusercontent.com/81921291/236003674-78508209-78bc-4558-a9c9-3d5cd16d04f3.png)
+![screencapture](https://user-images.githubusercontent.com/81921291/236281885-fbd33672-e290-4fec-b686-626b9d9f6bfb.png)
