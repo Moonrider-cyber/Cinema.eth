@@ -9,6 +9,7 @@ import Navbar from "@/components/layout/Navbar";
 import HomeMovieList from "@/components/HomeMovieList";
 import Search from "@/components/layout/Search";
 import Footer from "@/components/layout/Footer";
+import Carousel from "@/components/layout/Carousel";
 
 var Web3 = require("web3");
 const inter = Inter({ subsets: ["latin"] });
@@ -33,16 +34,12 @@ export default function Home() {
       const { ethereum } = window;
 
       if (ethereum) {
+        window.ethereum.on("chainChanged", () => window.location.reload());
+        
+        window.ethereum.on("accountsChanged", (accounts) => {setAccount({address: accounts[0]});});
+
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
-        });
-
-        window.ethereum.on("chainChanged", () => window.location.reload());
-
-        window.ethereum.on("accountsChanged", (accounts) => {
-          setAccount({
-            address: accounts[0],
-          });
         });
 
         const provider = new ethers.providers.Web3Provider(ethereum);
@@ -54,9 +51,7 @@ export default function Home() {
         );
         setState({ provider, signer, contract });
 
-          // get user balance
-
-          
+        // get user balance
           const web3 = new Web3(Web3.givenProvider);
           await web3.eth.getBalance(accounts[0])
           .then((balance) => {
@@ -74,13 +69,13 @@ export default function Home() {
     }
   };
 
-
-
   return (
     <main className={`${inter.className}`}>
       <Navbar connectwallet={connectwallet} state={state} account={account} />
 
       <Search setMoviedata={setMoviedata} />
+
+      <Carousel/>
 
 
       <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />

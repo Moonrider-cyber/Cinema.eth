@@ -11,7 +11,7 @@ const NavAvatar = ({account}) => {
           <Jazzicon diameter={30} seed={parseInt(account && account.address && account.address.slice(2, 10), 16)} />
         </div>
         <div className="flex items-center justify-center">
-          <p className="text-white text-sm font-bold pl-2">{account.address.slice(0, 4)}...{account.address.slice(-4)}</p>
+          <p className="text-white text-sm font-bold pl-2">{account && account.address && account.address.slice(0, 4)}...{account && account.address && account.address.slice(-4)}</p>
         </div>
       </button>
     </>
