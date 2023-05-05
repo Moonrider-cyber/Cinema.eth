@@ -14,10 +14,12 @@
     "dotnet": "^1.1.4",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
+    "ethers": "^5.7.2",
     "next": "13.3.4",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-jazzicon": "^1.0.4",
     "tailwindcss": "3.3.2",
     "web3": "^1.9.0"
   }

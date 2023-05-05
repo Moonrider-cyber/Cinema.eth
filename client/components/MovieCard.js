@@ -1,11 +1,19 @@
+import Image from 'next/image';
+
+
 export const MovieCard = ({movie}) => {
   return (
     <>
       
-        <div className="cursor-pointer my-10 w-72 bg-gray-800  rounded-md shadow-xl">
-          <img
+        <div className="cursor-pointer my-10 w-72 bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in">
+          <Image
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt="BAYC Ape"
+            alt="movie poster"
+            className="rounded-t-md"
+            width={500}
+            height={750}
+            priority
+
           />
 
           <div className="px-5">
@@ -27,6 +35,7 @@ export const MovieCard = ({movie}) => {
             <p className="bg-gray-600 h-[2px] w-full my-2"></p>
           </div>
         </div>
+
       
     </>
   );

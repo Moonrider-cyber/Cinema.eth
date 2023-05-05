@@ -1,4 +1,7 @@
 import React from "react";
+import Jazzicon from 'react-jazzicon'
+import NavAvatar from "./NavAvatar";
+
 
 const NavBar = ({connectwallet,state,account}) => {
     const [open, setOpen] = React.useState(false);
@@ -14,13 +17,13 @@ const NavBar = ({connectwallet,state,account}) => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center border-b-2 border-none py-6 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
-                <a href="/">
-                  <span className="sr-only">Workflow</span>
+                <a href="/" className="flex">
                   <img
                     className="h-8 w-auto sm:h-10"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                     alt=""
-                  />
+                  /><span className="self-center pl-3 text-2xl font-semibold whitespace-nowrap dark:text-white">ETHCinemaNation</span>
+                 
                 </a>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
@@ -63,7 +66,8 @@ const NavBar = ({connectwallet,state,account}) => {
                 </a> */}
                 {iswalletconnected ? (
                 <>
-                {account}
+                <NavAvatar account={account} />
+
                 </>
                 ) : (        
                 <button
