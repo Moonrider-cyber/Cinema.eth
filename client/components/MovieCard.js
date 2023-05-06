@@ -4,7 +4,7 @@ import Image from 'next/image';
 export const MovieCard = ({movie}) => {
   return (
     <>
-      
+      {/* {console.log("movie img",movie.poster_path)} */}
         <div className="cursor-pointer my-10 w-72 bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in">
           <Image
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

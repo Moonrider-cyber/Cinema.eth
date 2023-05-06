@@ -9,7 +9,6 @@ import Navbar from "@/components/layout/Navbar";
 import HomeMovieList from "@/components/HomeMovieList";
 import Search from "@/components/layout/Search";
 import Footer from "@/components/layout/Footer";
-import Carousel from "@/components/layout/Carousel";
 
 var Web3 = require("web3");
 const inter = Inter({ subsets: ["latin"] });
@@ -74,9 +73,6 @@ export default function Home() {
       <Navbar connectwallet={connectwallet} state={state} account={account} />
 
       <Search setMoviedata={setMoviedata} />
-
-      <Carousel/>
-
 
       <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
       {/* <GiveVote state={state} /> */}
