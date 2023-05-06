@@ -9,6 +9,7 @@ import Navbar from "@/components/layout/Navbar";
 import HomeMovieList from "@/components/HomeMovieList";
 import Search from "@/components/layout/Search";
 import Footer from "@/components/layout/Footer";
+import Link from "next/link";
 
 var Web3 = require("web3");
 const inter = Inter({ subsets: ["latin"] });
@@ -77,7 +78,7 @@ export default function Home() {
       <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
       {/* <GiveVote state={state} /> */}
       {/* <GetAllVote state={state} /> */}
-
+        
       <Footer />
     </main>
   );

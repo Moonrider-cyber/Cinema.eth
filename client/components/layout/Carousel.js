@@ -11,6 +11,7 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 export default function Carousel({moviedata}) {
 
+    
     return (
         <div className="container mx-auto">
             <div className="">
@@ -21,7 +22,7 @@ export default function Carousel({moviedata}) {
                     isIntrinsicHeight={true}
                     totalSlides={moviedata && moviedata.results.length }
                     visibleSlides={4}
-                    step={2}
+                    step={1}
                     // infinite={true}
                 >
                     <div className="flex justify-between items-center">
@@ -90,30 +91,30 @@ export default function Carousel({moviedata}) {
                                         moviedata.results.map((movie,key) =>
                                           movie.poster_path === null ? null : (
                                             <Slide index={key}>
-                                                <div className="cursor-pointer w-72 bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in " > 
+                                                <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in " > 
                                                 <Image
                                                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                                     alt="movie poster"
-                                                    className="rounded-t-md"
-                                                    width={500}
-                                                    height={750}
+                                                    className="rounded-t-md object-cover"
+                                                    width={300}
+                                                    height={250}
                                                     priority
 
                                                 />
 
                                                     <div className="px-5">
-                                                    <h2 className="text-md py-2 font-bold mt-3 overflow-hidden truncate ">{movie.title}</h2>
-                                                    <p className="text-gray-400 text-sm mb-2 ">
-                                                      {movie.overview.slice(0, 67)}...
+                                                    <h2 className="text-sm py-2 font-bold mt-3 overflow-hidden truncate ">{movie.title}</h2>
+                                                    <p className="text-gray-400 text-xs mb-2 ">
+                                                      {movie.overview.slice(0, 34)}...
                                                     </p>
-                                                    <div className="flex justify-between items-center text-sm">
-                                                      <p className="text-cyan-400 font-bold flex">
+                                                    <div className="flex justify-between items-center text-xs">
+                                                      <p className="text-cyan-400 font-bold flex text-xs">
                                                       <svg xmlns="http://www.w3.org/2000/svg" 
-                                                      width="19" height="19" viewBox="0 0 24 24" fill="yellow" stroke="yellow" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                      width="14" height="14" viewBox="0 0 24 24" fill="yellow" stroke="yellow" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                                                       </svg>
                                                         <span className="pl-2">4.7</span> 
                                                       </p>
-                                                      <p className="text-gray-400 pb-2">
+                                                      <p className="text-gray-400">
                                                         {movie.release_date}
                                                       </p>
                                                     </div>

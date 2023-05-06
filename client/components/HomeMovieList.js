@@ -51,8 +51,8 @@ const HomeMovieList = ({ moviedata, setMoviedata }) => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <Image src={noresultimg} alt="no result" className="w-96 h-96" />
-          <h1 className="text-3xl font-bold">No Result Found</h1>
+          <Image src={noresultimg} alt="no result" className="w-96 h-96 mt-10" />
+          <h1 className="text-3xl font-bold pb-30">No Result Found</h1>
         </div>
       )}
     </>
