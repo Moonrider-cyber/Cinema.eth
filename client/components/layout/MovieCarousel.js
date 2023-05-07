@@ -10,17 +10,8 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import Link from "next/link";
 
-export default function Carousel({moviedata,seriesdata}) {
+export default function MovieCarousel({moviedata,seriesdata}) {
     
-
-    let heading;
-    if(moviedata){
-        heading = "Movies";
-    }
-    else if(seriesdata){
-        heading = "TV Shows";
-        moviedata = seriesdata;
-    }
     return (
         <div className="container mx-auto">
             <div className="">
@@ -29,14 +20,14 @@ export default function Carousel({moviedata,seriesdata}) {
                     className="lg:block hidden"
                     naturalSlideWidth={100}
                     isIntrinsicHeight={true}
-                    totalSlides={moviedata && moviedata.results.length }
+                    totalSlides={moviedata && moviedata.results.length - 3}
                     visibleSlides={4}
                     step={1}
                     // infinite={true}
                 >
                     <div className="flex justify-between items-center">
                 <h1 className="mt-10 mb-5 text-3xl font-bold">
-                    Popular {heading}
+                    Popular Movies
                 </h1>
                 <div className="pr-5">
                         <ButtonBack
@@ -100,29 +91,28 @@ export default function Carousel({moviedata,seriesdata}) {
                                         moviedata.results.map((movie,key) =>
                                           movie.poster_path === null ? null : (
                                             <Slide index={key} key={key}>
-                                                <Link href={`/movie/${movie.id}`}>
+                                                <Link href={`/movie/${movie.id}`} shallow>
                                                     <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in "> 
+                                                    
                                                     <Image
                                                         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                                         alt="movie poster"
                                                         className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
                                                         width={300}
                                                         height={250}
-                                                        priority
-
+                                                        
                                                     />
 
                                                         <div className="px-5">
-                                                        <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">{seriesdata ? movie.name : movie.title}</h2>
+                                                        <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">{movie.title}</h2>
                                                         <p className="text-gray-400 text-xs mb-2 ">
-                                                          {movie.overview.slice(0, 34)}...
+                                                        {movie.overview.slice(0, 34)}...
                                                         </p>
                                                         <div className="flex justify-between items-center text-xs">
                                                           <p className="text-cyan-400 font-bold flex text-xs">
-                                                          <svg xmlns="http://www.w3.org/2000/svg" 
-                                                          width="14" height="14" viewBox="0 0 24 24" fill="yellow" stroke="yellow" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                                          </svg>
-                                                            <span className="pl-2">{movie.vote_average.toFixed(2)}</span> 
+                                                          <svg className="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"></path></g></svg>
+                    
+                                                            <span className="pl-1">{movie.vote_average.toFixed(2)}%</span> 
                                                           </p>
                                                           <p className="text-gray-400">
                                                             {movie.release_date}
@@ -143,7 +133,7 @@ export default function Carousel({moviedata,seriesdata}) {
                     </div>
                 </CarouselProvider>
 
-                {/* Carousel for tablet and medium size devices
+                {/* Carousel for tablet and medium size devices */}
                 <CarouselProvider
                     className="lg:hidden md:block hidden"
                     naturalSlideWidth={100}
@@ -438,7 +428,7 @@ export default function Carousel({moviedata,seriesdata}) {
                     </div>
                 </CarouselProvider>
 
-                Carousel for mobile and Small size Devices
+                {/* Carousel for mobile and Small size Devices */}
                 <CarouselProvider
                     className="block md:hidden "
                     naturalSlideWidth={100}
@@ -731,7 +721,136 @@ export default function Carousel({moviedata,seriesdata}) {
                             </svg>
                         </ButtonNext>
                     </div>
-                </CarouselProvider> */}
+                </CarouselProvider>
+            </div>
+        </div>
+    );
+}
+
+
+export const  SeriesCarousel = ({seriesdata})=> {
+    
+    return (
+        <div className="container mx-auto">
+            <div className="">
+                {/* Carousel for desktop and large size devices */}
+                <CarouselProvider
+                    className="lg:block hidden"
+                    naturalSlideWidth={100}
+                    isIntrinsicHeight={true}
+                    totalSlides={seriesdata && seriesdata.results.length - 3}
+                    visibleSlides={4}
+                    step={1}
+                    // infinite={true}
+                >
+                    <div className="flex justify-between items-center">
+                <h1 className="mt-10 mb-5 text-3xl font-bold">
+                    Top Rated Series
+                </h1>
+                <div className="pr-5">
+                        <ButtonBack
+                            role="button"
+                            aria-label="slide backward"
+                            className=" py-4 px-5"
+                            id="prev"
+                        >
+                            <svg
+                                width={20}
+                                height={25}
+                                viewBox="0 0 8 14"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M7 1L1 7L7 13"
+                                    stroke="white"
+                                    strokeWidth={3}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </ButtonBack>
+                        <ButtonNext
+                            role="button"
+                            aria-label="slide forward"
+                            className="mr-3 ease-in"
+                            id="next"
+                        >
+                            <svg
+                                width={20}
+                                height={25}
+                                viewBox="0 0 8 14"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M1 1L7 7L1 13"
+                                    stroke="white"
+                                    strokeWidth={3}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </ButtonNext>
+                    </div>
+                    </div> 
+                    
+
+                    <div className="w-full relative flex items-center justify-center">
+                        <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+                            <Slider>
+                                <div id="slider"
+                                    className="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+                                >
+
+                                    {
+                                    
+                                    seriesdata && seriesdata.results &&
+                                        seriesdata.results.map((series,key) =>
+                                        series.poster_path === null ? null : (
+                                            <Slide index={key} key={key}>
+                                                
+                                                <Link href={`/series/${series.id}`} shallow>
+                                                    <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in "> 
+                                                    <Image
+                                                        src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
+                                                        alt="movie poster"
+                                                        className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
+                                                        width={300}
+                                                        height={250}
+
+                                                    />
+
+                                                        <div className="px-5">
+                                                        <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">{series.name}</h2>
+                                                        <p className="text-gray-400 text-xs mb-2 ">
+                                                        {series.overview.slice(0, 34)}...
+                                                        </p>
+                                                        <div className="flex justify-between items-center text-xs">
+                                                          <p className="text-cyan-400 font-bold flex text-xs">
+                                                          <svg className="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"></path></g></svg>
+                    
+                                                            <span className="pl-1">{series.vote_average.toFixed(2)}%</span> 
+                                                          </p>
+                                                          <p className="text-gray-400">
+                                                            {series.release_date}
+                                                          </p>
+                                                            </div>
+                                                            <p className="bg-gray-600 h-[2px] w-full my-2"></p>
+                                                    </div>
+                                                </div>
+                                        </Link>
+                                    </Slide>
+                                          )
+                                    )}
+                                    
+                                    
+                                </div>
+                            </Slider>
+                        </div>
+                    </div>
+                </CarouselProvider>
+
             </div>
         </div>
     );

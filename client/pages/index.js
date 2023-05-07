@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-
 import HomeMovieList, { HomeSeriesList } from "@/components/HomeMovieList";
 import Search from "@/components/layout/Search";
 import Layout from "@/components/Layout";
-
 
 export default function Home() {
 
@@ -17,9 +15,12 @@ export default function Home() {
     <>
       <Layout>
 
-        <Search setMoviedata={setMoviedata} />
+          <Search setMoviedata={setMoviedata} />
         
-        <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
+          <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
+        
+        
+        
         <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
 
       </Layout>

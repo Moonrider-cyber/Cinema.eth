@@ -2,7 +2,7 @@ import { MovieCard } from "./MovieCard";
 import axios from "axios";
 import { useEffect } from "react";
 import Image from "next/image";
-import Carousel from "./layout/Carousel";
+import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
 
 const noresultimg = require("../asset/noresult.png");
 
@@ -25,14 +25,9 @@ const HomeMovieList = ({ moviedata, setMoviedata }) => {
 
   return (
     <>
-      {moviedata && moviedata.total_results !== 0 ? (
+      {moviedata && moviedata.total_results !== 0 && (
         <div>
-          <Carousel moviedata={moviedata} />
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center">
-          <Image src={noresultimg} alt="no result" className="w-96 h-96 mt-10" />
-          <h1 className="text-3xl font-bold pb-30">No Result Found</h1>
+          <MovieCarousel moviedata={moviedata} />
         </div>
       )}
     </>
@@ -63,14 +58,9 @@ export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
 
   return (
     <>
-      {seriesdata && seriesdata.total_results !== 0 ? (
+      {seriesdata && seriesdata.total_results !== 0 && (
         <div>
-          <Carousel seriesdata={seriesdata} />
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center">
-          <Image src={noresultimg} alt="no result" className="w-96 h-96 mt-10" />
-          <h1 className="text-3xl font-bold pb-30">No Result Found</h1>
+          <SeriesCarousel seriesdata={seriesdata} />
         </div>
       )}
     </>

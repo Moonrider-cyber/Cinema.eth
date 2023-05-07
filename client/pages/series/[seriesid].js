@@ -3,27 +3,27 @@ import Layout from '@/components/Layout'
 import SingleMovieComp, { MovieCast } from '@/components/SingleMovieComp'
 import { useRouter } from "next/router";
 
-const SingleMovie = () => {
+const SingleSeries = () => {
   
     const router = useRouter();
-    const { movieid } = router.query;
+    const { seriesid } = router.query;
    
     return (
         <Layout>
-            <SingleMovieComp movieid={movieid} />
-            <MovieCast movieid={movieid} />
+            <SingleMovieComp seriesid={seriesid} />
+            <MovieCast seriesid={seriesid} />
         </Layout>
     )}
 
     
     export async function getServerSideProps(context) {
-        const { movieid } = context.query;
-  console.log(  movieid  )
+        const { seriesid } = context.query;
+  
         return {
       props: {
-        movieid,
+        seriesid,
         },
     };
   }
   
-export default SingleMovie;
+export default SingleSeries;
