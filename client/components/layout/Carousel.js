@@ -8,10 +8,19 @@ import {
     ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import Link from "next/link";
 
-export default function Carousel({moviedata}) {
-
+export default function Carousel({moviedata,seriesdata}) {
     
+
+    let heading;
+    if(moviedata){
+        heading = "Movies";
+    }
+    else if(seriesdata){
+        heading = "TV Shows";
+        moviedata = seriesdata;
+    }
     return (
         <div className="container mx-auto">
             <div className="">
@@ -27,7 +36,7 @@ export default function Carousel({moviedata}) {
                 >
                     <div className="flex justify-between items-center">
                 <h1 className="mt-10 mb-5 text-3xl font-bold">
-                    Popular Movies
+                    Popular {heading}
                 </h1>
                 <div className="pr-5">
                         <ButtonBack
@@ -90,37 +99,39 @@ export default function Carousel({moviedata}) {
                                     moviedata && moviedata.results &&
                                         moviedata.results.map((movie,key) =>
                                           movie.poster_path === null ? null : (
-                                            <Slide index={key}>
-                                                <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in " > 
-                                                <Image
-                                                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                                                    alt="movie poster"
-                                                    className="rounded-t-md object-cover"
-                                                    width={300}
-                                                    height={250}
-                                                    priority
+                                            <Slide index={key} key={key}>
+                                                <Link href={`/movie/${movie.id}`}>
+                                                    <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in "> 
+                                                    <Image
+                                                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                                        alt="movie poster"
+                                                        className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
+                                                        width={300}
+                                                        height={250}
+                                                        priority
 
-                                                />
+                                                    />
 
-                                                    <div className="px-5">
-                                                    <h2 className="text-sm py-2 font-bold mt-3 overflow-hidden truncate ">{movie.title}</h2>
-                                                    <p className="text-gray-400 text-xs mb-2 ">
-                                                      {movie.overview.slice(0, 34)}...
-                                                    </p>
-                                                    <div className="flex justify-between items-center text-xs">
-                                                      <p className="text-cyan-400 font-bold flex text-xs">
-                                                      <svg xmlns="http://www.w3.org/2000/svg" 
-                                                      width="14" height="14" viewBox="0 0 24 24" fill="yellow" stroke="yellow" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                                      </svg>
-                                                        <span className="pl-2">4.7</span> 
-                                                      </p>
-                                                      <p className="text-gray-400">
-                                                        {movie.release_date}
-                                                      </p>
+                                                        <div className="px-5">
+                                                        <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">{seriesdata ? movie.name : movie.title}</h2>
+                                                        <p className="text-gray-400 text-xs mb-2 ">
+                                                          {movie.overview.slice(0, 34)}...
+                                                        </p>
+                                                        <div className="flex justify-between items-center text-xs">
+                                                          <p className="text-cyan-400 font-bold flex text-xs">
+                                                          <svg xmlns="http://www.w3.org/2000/svg" 
+                                                          width="14" height="14" viewBox="0 0 24 24" fill="yellow" stroke="yellow" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                          </svg>
+                                                            <span className="pl-2">{movie.vote_average.toFixed(2)}</span> 
+                                                          </p>
+                                                          <p className="text-gray-400">
+                                                            {movie.release_date}
+                                                          </p>
+                                                            </div>
+                                                            <p className="bg-gray-600 h-[2px] w-full my-2"></p>
                                                     </div>
-                                                <p className="bg-gray-600 h-[2px] w-full my-2"></p>
-                                            </div>
-                                        </div>
+                                                </div>
+                                        </Link>
                                     </Slide>
                                           )
                                     )}

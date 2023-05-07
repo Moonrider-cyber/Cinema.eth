@@ -1,23 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 
 const Search = ({setMoviedata}) => {
 
     const [searchtext, setSearchtext] = useState(null);
+    const router = useRouter();
 
     const searchhandle =async (e) => {
         e.preventDefault();
-            let urlencode = encodeURI(searchtext);
+
+        if(searchtext === null){
+            return;
+        }
+        router.push(`/search/${searchtext}`);
+        
             
-            const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
-            await axios.get(url)
-            .then(res => {
-                if(res.data.results.length === 0){
-                  setMoviedata([]);
-                }
-                setMoviedata(res.data);
-            })
     }
 
   return (

@@ -8,13 +8,13 @@ const NavBar = ({connectwallet,state,account}) => {
     const [open, setOpen] = React.useState(false);
     
     let iswalletconnected = false;
-    if(state.signer !== null){
+    if(state && state.signer !== null){
         iswalletconnected = true;
     }
 
     return (
       <>
-        <div className="relative">
+        <div className="relative border-b border-gray-600">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center border-b-2 border-none py-6 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -54,9 +54,10 @@ const NavBar = ({connectwallet,state,account}) => {
               <nav className="hidden md:flex space-x-10">
                
 
-                {/* <a href="#" className="text-base font-medium text-gray-300 hover:text-white"> movies </a>
-                <a href="#" className="text-base font-medium text-gray-300 hover:text-white"> about </a>
-                 */}
+                <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Home </Link>
+                <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Movies </Link>
+                {/* <a href="#" className="text-base font-medium text-gray-300 hover:text-white"> Anime </a> */}
+                
               </nav>
               <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                 {/* <a
@@ -75,6 +76,7 @@ const NavBar = ({connectwallet,state,account}) => {
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#1f6feb] hover:bg-indigo-700"
                   onClick={()=> connectwallet()}
               >   
+                
                 Connect Wallet
               </button>
               
