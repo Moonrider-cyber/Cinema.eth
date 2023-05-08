@@ -13,7 +13,7 @@ export const MovieCard = ({movie}) => {
             alt="movie poster"
             className="rounded-t-md h-[75%] hover:opacity-75 transition ease-in-out duration-150"
             width={500}
-            height={650}
+            height={750}
 
           />
 

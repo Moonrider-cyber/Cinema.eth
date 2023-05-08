@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.1",
-    "dotnet": "^1.1.4",
+    "dotenv": "^16.0.3",
     "next": "13.3.4"
   }
 }
