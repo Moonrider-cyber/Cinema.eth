@@ -13,10 +13,9 @@ const searchPage = () => {
 
     return (
     <>
-        <Layout>
-            <Search setsearchMoviedata={setsearchMoviedata} />
+         <Search setsearchMoviedata={setsearchMoviedata} />
+            
             <SearchMovieList searchtext={searchtext} searchmoviedata={searchmoviedata} setsearchMoviedata={setsearchMoviedata} />
-        </Layout>
     </>
   )
 }

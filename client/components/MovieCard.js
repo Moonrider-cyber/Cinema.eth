@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 export const MovieCard = ({movie}) => {
   return (
     <>
       {/* {console.log("movie img",movie.poster_path)} */}
+      <Link href={`/movie/${movie.id}`}>
         <div className="cursor-pointer my-10 w-72 bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in">
           <Image
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -34,7 +36,7 @@ export const MovieCard = ({movie}) => {
             <p className="bg-gray-600 h-[2px] w-full my-2"></p>
           </div>
         </div>
-
+      </Link>
     </>
   );
 };

@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image';
+import { SingleMovieLoding } from './Loding';
 
 const SingleMovieComp = ({movieid,seriesid}) => {
     
-    
+  const [movieloading, setMovieLoading] = useState(true);
+
     const [moviedetails, setMoviedetails] = React.useState(null);
 
     const fetchData = async () => {
+      
         if(seriesid){
           const url = `https://api.themoviedb.org/3/tv/${seriesid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
           await axios
             .get(url)
             .then((res) => {
-              console.log("got it");
               setMoviedetails(res.data);
+              setMovieLoading(false);
             })
             .catch((err) => {
               console.log("catch error:-", err);
@@ -25,7 +28,7 @@ const SingleMovieComp = ({movieid,seriesid}) => {
           await axios
             .get(url)
             .then((res) => {
-              console.log("got it");
+              setMovieLoading(false);
               setMoviedetails(res.data);
             })
             .catch((err) => {
@@ -37,14 +40,13 @@ const SingleMovieComp = ({movieid,seriesid}) => {
       useEffect(() => {
         fetchData();
       }, []);
-
+console.log(movieloading)
     return (
         <>
         <div>
-
+          {movieloading ? (<SingleMovieLoding /> ) : (
             
-            <div className="movie-info border-b border-gray-800">
-            <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row">
+            <div className="container mx-auto movie-info border-b border-gray-800 px-4 py-16 flex flex-col md:flex-row">
             <div className="flex-none">
                 <Image src={`https://image.tmdb.org/t/p/w500/${moviedetails && moviedetails.poster_path}`} alt="poster" 
                 className="w-64 lg:w-96" 
@@ -67,7 +69,7 @@ const SingleMovieComp = ({movieid,seriesid}) => {
                         <span key={index}>{genre.name} {index === moviedetails.genres.length - 1 ? '' : ', '}</span>
                     ))}</span>
                     
-                {console.log(moviedetails)}
+                
                 </div>
 
                 <p className="text-gray-300 mt-4">
@@ -100,7 +102,7 @@ const SingleMovieComp = ({movieid,seriesid}) => {
                         </div>
             </div>
         </div>
-            </div>
+        )}
 
         </div>
         </>
@@ -116,7 +118,7 @@ export const MovieCast = ({movieid,seriesid}) => {
         await axios
           .get(url)
           .then((res) => {
-            console.log("got it");
+            
             setCradit(res.data);
           })
           .catch((err) => {
@@ -164,7 +166,7 @@ export const getmovieimg = async ({movieid}) => {
         await axios
           .get(url)
           .then((res) => {
-            console.log("got it");
+            
             settest(res.data)
           })
           .catch((err) => {

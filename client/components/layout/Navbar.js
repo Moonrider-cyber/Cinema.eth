@@ -1,5 +1,4 @@
 import React from "react";
-import Jazzicon from 'react-jazzicon'
 import NavAvatar from "./NavAvatar";
 import Link from "next/link";
 
@@ -7,16 +6,17 @@ import Link from "next/link";
 const NavBar = ({connectwallet,state,account}) => {
     const [open, setOpen] = React.useState(false);
     
+    
     let iswalletconnected = false;
     if(state && state.signer !== null){
         iswalletconnected = true;
     }
-
+    
     return (
       <>
         <div className="relative border-b border-gray-600">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex justify-between items-center border-b-2 border-none py-6 md:justify-start md:space-x-10">
+            <div className="flex justify-between items-center border-b-2 border-none py-4 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="/" className="flex">
                   <img

@@ -13,17 +13,13 @@ export default function Home() {
 
   return (
     <>
-      <Layout>
 
           <Search setMoviedata={setMoviedata} />
         
           <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
         
-        
-        
         <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
 
-      </Layout>
     </>
     // <main className={`${inter.className}`}>
     //   <Navbar connectwallet={connectwallet} state={state} account={account} />

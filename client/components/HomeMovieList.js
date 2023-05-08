@@ -1,23 +1,24 @@
 import { MovieCard } from "./MovieCard";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
+import Loding from "./Loding";
 
 const noresultimg = require("../asset/noresult.png");
 
 const HomeMovieList = ({ moviedata, setMoviedata }) => {
+  
   const fetchData = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
     await axios
       .get(url)
       .then((res) => {
-        console.log("got it");
         setMoviedata(res.data);
       })
       .catch((err) => {
         console.log("catch error:-", err);
-      });
+      });true
   };
   useEffect(() => {
     fetchData();
@@ -45,7 +46,6 @@ export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
     await axios
       .get(url)
       .then((res) => {
-        console.log("got it");
         setSeriesdata(res.data);
       })
       .catch((err) => {
@@ -69,6 +69,8 @@ export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
 
 export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedata }) => {
 
+  const [movieloading, setMovieLoading] = useState(true);
+
   const fetchsearchData = async () => {
     let urlencode = encodeURI(searchtext);    
       const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
@@ -78,6 +80,7 @@ export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedat
             setsearchMoviedata([]);
           }
           setsearchMoviedata(res.data);
+          setMovieLoading(false);
       })
       .catch((err) => {
         console.log("catch error:-", err);
@@ -87,14 +90,17 @@ export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedat
     fetchsearchData();
   }, [searchtext]);
 
-  console.log("searchmoviedata",searchmoviedata)
+  
   return (
     <>
+    
       <h1 className="mt-10 mb-5 text-5xl font-bold text-center">
         Search Movies For "{searchtext}"
       </h1>
 
-      {searchmoviedata && searchmoviedata.total_results !== 0 ? (
+      {
+      movieloading ? (<Loding />) :  
+      searchmoviedata && searchmoviedata.total_results !== 0 ? (
         <div className="gap-x-2 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
           {searchmoviedata && searchmoviedata.results &&
             searchmoviedata.results.map((movie,key) =>
@@ -108,7 +114,8 @@ export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedat
           <Image src={noresultimg} alt="no result" className="w-96 h-96" />
           <h1 className="text-3xl font-bold">No Result Found</h1>
         </div>
-      )}
+      )  
+       }
     </>
   );
 }
