@@ -9,20 +9,21 @@ const noresultimg = require("../asset/noresult.png");
 
 const HomeMovieList = ({ moviedata, setMoviedata }) => {
   
-  const fetchData = async () => {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-    await axios
-      .get(url)
-      .then((res) => {
-        setMoviedata(res.data);
-      })
-      .catch((err) => {
-        console.log("catch error:-", err);
-      });true
-  };
+  
   useEffect(() => {
+    const fetchData = async () => {
+      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      await axios
+        .get(url)
+        .then((res) => {
+          setMoviedata(res.data);
+        })
+        .catch((err) => {
+          console.log("catch error:-", err);
+        });true
+    };
     fetchData();
-  }, []);
+  }, [setMoviedata]);
 
   return (
     <>
@@ -41,20 +42,21 @@ export default HomeMovieList;
 
 
 export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
-  const fetchData = async () => {
-    const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-    await axios
-      .get(url)
-      .then((res) => {
-        setSeriesdata(res.data);
-      })
-      .catch((err) => {
-        console.log("catch error:-", err);
-      });
-  };
+  
   useEffect(() => {
+    const fetchData = async () => {
+      const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      await axios
+        .get(url)
+        .then((res) => {
+          setSeriesdata(res.data);
+        })
+        .catch((err) => {
+          console.log("catch error:-", err);
+        });
+    };
     fetchData();
-  }, []);
+  }, [setSeriesdata]);
 
   return (
     <>
@@ -71,31 +73,32 @@ export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedat
 
   const [movieloading, setMovieLoading] = useState(true);
 
-  const fetchsearchData = async () => {
-    let urlencode = encodeURI(searchtext);    
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
-      await axios.get(url)
-      .then(res => {
-          if(res.data.results.length === 0){
-            setsearchMoviedata([]);
-          }
-          setsearchMoviedata(res.data);
-          setMovieLoading(false);
-      })
-      .catch((err) => {
-        console.log("catch error:-", err);
-      });
-  };
+  
   useEffect(() => {
+    const fetchsearchData = async () => {
+      let urlencode = encodeURI(searchtext);    
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
+        await axios.get(url)
+        .then(res => {
+            if(res.data.results.length === 0){
+              setsearchMoviedata([]);
+            }
+            setsearchMoviedata(res.data);
+            setMovieLoading(false);
+        })
+        .catch((err) => {
+          console.log("catch error:-", err);
+        });
+    };
     fetchsearchData();
-  }, [searchtext]);
+  }, [searchtext, setsearchMoviedata]);
 
   
   return (
     <>
     
       <h1 className="mt-10 mb-5 text-5xl font-bold text-center">
-        Search Movies For "{searchtext}"
+        Search Movies For {searchtext}
       </h1>
 
       {

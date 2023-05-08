@@ -175,7 +175,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                 >
                                     <Slide index={0}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
                                                 className="object-cover object-center w-full"
@@ -194,7 +197,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={1}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -213,7 +219,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={2}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -232,7 +241,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={3}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -251,7 +263,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={4}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
                                                 className="object-cover object-center w-full"
@@ -270,7 +285,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={5}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -289,7 +307,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={6}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -308,7 +329,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={7}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -327,7 +351,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={8}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
                                                 className="object-cover object-center w-full"
@@ -346,7 +373,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={9}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -365,7 +395,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={10}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -384,7 +417,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={11}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -470,7 +506,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                 >
                                     <Slide index={0}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
                                                 className="object-cover object-center w-full"
@@ -489,7 +528,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={1}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -508,7 +550,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={2}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -527,7 +572,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={3}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -546,7 +594,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={4}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
                                                 className="object-cover object-center w-full"
@@ -565,7 +616,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={5}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -584,7 +638,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={6}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -603,7 +660,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={7}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -622,7 +682,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={8}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
                                                 className="object-cover object-center w-full"
@@ -641,7 +704,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={9}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -660,7 +726,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={10}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -679,7 +748,10 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                     </Slide>
                                     <Slide index={11}>
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                                            <img
+                                            <Image
+                                                        width={300}
+                                                        height={650}
+                                                        
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -816,9 +888,9 @@ export const  SeriesCarousel = ({seriesdata})=> {
                                                     <Image
                                                         src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
                                                         alt="movie poster"
-                                                        className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
                                                         width={300}
-                                                        height={250}
+                                                        height={650}
+                                                        className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
 
                                                     />
 

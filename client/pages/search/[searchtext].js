@@ -4,7 +4,7 @@ import Search from '@/components/layout/Search'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-const searchPage = () => {
+const SearchPage = () => {
 
     const router = useRouter()
     const { searchtext } = router.query
@@ -20,4 +20,4 @@ const searchPage = () => {
   )
 }
 
-export default searchPage
+export default SearchPage

@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image';
 import { SingleMovieLoding } from './Loding';
+import Link from 'next/link';
 
 const SingleMovieComp = ({movieid,seriesid}) => {
     
@@ -9,37 +10,37 @@ const SingleMovieComp = ({movieid,seriesid}) => {
 
     const [moviedetails, setMoviedetails] = React.useState(null);
 
-    const fetchData = async () => {
-      
-        if(seriesid){
-          const url = `https://api.themoviedb.org/3/tv/${seriesid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-          await axios
-            .get(url)
-            .then((res) => {
-              setMoviedetails(res.data);
-              setMovieLoading(false);
-            })
-            .catch((err) => {
-              console.log("catch error:-", err);
-            });
-        }
-        else if(movieid){
-          const url = `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-          await axios
-            .get(url)
-            .then((res) => {
-              setMovieLoading(false);
-              setMoviedetails(res.data);
-            })
-            .catch((err) => {
-              console.log("catch error:-", err);
-            });
-        }
-        
-      };
       useEffect(() => {
+        
+    const fetchData = async () => {
+      if(seriesid){
+        const url = `https://api.themoviedb.org/3/tv/${seriesid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+        await axios
+          .get(url)
+          .then((res) => {
+            setMoviedetails(res.data);
+            setMovieLoading(false);
+          })
+          .catch((err) => {
+            console.log("catch error:-", err);
+          });
+      }
+      else if(movieid){
+        const url = `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+        await axios
+          .get(url)
+          .then((res) => {
+            setMovieLoading(false);
+            setMoviedetails(res.data);
+          })
+          .catch((err) => {
+            console.log("catch error:-", err);
+          });
+      }
+      
+    };
         fetchData();
-      }, []);
+      }, [movieid, seriesid]);
 console.log(movieloading)
     return (
         <>
@@ -113,21 +114,22 @@ export default SingleMovieComp
 
 export const MovieCast = ({movieid,seriesid}) => {
     const [cradit, setCradit] = React.useState(null);
-    const fetchData = async () => {
-        const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${movieid ? movieid : seriesid}/credits?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-        await axios
-          .get(url)
-          .then((res) => {
-            
-            setCradit(res.data);
-          })
-          .catch((err) => {
-            console.log("catch error:-", err);
-          });
-      };
+    
       useEffect(() => {
+        const fetchData = async () => {
+          const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${movieid ? movieid : seriesid}/credits?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+          await axios
+            .get(url)
+            .then((res) => {
+              
+              setCradit(res.data);
+            })
+            .catch((err) => {
+              console.log("catch error:-", err);
+            });
+        };
         fetchData();
-      }, []);
+      }, [movieid, seriesid]);
 
     return (
         <>
@@ -139,11 +141,14 @@ export const MovieCast = ({movieid,seriesid}) => {
                     {cradit && cradit.cast.slice(0,5).map((cast, index) => (
                         cast.profile_path &&
                         <div className="mt-8" key={index}>
-                            <a href="https://movies.andredemos.ca/actors/22226">
-                                <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt="actor1" className="hover:opacity-75 transition ease-in-out duration-150" />
-                            </a>
+                            <Link href="/">
+                                <Image src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} 
+                                width={500}
+                                height={750}
+                                alt="actor1" className="hover:opacity-75 transition ease-in-out duration-150" />
+                            </Link>
                             <div className="mt-2">
-                                <a href="https://movies.andredemos.ca/actors/22226" className="text-lg mt-2 hover:text-gray:300">{cast.name}</a>
+                                <Link href="/" className="text-lg mt-2 hover:text-gray:300">{cast.name}</Link>
                                 <div className="text-sm text-gray-400">
                                     {cast.character}
                                 </div>
@@ -155,37 +160,4 @@ export const MovieCast = ({movieid,seriesid}) => {
             </div>
         </>
     )
-}
-
-
-export const getmovieimg = async ({movieid}) => {
-    const [test,settest] = React.useState(null)
-
-    const fetchData = async () => {
-        const url = `https://api.themoviedb.org/3/movie/${movieid}/images?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&include_image_language=en`;
-        await axios
-          .get(url)
-          .then((res) => {
-            
-            settest(res.data)
-          })
-          .catch((err) => {
-            console.log("catch error:-", err);
-          });
-      };
-      useEffect(() => {
-        fetchData();
-      }, []);
-  
-    return (
-    <>
-        <h1>jdhj</h1>
-      {test && test.backdrops.map((movie,key) =>
-            <>
-            <img src={`https://image.tmdb.org/t/p/w1280/${movie.file_path}`} alt="movie poster" className="" key={key}/>
-            </>
-        )}
-          
-    </>
-  )
 }

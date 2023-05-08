@@ -15,6 +15,6 @@ module.exports = {
     THEMOVIEDB_API_KEY: process.env.THEMOVIEDB_API_KEY,
   },
   images: {
-    domains: ['image.tmdb.org'],
+    domains: ['image.tmdb.org',"localhost"],
   },
 };

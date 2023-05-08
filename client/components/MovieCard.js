@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 
-export const MovieCard = ({movie}) => {
+export const MovieCard = ({movie}) => { 
   return (
     <>
       {/* {console.log("movie img",movie.poster_path)} */}

@@ -1,6 +1,7 @@
 import React from "react";
 import NavAvatar from "./NavAvatar";
 import Link from "next/link";
+import Image from "next/image";
 
 
 const NavBar = ({connectwallet,state,account}) => {
@@ -19,10 +20,12 @@ const NavBar = ({connectwallet,state,account}) => {
             <div className="flex justify-between items-center border-b-2 border-none py-4 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="/" className="flex">
-                  <img
+                  <Image
                     className="h-8 w-auto sm:h-10"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                    alt=""
+                    width={32}
+                    height={32}
+                    alt="logo"
                   /><span className="self-center pl-3 text-2xl font-semibold whitespace-nowrap dark:text-white">ETHCinemaNation</span>
                  
                 </Link>
@@ -97,9 +100,11 @@ const NavBar = ({connectwallet,state,account}) => {
               <div className="pt-5 pb-6 px-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <img
+                    <Image
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                      width={32}
+                      height={32}
                       alt="Workflow"
                     />
                   </div>
