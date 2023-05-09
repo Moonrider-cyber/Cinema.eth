@@ -13,8 +13,8 @@ const SingleMovieComp = ({movieid,seriesid}) => {
       useEffect(() => {
         
     const fetchData = async () => {
-      if(seriesid){
-        const url = `https://api.themoviedb.org/3/tv/${seriesid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      
+        const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${movieid ? movieid : seriesid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
         await axios
           .get(url)
           .then((res) => {
@@ -24,24 +24,11 @@ const SingleMovieComp = ({movieid,seriesid}) => {
           .catch((err) => {
             console.log("catch error:-", err);
           });
-      }
-      else if(movieid){
-        const url = `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-        await axios
-          .get(url)
-          .then((res) => {
-            setMovieLoading(false);
-            setMoviedetails(res.data);
-          })
-          .catch((err) => {
-            console.log("catch error:-", err);
-          });
-      }
       
     };
         fetchData();
       }, [movieid, seriesid]);
-console.log(movieloading)
+
     return (
         <>
         <div>
@@ -100,7 +87,7 @@ console.log(movieloading)
                                 <span className="ml-2">Play Trailer</span>
                             </button>
                         </div>
-                        </div>
+                </div>
             </div>
         </div>
         )}
