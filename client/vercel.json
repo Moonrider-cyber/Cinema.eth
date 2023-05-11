@@ -1,0 +1,15 @@
+{
+    "buildCommand": "next build",
+    "devCommand": "next dev",
+    "output": "build",
+    "src": "src",
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/*.test.jsx",
+        "src/**/*.spec.jsx"
+    ]
+}
