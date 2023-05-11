@@ -10,7 +10,14 @@ To participate, users need a Metamask wallet and some Ether. By sending a small 
 
 ETHCinemaNation offers a transparent and reliable solution for movie and TV enthusiasts to express their opinions, while providing valuable feedback to content creators.
 
-![image](https://user-images.githubusercontent.com/81921291/236696232-e0e03f20-07a9-47e1-9aef-a138919e65e3.png)
-
-![image](https://user-images.githubusercontent.com/81921291/236807689-ae549836-978f-4f28-b8bc-245f04cbc846.png)
+<table>
+  <tr>
+    <td>
+        <img src="https://github.com/Jainex17/ETHCinemaNation/assets/81921291/54460965-d40e-487f-b810-34b14957f5de" alt="ss1" />
+    </td>
+    <td>
+      <img src="https://github.com/Jainex17/ETHCinemaNation/assets/81921291/573e2fa1-7ac3-4a71-ba1a-aedbed61cf87" alt="ss2" />
+    </td>
+  </tr>
+</table>
 
