@@ -1,15 +1,20 @@
-# ETHCinemaNation
+# ETHCinemaNation🎬
 
-ETHCinemaNation is a blockchain-based voting system that allows users to rate their favorite movies and TV series. Built on the Ethereum blockchain using smart contracts, the system ensures the integrity of the rating process.
+ETHCinemaNation is a decentralized voting platform built on the Ethereum blockchain that allows users to rate their favorite movies and TV shows. With a focus on transparency and user engagement, this project offers an immersive experience for movie enthusiasts and content creators.
 
-Users can explore a wide selection of movies and TV series and provide their ratings. Each user is limited to one rating per movie or TV series. The ratings are securely recorded on the Ethereum blockchain, guaranteeing their immutability.
+## 🔴 NOT COMPLET YET(May Complet After Some Time)
 
-The platform features a dynamic leaderboard that showcases the top-rated movies and TV series in real-time as new ratings are submitted.
+- Give Review Section
+- Avatar click popup(can copy address,logout)
+- Fetch All Movie/Tv Reviews From the Contract(Movie)
+- Fetch Single Movie/Tv Review From Contract(MovieReviews) and show in reviews section
+- Show Relevant Movie/Tv List On Single Movie Details Page
+- Nav Working Links Movies and TV/Shows
+- May Add Anime Section In Navbar
+- Image Background In Movie Details Page
+- New Logo(Nav and Footer)
 
-To participate, users need a Metamask wallet and some Ether. By sending a small amount of Ether to the smart contract associated with their chosen movie or TV series, users can cast their ratings. The smart contract automatically updates the rating and calculates the average rating for each movie or TV series.
-
-ETHCinemaNation offers a transparent and reliable solution for movie and TV enthusiasts to express their opinions, while providing valuable feedback to content creators.
-
+## Screenshots
 <table>
   <tr>
     <td>
