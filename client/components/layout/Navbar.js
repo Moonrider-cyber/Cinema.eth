@@ -57,8 +57,8 @@ const NavBar = ({connectwallet,state,account}) => {
               <nav className="hidden md:flex space-x-10">
                
 
-                <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Home </Link>
-                <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Movies </Link>
+                {/* <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Home </Link> */}
+                {/* <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Movies </Link> */}
                 {/* <a href="#" className="text-base font-medium text-gray-300 hover:text-white"> Anime </a> */}
                 
               </nav>

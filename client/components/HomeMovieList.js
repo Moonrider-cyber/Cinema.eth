@@ -38,7 +38,7 @@ const HomeMovieList = ({ moviedata, setMoviedata }) => {
 
 export default HomeMovieList;
 
-
+ 
 
 
 export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {

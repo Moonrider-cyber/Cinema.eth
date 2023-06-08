@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import HomeMovieList, { HomeSeriesList } from "@/components/HomeMovieList";
-import Search from "@/components/layout/Search";
-import HeroSection from "@/components/layout/HeroSection";
+import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
+import Search from "../components/layout/Search";
+import HeroSection from "../components/layout/HeroSection";
 
 
 export default function Home() {
@@ -20,12 +20,5 @@ export default function Home() {
         <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
 
     </>
-    // <main className={`${inter.className}`}>
-    //   <Navbar connectwallet={connectwallet} state={state} account={account} />
-
-    //   <Search setMoviedata={setMoviedata} />
-
-      
-    // </main>
   );
 }

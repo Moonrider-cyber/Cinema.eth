@@ -1,6 +1,5 @@
-import { SearchMovieList } from '@/components/HomeMovieList'
-import Layout from '@/components/Layout'
-import Search from '@/components/layout/Search'
+import { SearchMovieList } from '../../components/HomeMovieList'
+import Search from '../../components/layout/Search'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 

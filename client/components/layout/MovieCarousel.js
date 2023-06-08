@@ -20,7 +20,7 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                     className="lg:block hidden"
                     naturalSlideWidth={100}
                     isIntrinsicHeight={true}
-                    totalSlides={moviedata && moviedata.results.length - 3}
+                    totalSlides={moviedata && moviedata.results.length - 6.5}
                     visibleSlides={4}
                     step={1}
                     // infinite={true}
@@ -99,7 +99,7 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                                         alt="movie poster"
                                                         className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
                                                         width={300}
-                                                        height={250}
+                                                        height={450}
                                                         as="image"
                                                         priority={key < 4 ? true : false}
                                                     />
@@ -177,7 +177,7 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
                                             <Image
                                                         width={300}
-                                                        height={650}
+                                                        height={450}
                                                         
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
@@ -508,7 +508,7 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
                                             <Image
                                                         width={300}
-                                                        height={650}
+                                                        height={450}
                                                         
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="black chair and white table"
@@ -530,7 +530,7 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
                                             <Image
                                                         width={300}
-                                                        height={650}
+                                                        height={450}
                                                         
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
@@ -552,8 +552,8 @@ export default function MovieCarousel({moviedata,seriesdata}) {
                                         <div className="flex flex-shrink-0 relative w-full sm:w-auto">
                                             <Image
                                                         width={300}
-                                                        height={650}
-                                                        
+                                                        height={450}
+                                                        // TODO : NEED LIVE
                                                 src="http://localhost:3000/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw500%2F%2FqNBAXBIQlnOThrVvA6mA2B5ggV6.jpg&w=640&q=75"
                                                 alt="sitting area"
                                                 className="object-cover object-center w-full"
@@ -811,7 +811,7 @@ export const  SeriesCarousel = ({seriesdata})=> {
                     className="lg:block hidden"
                     naturalSlideWidth={100}
                     isIntrinsicHeight={true}
-                    totalSlides={seriesdata && seriesdata.results.length - 3}
+                    totalSlides={seriesdata && seriesdata.results.length - 6.5}
                     visibleSlides={4}
                     step={1}
                     // infinite={true}
@@ -889,7 +889,7 @@ export const  SeriesCarousel = ({seriesdata})=> {
                                                         src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
                                                         alt="movie poster"
                                                         width={300}
-                                                        height={650}
+                                                        height={450}
                                                         className="rounded-t-md object-cover hover:opacity-75 transition ease-in-out duration-150"
 
                                                     />
