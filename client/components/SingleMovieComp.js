@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 import { SingleMovieLoding } from "./Loding";
 import Link from "next/link";
+import Image from "next/image";
 
 let user = require("../asset/user.png");
 
 const SingleMovieComp = ({ movieid, seriesid }) => {
   const [movieloading, setMovieLoading] = useState(true);
 
-  const [moviedetails, setMoviedetails] = React.useState(null);
+  const [moviedetails, setMoviedetails] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +23,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
         .then((res) => {
           setMoviedetails(res.data);
           setMovieLoading(false);
+          
         })
         .catch((err) => {
           console.log("catch error:-", err);
@@ -40,7 +41,8 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
           <div className="container mx-auto movie-info border-b border-gray-800 px-4 py-16 flex flex-col md:flex-row">
             <div className="flex-none">
               <Image
-                src={`https://image.tmdb.org/t/p/w500/${
+                loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
+                src={`https://image.tmdb.org/t/p/w500${
                   moviedetails && moviedetails.poster_path
                 }`}
                 alt="poster"
@@ -59,7 +61,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                   {moviedetails && moviedetails.release_date === undefined
                     ? ""
                     : " (" +
-                      new Date(moviedetails.release_date).getFullYear() +
+                      new Date(moviedetails && moviedetails.release_date).getFullYear() +
                       ")"}
                 </span>
               </h2>
@@ -149,7 +151,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
 
               <p className="text-gray-300 mt-7 pr-20 line-clamp-5">
                 {" "}
-                {console.log(moviedetails)}
+                {/* {console.log(moviedetails)} */}
                 {moviedetails && moviedetails.overview}
               </p>
 
@@ -166,7 +168,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
               </div>
 
               {/* trailer button */}
-              {moviedetails.videos.results.length > 0 && (
+              {moviedetails && moviedetails.videos.results.length > 0 && (
                 <div className="mt-8">
                   {/* youtube trailer link   */}
                   <Link
@@ -253,15 +255,15 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
             </div>
             <div className="flex items-center mb-1">
               <h3 className="mt-1 text-md font-semibold text-gray-900 dark:text-white">
-                Thinking to buy another one!
+                Best Movie Ever!
               </h3>
             </div>
             <p className="mb-2 text-gray-500 dark:text-gray-400">
-              This is my third Invicta Pro Diver. They are just fantastic value
-              for money. This one arrived yesterday and the first thing I did
-              was set the time, popped on an identical strap from another
-              Invicta and went in the shower with it to test the
-              waterproofing.... No problems.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+              necessitatibus incidunt ut officiis explicabo inventore.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+              necessitatibus incidunt ut officiis explicabo inventore.
+
             </p>
             
           </article>
@@ -277,13 +279,15 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
               moviedetails.credits &&
               moviedetails.credits.cast.slice(0, 5).map(
                 (cast, index) =>
-                  cast.profile_path && (
-                    <div className="mt-8" key={index}>
+                cast.profile_path && (
+                  <div className="mt-8" key={index}>
                       <Link href="/">
+                      
                         <Image
-                          src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
                           width={500}
                           height={750}
+                          loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
+                          src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                           alt="cast"
                           className="hover:opacity-75 transition ease-in-out duration-150"
                         />

@@ -14,6 +14,9 @@ const HeroSection = () => {
         .then((res) => {
             setMovieImg(res.data)
         })
+        .catch((err) => {
+            console.log(err)
+        })
     }, [])
 
     return (
@@ -44,7 +47,10 @@ const HeroSection = () => {
               >
                 <Slider>
                     {movieImg && movieImg.results.slice(0, 5).map((movie, index) => (
-                        <Slide index={index} key={index} className="flex justify-center"><div className="flex justify-center"><Image src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} width={300} height={450} className="rounded-t-md"  alt="hero-img" /></div></Slide>
+                        <Slide index={index} key={index} className="flex justify-center"><div className="flex justify-center"><Image 
+                            loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                            width={300} height={450} className="rounded-t-md"  alt="hero-img" /></div></Slide>
                     ))}
                 
                 
