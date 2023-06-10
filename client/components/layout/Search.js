@@ -21,14 +21,14 @@ const Search = ({setMoviedata}) => {
 
   return (
     <>
-      <form className="mx-96 mt-10" onSubmit={searchhandle}>
+      <form className="flex justify-center items-center mb-5" onSubmit={searchhandle}>
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
         >
           Search
         </label>
-        <div className="relative">
+        <div className="relative w-3/5">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               aria-hidden="true"

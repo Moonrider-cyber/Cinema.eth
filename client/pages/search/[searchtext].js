@@ -12,9 +12,10 @@ const SearchPage = () => {
 
     return (
     <>
-         <Search setsearchMoviedata={setsearchMoviedata} />
-            
-            <SearchMovieList searchtext={searchtext} searchmoviedata={searchmoviedata} setsearchMoviedata={setsearchMoviedata} />
+      <div className='mt-11'>
+        <Search setsearchMoviedata={setsearchMoviedata} />    
+        <SearchMovieList searchtext={searchtext} searchmoviedata={searchmoviedata} setsearchMoviedata={setsearchMoviedata} />
+      </div>
     </>
   )
 }

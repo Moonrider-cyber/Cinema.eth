@@ -6,15 +6,14 @@ export const MovieCard = ({movie}) => {
   return (
     <>
       <Link href={`/movie/${movie.id}`}>
-        <div className="cursor-pointer my-10 w-72 bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in">
+        <div className="cursor-pointer bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in">
           <Image
                 loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt="movie poster"
-            className="rounded-t-md h-[75%] hover:opacity-75 transition ease-in-out duration-150"
+            className="rounded-t-md hover:opacity-75 transition ease-in-out duration-150"
             width={500}
-            height={750}
-            
+            height={500}            
           />
 
           <div className="px-5">

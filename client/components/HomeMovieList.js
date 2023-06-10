@@ -93,18 +93,17 @@ export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedat
     fetchsearchData();
   }, [searchtext, setsearchMoviedata]);
 
-  
   return (
     <>
     
-      <h1 className="mt-10 mb-5 text-5xl font-bold text-center">
+      <h1 className="my-10 text-5xl font-bold text-center">
         Search Movies For {searchtext}
       </h1>
 
       {
       movieloading ? (<Loding />) :  
       searchmoviedata && searchmoviedata.total_results !== 0 ? (
-        <div className="gap-x-2 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
+        <div className="gap-x-10 gap-y-10 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
           {searchmoviedata && searchmoviedata.results &&
             searchmoviedata.results.map((movie,key) =>
               movie.poster_path === null ? null : (
