@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { SingleMovieLoding } from "./Loding";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,16 +17,14 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
       }?api_key=${
         process.env.THEMOVIEDB_API_KEY
       }&language=en-US&page=1&append_to_response=videos,images,credits,reviews,external_ids`;
-      await axios
-        .get(url)
-        .then((res) => {
-          setMoviedetails(res.data);
-          setMovieLoading(false);
-          
-        })
-        .catch((err) => {
-          console.log("catch error:-", err);
-        });
+      
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.log("can't fetch single movie data");
+      }
+      const data = await res.json();
+      setMoviedetails(data);
+      setMovieLoading(false);
     };
     fetchData();
   }, [movieid, seriesid]);
@@ -315,27 +312,3 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
 
 export default SingleMovieComp;
 
-export const MovieCast = ({ movieid, seriesid }) => {
-  const [cradit, setCradit] = React.useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${
-        movieid ? movieid : seriesid
-      }/credits?api_key=${
-        process.env.THEMOVIEDB_API_KEY
-      }&language=en-US&page=1`;
-      await axios
-        .get(url)
-        .then((res) => {
-          setCradit(res.data);
-        })
-        .catch((err) => {
-          console.log("catch error:-", err);
-        });
-    };
-    fetchData();
-  }, [movieid, seriesid]);
-
-  return <></>;
-};

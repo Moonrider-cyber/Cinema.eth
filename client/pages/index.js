@@ -12,12 +12,12 @@ export default function Home() {
 
   return (
     <>
+          
+          
           <HeroSection />
           <Search setMoviedata={setMoviedata} />
-        
           <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
-        
-        <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
+          <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
 
     </>
   );

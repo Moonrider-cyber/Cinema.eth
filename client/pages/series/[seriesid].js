@@ -1,5 +1,5 @@
 
-import SingleMovieComp, { MovieCast } from '../../components/SingleMovieComp'
+import SingleMovieComp from '../../components/SingleMovieComp'
 import { useRouter } from "next/router";
 
 const SingleSeries = () => {
@@ -10,7 +10,7 @@ const SingleSeries = () => {
     return (
         <>
             <SingleMovieComp seriesid={seriesid} />
-            <MovieCast seriesid={seriesid} />
+            
         </>
     )}
 

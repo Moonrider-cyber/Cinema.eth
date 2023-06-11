@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from 'next/navigation';
 
 const Search = ({setMoviedata}) => {
@@ -14,9 +13,7 @@ const Search = ({setMoviedata}) => {
         if(searchtext === null){
             return;
         }
-        router.push(`/search/${searchtext}`);
-        
-            
+        router.push(`/search/${searchtext}`);       
     }
 
   return (

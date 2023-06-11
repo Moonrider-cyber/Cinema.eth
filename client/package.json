@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
-    "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
     "ethers": "^5.7.2",
@@ -21,7 +20,6 @@
     "react-dom": "18.2.0",
     "react-jazzicon": "^1.0.4",
     "react-modal": "^3.16.1",
-    "sharp": "^0.32.1",
     "tailwindcss": "^3.3.2",
     "web3": "^1.9.0"
   },

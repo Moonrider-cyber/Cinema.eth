@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Image from "next/image";
-import axios from 'axios';
 
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
@@ -10,13 +9,13 @@ const HeroSection = () => {
     const [movieImg, setMovieImg] = useState(null);
     
     useState( async () => {
-        await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`)
-        .then((res) => {
-            setMovieImg(res.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        const res =await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`)
+        
+        if(!res.ok){
+            console.log("Failed to fetch hero section data");
+        }
+        const data = await res.json();
+        setMovieImg(data);
     }, [])
 
     return (

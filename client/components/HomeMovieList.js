@@ -1,5 +1,4 @@
 import { MovieCard } from "./MovieCard";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
@@ -13,14 +12,13 @@ const HomeMovieList = ({ moviedata, setMoviedata }) => {
   useEffect(() => {
     const fetchData = async () => {
       const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-      await axios
-        .get(url)
-        .then((res) => {
-          setMoviedata(res.data);
-        })
-        .catch((err) => {
-          console.log("catch error:-", err);
-        });true
+      
+      const res = await fetch(url);
+      if(!res.ok){
+        console.log("Failed to fetch data");
+      }
+      const data = await res.json();
+      setMoviedata(data);
     };
     fetchData();
   }, [setMoviedata]);
@@ -40,20 +38,22 @@ export default HomeMovieList;
 
  
 
-
+ 
 export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-      await axios
-        .get(url)
-        .then((res) => {
-          setSeriesdata(res.data);
-        })
-        .catch((err) => {
-          console.log("catch error:-", err);
-        });
+      // const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
+      
+      const res = await fetch(url1)
+      
+      if(!res.ok){
+        console.log("Failed to fetch data");
+      }      
+      const data = await res.json()
+      setSeriesdata(data);
+      
     };
     fetchData();
   }, [setSeriesdata]);
@@ -78,17 +78,17 @@ export const SearchMovieList = ({ searchtext, searchmoviedata, setsearchMoviedat
     const fetchsearchData = async () => {
       let urlencode = encodeURI(searchtext);    
         const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
-        await axios.get(url)
-        .then(res => {
-            if(res.data.results.length === 0){
-              setsearchMoviedata([]);
-            }
-            setsearchMoviedata(res.data);
-            setMovieLoading(false);
-        })
-        .catch((err) => {
-          console.log("catch error:-", err);
-        });
+        
+        const res = await fetch(url)
+
+        if(!res.ok){
+          console.log("Failed to fetch data");
+        }
+        const data = await res.json()
+        setsearchMoviedata(data);
+        setMovieLoading(false);
+
+
     };
     fetchsearchData();
   }, [searchtext, setsearchMoviedata]);
