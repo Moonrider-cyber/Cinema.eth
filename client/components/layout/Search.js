@@ -21,7 +21,7 @@ const Search = ({setMoviedata}) => {
       <form className="flex justify-center items-center mb-5" onSubmit={searchhandle}>
         <label
           htmlFor="default-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          className="mb-2 text-sm font-medium text-gray-50 sr-only dark:text-white"
         >
           Search
         </label>
@@ -46,7 +46,7 @@ const Search = ({setMoviedata}) => {
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 pl-10 text-sm text-gray-50 border border-gray-700 rounded-lg bg-gray-700 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
             placeholder="Search Movies, series..."
             onChange={(e) => setSearchtext(e.target.value)}
             value={searchtext ? searchtext : ""}

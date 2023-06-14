@@ -337,9 +337,9 @@ export const SeriesCarousel = ({ seriesdata }) => {
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
           totalSlides={seriesdata && seriesdata.results.length - 6.5}
-          visibleSlides={4}
+          visibleSlides={3}
           step={1}
-          // infinite={true}
+          infinite={true}
         >
           <div className="flex justify-between items-center">
             <h1 className="mt-10 mb-5 text-3xl font-bold">Latest Popular Series</h1>
@@ -406,7 +406,7 @@ export const SeriesCarousel = ({ seriesdata }) => {
                           <Link href={`/series/${series.id}`} shallow>
                             <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in ">
                               <Image
-                                loader={({ src }) =>  src}
+                                loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
                                 src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
                                 alt="movie poster"
                                 width={300}

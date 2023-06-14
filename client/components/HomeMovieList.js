@@ -42,20 +42,23 @@ export default HomeMovieList;
 export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
   
   useEffect(() => {
-    const fetchData = async () => {
-      // const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-      const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
-      
-      const res = await fetch(url1)
-      
-      if(!res.ok){
-        console.log("Failed to fetch data");
-      }      
-      const data = await res.json()
-      setSeriesdata(data);
-      
-    };
-    fetchData();
+    try{
+      const fetchData = async () => {
+        const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
+        
+        const res = await fetch(url1)
+        
+        if(!res.ok){
+          console.log("Failed to fetch data");
+        }      
+        const data = await res.json()
+        setSeriesdata(data); 
+      };
+      fetchData();
+    }
+    catch(err){
+      console.log(err);
+    }
   }, [setSeriesdata]);
 
   return (
