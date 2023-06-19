@@ -1,4 +1,4 @@
-
+import Head from 'next/head';
 import SingleMovieComp from '../../components/SingleMovieComp'
 import { useRouter } from "next/router";
 
@@ -9,6 +9,9 @@ const SingleSeries = () => {
    
     return (
         <>
+          <Head>
+            <title>Ethcinemanation/series</title>
+          </Head>
             <SingleMovieComp seriesid={seriesid} />
             
         </>

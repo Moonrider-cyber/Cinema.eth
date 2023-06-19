@@ -46,14 +46,12 @@ export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
       const fetchData = async () => {
         const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
         
-        const res = await fetch(url1)
-        
-        if(!res.ok){
-          console.log("Failed to fetch data");
-        }      
-        const data = await res.json()
-        setSeriesdata(data); 
+        await fetch(url1)
+        .then(res => res.json())
+        .then(data => setSeriesdata(data))
+        .catch(err => console.log(err))
       };
+        
       fetchData();
     }
     catch(err){

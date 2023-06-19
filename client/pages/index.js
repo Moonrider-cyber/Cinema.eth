@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import Head from "next/head";
 
+
+import React, { useState } from "react";
 import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
 import Search from "../components/layout/Search";
 import HeroSection from "../components/layout/HeroSection";
@@ -12,7 +14,9 @@ export default function Home() {
 
   return (
     <>
-          
+      <Head>
+        <title>Ethcinemanation</title>
+      </Head>          
           
           <HeroSection />
           <Search setMoviedata={setMoviedata} />
