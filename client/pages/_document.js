@@ -5,10 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* Google console */}
-        <meta
-          name="google-site-verification"   
-          content="google-site-verification=4Zfd_e0JRNahu6v1rknK380ZgBtk5Wux7-gGnYcyw6s"   
-        />
+        <meta name="google-site-verification" content="MDrnSZIfnlUSB2wDuhYFwx5zS6bjf-5utJ2AqLFqtX8" />
         <meta name="description" content="Discover the latest cinema news, movie reviews, and behind-the-scenes insights at Ethcinemanation. Stay updated with the world of cinema and explore a wide range of film-related content." />
         <meta name="keywords" content="cinema, movies, blockchain, ethereum, film, reviews, news, behind the scenes, entertainment" />
         <meta name="author" content="Ethcinemanation" />
