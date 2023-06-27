@@ -3,16 +3,13 @@ import abi from "../contracts/CreateVote.json";
 import { ethers } from "ethers";
 var Web3 = require("web3");
 
-
 import { Inter } from "next/font/google";
-import Footer from "./layout/Footer"
-import NavBar from "./layout/Navbar"
+import Footer from "./layout/Footer";
+import NavBar from "./layout/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const Layout = ({ children }) => {
-  
-  
   const [state, setState] = useState({
     provider: null,
     signer: null,
@@ -32,8 +29,10 @@ const Layout = ({ children }) => {
 
       if (ethereum) {
         window.ethereum.on("chainChanged", () => window.location.reload());
-        
-        window.ethereum.on("accountsChanged", (accounts) => {setAccount({address: accounts[0]});});
+
+        window.ethereum.on("accountsChanged", (accounts) => {
+          setAccount({ address: accounts[0] });
+        });
 
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
@@ -49,15 +48,14 @@ const Layout = ({ children }) => {
         setState({ provider, signer, contract });
 
         // get user balance
-          const web3 = new Web3(Web3.givenProvider);
-          await web3.eth.getBalance(accounts[0])
-          .then((balance) => {
-            balance = web3.utils.fromWei(balance, 'ether')
-            setAccount({
-              address: accounts[0],
-              balance: balance,
-            });
+        const web3 = new Web3(Web3.givenProvider);
+        await web3.eth.getBalance(accounts[0]).then((balance) => {
+          balance = web3.utils.fromWei(balance, "ether");
+          setAccount({
+            address: accounts[0],
+            balance: balance,
           });
+        });
       } else {
         alert("Please install MetaMask");
       }
@@ -66,17 +64,13 @@ const Layout = ({ children }) => {
     }
   };
 
-
   return (
     <>
-    
-        <NavBar connectwallet={connectwallet} state={state} account={account} />
-        <main className={`${inter.className}`}>
-            { children }
-        </main>
-        <Footer />
+      <NavBar connectwallet={connectwallet} state={state} account={account} />
+      <main className={`${inter.className}`}>{children}</main>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
 export default Layout;

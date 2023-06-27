@@ -1,24 +1,26 @@
 import React from "react";
 import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
-const Search = ({setMoviedata}) => {
+const Search = ({ setMoviedata }) => {
+  const [searchtext, setSearchtext] = useState(null);
+  const router = useRouter();
 
-    const [searchtext, setSearchtext] = useState(null);
-    const router = useRouter();
+  const searchhandle = async (e) => {
+    e.preventDefault();
 
-    const searchhandle =async (e) => {
-        e.preventDefault();
-
-        if(searchtext === null){
-            return;
-        }
-        router.push(`/search/${searchtext}`);       
+    if (searchtext === null) {
+      return;
     }
+    router.push(`/search/${searchtext}`);
+  };
 
   return (
     <>
-      <form className="flex justify-center items-center mb-5" onSubmit={searchhandle}>
+      <form
+        className="flex justify-center items-center mb-5"
+        onSubmit={searchhandle}
+      >
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-50 sr-only dark:text-white"

@@ -1,14 +1,11 @@
 import Head from "next/head";
 
-
 import React, { useState } from "react";
 import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
 import Search from "../components/layout/Search";
 import HeroSection from "../components/layout/HeroSection";
 
-
 export default function Home() {
-
   const [moviedata, setMoviedata] = useState(null);
   const [seriesdata, setSeriesdata] = useState(null);
 
@@ -16,13 +13,12 @@ export default function Home() {
     <>
       <Head>
         <title>Ethcinemanation</title>
-      </Head>          
-          
-          <HeroSection />
-          <Search setMoviedata={setMoviedata} />
-          <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
-          <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
+      </Head>
 
+      <HeroSection />
+      <Search setMoviedata={setMoviedata} />
+      <HomeMovieList moviedata={moviedata} setMoviedata={setMoviedata} />
+      <HomeSeriesList seriesdata={seriesdata} setSeriesdata={setSeriesdata} />
     </>
   );
 }

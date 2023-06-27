@@ -8,10 +8,13 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+}
 body {
   /* background-color: #0d1117; */
   background-color: #202225;
   color: #ffffff;
 }
-

@@ -25,7 +25,9 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
           // infinite={true}
         >
           <div className="flex justify-between items-center">
-            <h1 className="mt-10 mb-5 text-3xl font-bold">Latest Popular Movies</h1>
+            <h1 className="mt-10 mb-5 text-3xl font-bold">
+              Latest Popular Movies
+            </h1>
             <div className="pr-5">
               <ButtonBack
                 role="button"
@@ -294,7 +296,6 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
                       </div>
                     </div>
                   </Slide>
-                  
                 </div>
               </Slider>
             </div>
@@ -342,7 +343,9 @@ export const SeriesCarousel = ({ seriesdata }) => {
           infinite={true}
         >
           <div className="flex justify-between items-center">
-            <h1 className="mt-10 mb-5 text-3xl font-bold">Latest Popular Series</h1>
+            <h1 className="mt-10 mb-5 text-3xl font-bold">
+              Latest Popular Series
+            </h1>
             <div className="pr-5">
               <ButtonBack
                 role="button"
@@ -406,7 +409,9 @@ export const SeriesCarousel = ({ seriesdata }) => {
                           <Link href={`/series/${series.id}`} shallow>
                             <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in ">
                               <Image
-                                loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
+                                loader={({ src }) =>
+                                  `https://image.tmdb.org/t/p/w500${src}`
+                                }
                                 src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
                                 alt="movie poster"
                                 width={300}

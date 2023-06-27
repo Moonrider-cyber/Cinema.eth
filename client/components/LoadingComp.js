@@ -1,9 +1,3 @@
-
-
 export default function LoadingComp() {
-    return (
-        <>
-            loding...
-        </>
-    )
+  return <>loding...</>;
 }

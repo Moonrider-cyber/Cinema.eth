@@ -30,6 +30,7 @@
     "@next/eslint-plugin-next": "^13.4.1",
     "@types/react": "18.2.6",
     "dotenv": "^16.0.3",
-    "next": "^13.4.1"
+    "next": "^13.4.1",
+    "prettier": "^2.8.8"
   }
 }

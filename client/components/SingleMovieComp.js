@@ -11,23 +11,22 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try{
+      try {
         const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${
-        movieid ? movieid : seriesid
-      }?api_key=${
-        process.env.THEMOVIEDB_API_KEY
-      }&language=en-US&page=1&append_to_response=videos,images,credits,reviews,external_ids`;
-      
-      const res = await fetch(url);
-      if (!res.ok) {
-        console.log("can't fetch single movie data");
-      }
-      const data = await res.json();
-      setMoviedetails(data);
-      setMovieLoading(false);
-      }
-      catch(err){
-        console.log(err)
+          movieid ? movieid : seriesid
+        }?api_key=${
+          process.env.THEMOVIEDB_API_KEY
+        }&language=en-US&page=1&append_to_response=videos,images,credits,reviews,external_ids`;
+
+        const res = await fetch(url);
+        if (!res.ok) {
+          console.log("can't fetch single movie data");
+        }
+        const data = await res.json();
+        setMoviedetails(data);
+        setMovieLoading(false);
+      } catch (err) {
+        console.log(err);
       }
     };
     fetchData();
@@ -62,7 +61,9 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                   {moviedetails && moviedetails.release_date === undefined
                     ? ""
                     : " (" +
-                      new Date(moviedetails && moviedetails.release_date).getFullYear() +
+                      new Date(
+                        moviedetails && moviedetails.release_date
+                      ).getFullYear() +
                       ")"}
                 </span>
               </h2>
@@ -168,38 +169,60 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                 </div>
               </div>
 
-              {/* trailer button */}
-              {moviedetails && moviedetails.videos.results.length > 0 && (
-                <div className="mt-8">
-                  {/* youtube trailer link   */}
-                  <Link
-                    href={`https://www.youtube.com/watch?v=${
-                      moviedetails &&
-                      moviedetails.videos.results.length > 0 &&
-                      moviedetails.videos.results[
-                        moviedetails.videos.results.length - 1
-                      ].key
-                    }`}
-                    target="_blank"
-                  >
-                    <button className="flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
-                      <svg className="w-6 fill-current" viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M9 16.5v-9l7 4.5-7 4.5z"></path>
-                      </svg>
-                      <span className="ml-2">Play Trailer</span>
+              <div className="flex gap-14 mt-8">
+                {/* trailer button */}
+                {moviedetails && moviedetails.videos.results.length > 0 && (
+                  <div>
+                    {/* youtube trailer link   */}
+
+                    <button className="bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
+                      <Link
+                        href={`https://www.youtube.com/watch?v=${
+                          moviedetails &&
+                          moviedetails.videos.results.length > 0 &&
+                          moviedetails.videos.results[
+                            moviedetails.videos.results.length - 1
+                          ].key
+                        }`}
+                        target="_blank"
+                        className="flex items-center"
+                      >
+                        <svg className="w-6 fill-current" viewBox="0 0 24 24">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M9 16.5v-9l7 4.5-7 4.5z"></path>
+                        </svg>
+                        <span className="ml-2">Play Trailer</span>
+                      </Link>
                     </button>
-                  </Link>
-                </div>
-              )}
+                  </div>
+                )}
+                <button className="bg-orange-500 text-gray-900 rounded font-semibold px-4 py-2 hover:bg-orange-600 transition ease-in-out duration-150">
+                  <a href={"#cast"} className="flex items-center">
+                    <svg
+                      // className="w-6 fill-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="bevel"
+                    >
+                      <path d="M12 5v13M5 12l7 7 7-7" />
+                    </svg>
+                    <span className="ml-2">Movie cast</span>
+                  </a>
+                </button>
+              </div>
             </div>
           </div>
         )}
 
-          <ReviewComp moviedetails={moviedetails} />
-
+        <ReviewComp moviedetails={moviedetails} />
       </div>
-      <div className="border-b border-gray-800">
+      <div className="border-b border-gray-800" id="cast">
         <div className="container mx-auto px-4 py-5">
           <h2 className="text-4xl font-semibold flex">
             <div className="mr-3 w-1 bg-yellow-400"></div> Top Cast
@@ -209,14 +232,15 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
               moviedetails.credits &&
               moviedetails.credits.cast.slice(0, 5).map(
                 (cast, index) =>
-                cast.profile_path && (
-                  <div className="mt-8" key={index}>
+                  cast.profile_path && (
+                    <div className="mt-8" key={index}>
                       <Link href="/">
-                      
                         <Image
                           width={500}
                           height={750}
-                          loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
+                          loader={({ src }) =>
+                            `https://image.tmdb.org/t/p/w500${src}`
+                          }
                           src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                           alt="cast"
                           className="hover:opacity-75 transition ease-in-out duration-150"
@@ -244,4 +268,3 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
 };
 
 export default SingleMovieComp;
-
