@@ -5,10 +5,10 @@ import Head from "next/head";
 import SingleMovieComp from "../../../components/SingleMovieComp";
 import { usePathname } from "next/navigation";
 
-const SingleMovie = ({ parms }) => {
+const SingleMoviePage = ({ parms }) => {
    
   const router = usePathname();
-    console.log(parms)
+  
   const [, movieid] = router.split("/movie/");
   
   return (
@@ -21,4 +21,4 @@ const SingleMovie = ({ parms }) => {
   );
 };
 
-export default SingleMovie;
+export default SingleMoviePage;

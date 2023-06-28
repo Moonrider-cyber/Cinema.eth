@@ -12,22 +12,24 @@ const SearchPage = ({ params }) => {
 
   const {searchtext} = params;
   
+  const filltersearch = searchtext.replace(/%20/g, " ");
+    
+  
   const [searchmoviedata, setsearchMoviedata] = useState(null);
 
   return (
     <>
       <Head>
-        <title>Ethcinemanation/search/{searchtext}</title>
+        <title>Ethcinemanation/search/{filltersearch}</title>
       </Head>
       <div className="mt-11">
         <Search setsearchMoviedata={setsearchMoviedata} />
         <SearchMovieList
-          searchtext={searchtext}
+          searchtext={filltersearch}
           searchmoviedata={searchmoviedata}
           setsearchMoviedata={setsearchMoviedata}
         />
       </div>
-      search
     </>
   );
 };
