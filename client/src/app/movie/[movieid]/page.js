@@ -5,7 +5,7 @@ import Head from "next/head";
 import SingleMovieComp from "../../../components/SingleMovieComp";
 import { usePathname } from "next/navigation";
 
-const SingleMoviePage = ({ parms }) => {
+const SingleMoviePage = () => {
    
   const router = usePathname();
   
