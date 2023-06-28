@@ -206,9 +206,9 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="#000000"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="bevel"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="bevel"
                     >
                       <path d="M12 5v13M5 12l7 7 7-7" />
                     </svg>

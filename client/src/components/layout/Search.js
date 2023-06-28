@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const Search = ({ setMoviedata }) => {
+const Search = () => {
   const [searchtext, setSearchtext] = useState(null);
   const router = useRouter();
 

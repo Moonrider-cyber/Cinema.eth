@@ -13,13 +13,11 @@
     "@heroicons/react": "^2.0.18",
     "autoprefixer": "10.4.14",
     "eslint": "8.39.0",
-    "eslint-config-next": "13.3.4",
     "ethers": "^5.7.2",
-    "next": "^13.4.1",
     "postcss": "8.4.23",
     "pure-react-carousel": "^1.30.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-jazzicon": "^1.0.4",
     "react-modal": "^3.16.1",
     "tailwindcss": "^3.3.2",
@@ -30,7 +28,8 @@
     "@next/eslint-plugin-next": "^13.4.1",
     "@types/react": "18.2.6",
     "dotenv": "^16.0.3",
-    "next": "^13.4.1",
+    "eslint-config-next": "^13.4.7",
+    "next": "^13.4.7",
     "prettier": "^2.8.8"
   }
 }

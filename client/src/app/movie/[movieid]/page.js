@@ -1,12 +1,16 @@
+"use client"
+
 import Head from "next/head";
 
-import SingleMovieComp from "../../components/SingleMovieComp";
-import { useRouter } from "next/router";
+import SingleMovieComp from "../../../components/SingleMovieComp";
+import { usePathname } from "next/navigation";
 
-const SingleMovie = () => {
-  const router = useRouter();
-  const { movieid } = router.query;
-
+const SingleMovie = ({ parms }) => {
+   
+  const router = usePathname();
+    console.log(parms)
+  const [, movieid] = router.split("/movie/");
+  
   return (
     <>
       <Head>

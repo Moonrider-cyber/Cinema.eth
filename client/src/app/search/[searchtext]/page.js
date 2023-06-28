@@ -1,13 +1,17 @@
+"use client"
+
 import Head from "next/head";
-import { SearchMovieList } from "../../components/HomeMovieList";
-import Search from "../../components/layout/Search";
-import { useRouter } from "next/router";
+import { SearchMovieList } from "../../../components/HomeMovieList";
+import Search from "../../../components/layout/Search";
+// import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const SearchPage = () => {
-  const router = useRouter();
-  const { searchtext } = router.query;
+const SearchPage = ({ params }) => {
+  // const router = useRouter();
+  // const { searchtext } = router.query;
 
+  const {searchtext} = params;
+  
   const [searchmoviedata, setsearchMoviedata] = useState(null);
 
   return (
@@ -23,6 +27,7 @@ const SearchPage = () => {
           setsearchMoviedata={setsearchMoviedata}
         />
       </div>
+      search
     </>
   );
 };
