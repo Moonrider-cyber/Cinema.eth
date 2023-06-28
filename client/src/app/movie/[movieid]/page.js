@@ -21,14 +21,4 @@ const SingleMovie = ({ parms }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const { movieid } = context.query;
-
-  return {
-    props: {
-      movieid,
-    },
-  };
-}
-
 export default SingleMovie;

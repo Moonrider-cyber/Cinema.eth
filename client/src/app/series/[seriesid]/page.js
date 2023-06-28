@@ -20,14 +20,5 @@ const SingleSeries = () => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const { seriesid } = context.query;
-
-  return {
-    props: {
-      seriesid,
-    },
-  };
-}
 
 export default SingleSeries;
