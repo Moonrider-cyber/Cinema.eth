@@ -84,11 +84,11 @@ export const ReviewComp = ({ moviedetails }) => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center mb-1">
+            {/* <div className="flex items-center mb-1">
               <h3 className="mt-1 text-md font-semibold text-white">
                 Best Movie Ever!
               </h3>
-            </div>
+            </div> */}
             <p className="mb-2 text-gray-500 dark:text-gray-400">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
               necessitatibus incidunt ut officiis explicabo inventore. Lorem
@@ -103,7 +103,7 @@ export const ReviewComp = ({ moviedetails }) => {
                 <Image className="w-10 h-10 rounded-full" src={user} alt="" />
                 <div className="space-y-1 font-medium dark:text-white">
                   <p>
-                    Jese Leos
+                    Jese Leos 
                     <time
                       dateTime="2014-08-16 19:00"
                       className="block text-sm text-gray-500 dark:text-gray-400"
@@ -132,11 +132,11 @@ export const ReviewComp = ({ moviedetails }) => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center mb-1">
+            {/* <div className="flex items-center mb-1">
               <h3 className="mt-1 text-md font-semibold text-white">
                 Best Movie Ever!
               </h3>
-            </div>
+            </div> */}
             <p className="mb-2 text-gray-500 dark:text-gray-400">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
               necessitatibus incidunt ut officiis explicabo inventore. Lorem

@@ -22,7 +22,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
           totalSlides={moviedata && moviedata.results.length - 6.5}
           visibleSlides={4}
           step={1}
-          // infinite={true}
+          infinite={true}
         >
           <div className="flex justify-between items-center">
             <h1 className="mt-10 mb-5 text-3xl font-bold">

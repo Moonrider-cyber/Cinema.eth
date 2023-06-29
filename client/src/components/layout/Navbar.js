@@ -1,13 +1,19 @@
-import React from "react";
+"use client"
+
+import {useState,useContext} from "react";
 import NavAvatar from "./NavAvatar";
 import Link from "next/link";
 import Image from "next/image";
+import AuthContext  from "../../utils/AuthContext";
 
-const NavBar = ({ connectwallet, state, account }) => {
-  const [open, setOpen] = React.useState(false);
-
+const NavBar = () => {
+  
+  const { connectwallet, address, signer } = useContext(AuthContext);
+  
+  const [open, setOpen] = useState(false);
+  
   let iswalletconnected = false;
-  if (state && state.signer !== null) {
+  if (signer !== null) {
     iswalletconnected = true;
   }
 
@@ -68,7 +74,7 @@ const NavBar = ({ connectwallet, state, account }) => {
                 </a> */}
               {iswalletconnected ? (
                 <>
-                  <NavAvatar account={account} />
+                  <NavAvatar address={address} />
                 </>
               ) : (
                 <button
