@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import abi from "../contracts/CreateVote.json";
 import { ethers } from "ethers";

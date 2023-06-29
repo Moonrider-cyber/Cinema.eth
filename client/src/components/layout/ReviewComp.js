@@ -149,7 +149,6 @@ export const ReviewComp = ({ moviedetails }) => {
         <div className="flex justify-center">
           <button
             className=" text-white bg-transparent border border-gray-600 py-3 px-10 rounded-lg transition-colors"
-            onClick={() => setOpen(true)}
           >
             <span>View More</span>
           </button>

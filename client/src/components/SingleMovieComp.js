@@ -1,39 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SingleMovieLoding } from "./Loding";
 import Link from "next/link";
 import Image from "next/image";
 import { ReviewComp } from "./layout/ReviewComp";
+import { useRouter } from "next/navigation";
 
 const SingleMovieComp = ({ movieid, seriesid }) => {
   const [movieloading, setMovieLoading] = useState(true);
 
   const [moviedetails, setMoviedetails] = useState();
+  const [featcherr, setFeatcherr] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${
-          movieid ? movieid : seriesid
-        }?api_key=${
-          process.env.THEMOVIEDB_API_KEY
-        }&language=en-US&page=1&append_to_response=videos,images,credits,reviews,external_ids`;
+  const router = useRouter();
+  
+  const fetchData = React.useCallback(async () => {
+    try {
+      const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${
+        movieid ? movieid : seriesid
+      }?api_key=${
+        process.env.THEMOVIEDB_API_KEY
+      }&language=en-US&page=1&append_to_response=videos,images,credits,reviews,external_ids`;
 
-        const res = await fetch(url);
-        if (!res.ok) {
-          console.log("can't fetch single movie data");
-        }
-        const data = await res.json();
-        setMoviedetails(data);
-        setMovieLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+      await fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          setMoviedetails(data);
+          setMovieLoading(false);
+        });
+    } catch (err) {
+      setFeatcherr(true);
+      console.log("failed to fetch data in SingleMovieComp");
+    }
   }, [movieid, seriesid]);
+  
+  useEffect(() => {
+    
+    fetchData();
+  }, [fetchData, movieid, seriesid]);
 
+  const handle_retry = useCallback(() => {
+    setFeatcherr(false);
+    fetchData();
+  }, [fetchData]);
+  
   return (
     <>
+      {featcherr ? (
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center text-2xl"> Something went wrong</div>
+          {/* try data featch again */}
+          <div className="text-center mt-4">
+            <button 
+            className="bg-orange-500 text-gray-900 px-4 py-2 rounded hover:bg-orange-600 transition ease-in-out duration-150"
+              onClick={handle_retry}
+            >
+                Try Again
+            </button>
+            <button 
+              className="ml-5 bg-orange-500 text-gray-900 px-4 py-2 rounded hover:bg-orange-600 transition ease-in-out duration-150"
+              onClick={() => router.push("/")}  
+            >
+                Go Home
+            </button>
+          </div>
+              
+        </div>
+      ) : (
+        <> 
       <div>
         {movieloading ? (
           <SingleMovieLoding />
@@ -206,9 +239,9 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="#000000"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="bevel"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="bevel"
                     >
                       <path d="M12 5v13M5 12l7 7 7-7" />
                     </svg>
@@ -235,7 +268,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                   cast.profile_path && (
                     <div className="mt-8" key={index}>
                       <Link href="/">
-                        <Image
+                        <Image 
                           width={500}
                           height={750}
                           loader={({ src }) =>
@@ -243,6 +276,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                           }
                           src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                           alt="cast"
+                          priority={false}
                           className="hover:opacity-75 transition ease-in-out duration-150"
                         />
                       </Link>
@@ -263,6 +297,8 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
           </div>
         </div>
       </div>
+      </>
+      )}
     </>
   );
 };

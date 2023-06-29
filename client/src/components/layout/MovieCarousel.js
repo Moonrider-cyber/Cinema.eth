@@ -88,7 +88,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
                     moviedata.results.map((movie, key) =>
                       movie.poster_path === null ? null : (
                         <Slide index={key} key={key}>
-                          <Link href={`/movie/${movie.id}`} shallow>
+                          <Link href={`/movie/${movie.id}`}>
                             <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in ">
                               <Image
                                 loader={({ src }) =>
