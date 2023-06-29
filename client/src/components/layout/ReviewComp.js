@@ -1,16 +1,26 @@
 "use client";
 
-import React from "react";
+import React,{ useContext } from "react";
 import Image from "next/image";
+import AuthContext from "../../utils/AuthContext";
 
 let user = require("../../asset/user.png");
 
 export const ReviewComp = ({ moviedetails }) => {
+  
+  const { isLogged } = useContext(AuthContext);
+  
   const [isRiview, setIsRiview] = React.useState(false);
 
   const reviewpost = (e) => {
     e.preventDefault();
+    if(isLogged){
+      
+    }else{
+      alert("Please connect wallet");
+    }
   };
+  
 
   return (
     <>
@@ -43,6 +53,8 @@ export const ReviewComp = ({ moviedetails }) => {
                 >
                   Post Review
                 </button>
+                
+                <span className="text-sm text-gray-300 pr-2">Cost of review is 0.5 gas</span>
               </div>
             </div>
           </form>
@@ -103,7 +115,7 @@ export const ReviewComp = ({ moviedetails }) => {
                 <Image className="w-10 h-10 rounded-full" src={user} alt="" />
                 <div className="space-y-1 font-medium dark:text-white">
                   <p>
-                    Jese Leos 
+                    Jese Leos
                     <time
                       dateTime="2014-08-16 19:00"
                       className="block text-sm text-gray-500 dark:text-gray-400"

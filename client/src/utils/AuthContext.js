@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
         provider: null,
         signer: null,
         contract: null,
+        isLogged: false,
       });
       const [account, setAccount] = useState({
         address: null,
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
               contractAbi,
               signer
             );
-            setState({ provider, signer, contract });
+            setState({ provider, signer, contract, isLogged:true });
     
             // get user balance
             const web3 = new Web3(Web3.givenProvider);
@@ -70,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         contract: state.contract,
         address: account.address,
         balance: account.balance,
-        isLogged: false,
+        isLogged: state.isLogged,
     };
   
     return (
