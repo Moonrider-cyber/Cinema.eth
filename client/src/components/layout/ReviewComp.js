@@ -24,7 +24,7 @@ export const ReviewComp = ({ moviedetails }) => {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-1">
+      <div className="md:container mx-auto px-4 py-1">
         <div className="flex justify-between items-center">
           <h2 className="my-5 text-4xl font-semibold flex">
             <div className="mr-3 w-1 bg-yellow-400"></div> User reviews

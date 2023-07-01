@@ -71,21 +71,21 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
         {movieloading ? (
           <SingleMovieLoding />
         ) : (
-          <div className="container mx-auto movie-info border-b border-gray-800 px-4 py-16 flex flex-col md:flex-row">
-            <div className="flex-none">
+          <div className="md:container mx-auto movie-info border-b border-gray-800 px-4 py-16 flex flex-col md:flex-row">
+            <div className="flex-none self-center">
               <Image
                 loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
                 src={`https://image.tmdb.org/t/p/w500${
                   moviedetails && moviedetails.poster_path
                 }`}
-                alt="poster"
+                alt="movie poster"
                 className="w-64 lg:w-96"
                 width={500}
                 height={750}
                 priority={true}
               />
             </div>
-            <div className="md:ml-24">
+            <div className="md:ml-24 md:text-left text-center">
               <h2 className="text-3xl mt-4 md:mt-0 font-bold">
                 {seriesid
                   ? moviedetails && moviedetails.name
@@ -101,7 +101,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                 </span>
               </h2>
 
-              <div className="flex flex-wrap items-center text-gray-400 text-sm pt-3">
+              <div className="flex flex-wrap items-center text-gray-400 text-sm pt-3 md:justify-start justify-center">
                 <span className="ml-1">
                   {moviedetails && moviedetails.status}
                 </span>
@@ -129,7 +129,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                 </span>
               </div>
 
-              <div className="flex gap-10">
+              <div className="flex gap-10 md:justify-start justify-center">
                 {/* tmdb rating*/}
                 <div className="flex items-center mt-4">
                   <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-2xl font-bold">
@@ -184,7 +184,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                 </div>
               </div>
 
-              <p className="text-gray-300 mt-7 pr-20 line-clamp-5">
+              <p className="text-gray-300 mt-7 md:pr-20 line-clamp-5">
                 {" "}
                 {/* {console.log(moviedetails)} */}
                 {moviedetails && moviedetails.overview}
@@ -202,7 +202,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                 </div>
               </div>
 
-              <div className="flex gap-14 mt-8">
+              <div className="flex gap-14 md:mt-8 md:justify-start justify-center">
                 {/* trailer button */}
                 {moviedetails && moviedetails.videos.results.length > 0 && (
                   <div>
@@ -231,20 +231,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                 )}
                 <button className="bg-orange-500 text-gray-900 rounded font-semibold px-4 py-2 hover:bg-orange-600 transition ease-in-out duration-150">
                   <a href={"#cast"} className="flex items-center">
-                    <svg
-                      // className="w-6 fill-current"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#000000"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="bevel"
-                    >
-                      <path d="M12 5v13M5 12l7 7 7-7" />
-                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2121" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     <span className="ml-2">Movie cast</span>
                   </a>
                 </button>
@@ -256,25 +243,25 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
         <ReviewComp moviedetails={moviedetails} />
       </div>
       <div className="border-b border-gray-800" id="cast">
-        <div className="container mx-auto px-4 py-5">
+        <div className="md:container mx-auto px-4 py-5">
           <h2 className="text-4xl font-semibold flex">
             <div className="mr-3 w-1 bg-yellow-400"></div> Top Cast
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
             {moviedetails &&
               moviedetails.credits &&
-              moviedetails.credits.cast.slice(0, 5).map(
+              moviedetails.credits.cast.slice(0, 12).map(
                 (cast, index) =>
                   cast.profile_path && (
                     <div className="mt-8" key={index}>
                       <Link href="/">
                         <Image 
-                          width={500}
-                          height={750}
+                          width={200}
+                          height={200}
                           loader={({ src }) =>
-                            `https://image.tmdb.org/t/p/w500${src}`
+                            `https://image.tmdb.org/t/p/w185${src}`
                           }
-                          src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                          src={`https://image.tmdb.org/t/p/w185${cast.profile_path}`}
                           alt="cast"
                           priority={false}
                           className="hover:opacity-75 transition ease-in-out duration-150"
