@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Head from "next/head";
 import { SearchMovieList } from "../../../components/HomeMovieList";
@@ -10,11 +10,10 @@ const SearchPage = ({ params }) => {
   // const router = useRouter();
   // const { searchtext } = router.query;
 
-  const {searchtext} = params;
-  
+  const { searchtext } = params;
+
   const filltersearch = searchtext.replace(/%20/g, " ");
-    
-  
+
   const [searchmoviedata, setsearchMoviedata] = useState(null);
 
   return (

@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
-import {useState,useContext} from "react";
+import { useState, useContext } from "react";
 import NavAvatar from "./NavAvatar";
 import Link from "next/link";
 import Image from "next/image";
-import AuthContext  from "../../utils/AuthContext";
+import AuthContext from "../../utils/AuthContext";
 
 const NavBar = () => {
-  
   const { connectwallet, address, signer } = useContext(AuthContext);
-  
+
   const [open, setOpen] = useState(false);
-  
+
   let iswalletconnected = false;
   if (signer !== null) {
     iswalletconnected = true;
@@ -93,7 +92,7 @@ const NavBar = () => {
           className={
             open
               ? "opacity-100 scale-100 transition ease-out duration-200 absolute top-0 inset-x-0 p-2 transform origin-top-right md:hidden"
-              : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+              : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden hidden"
           }
         >
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-gray-800 divide-y-2 divide-gray-50">

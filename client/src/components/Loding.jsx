@@ -31,10 +31,10 @@ export const SingleMovieLoding = () => {
             <div className="w-2 lg:w-28 ml-4 bg-gray-700/50 h-4 lg:h-6 rounded-2xl mt-5"></div>
           </div>
           <div className="w-20 lg:w-full mx-28 bg-gray-700/50 h-44 lg:h-72 rounded-2xl mt-8"></div>
-    
+
           <div className="flex">
-          <div className="w-2 lg:w-60 ml-28 bg-gray-700/50 h-20 lg:h-20 rounded-2xl mt-5"></div>
-          <div className="w-2 lg:w-60 ml-20 bg-gray-700/50 h-20 lg:h-20 rounded-2xl mt-5"></div>
+            <div className="w-2 lg:w-60 ml-28 bg-gray-700/50 h-20 lg:h-20 rounded-2xl mt-5"></div>
+            <div className="w-2 lg:w-60 ml-20 bg-gray-700/50 h-20 lg:h-20 rounded-2xl mt-5"></div>
           </div>
         </div>
       </div>

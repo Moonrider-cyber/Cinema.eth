@@ -1,55 +1,33 @@
 const hre = require("hardhat");
 
-async function getbalance(address){
+async function getbalance(address) {
   const balance = await hre.ethers.provider.getBalance(address);
-  return hre.ethers.utils.formatEther(balance);
-}  
-
-async function consolebalance(addresses){
-  for(const address of addresses){
-    console.log("balance:", await getbalance(address));
-  }
-} 
-async function consolevotes(votes){
-  var count = 0;
-  for(const vote of votes){
-    const timestamp = vote.timestamp;
-    const name = vote.userName;
-    const useraddress = vote.voter;
-    const amount = vote.amount;
-
-    console.log(`Index No:- ${count} , At ${timestamp},name ${name},user-address ${useraddress},amount ${amount}`);
-    count++;
-  }
+  console.log(" my balance is:- "+hre.ethers.utils.formatEther(balance));
 }
 
 async function main() {
-  // get addresses
-  const [owner,user1,user2] = await hre.ethers.getSigners();
+  const [deployer] = await hre.ethers.getSigners();
+  const deployeraddress = deployer.address;  
+
+  const contractFactory = await hre.ethers.getContractFactory("MovieRatings");
+  const contract = await contractFactory.deploy();
   
-  // get contracts and deploy
-  const vote = await hre.ethers.getContractFactory("CreateVote");
-  const voteContract = await vote.deploy();  
-
-  await voteContract.deployed();
-
-  console.log("Vote deployed to:", voteContract.address);
-
-  const addresses = [owner.address,user1.address];
+  await contract.deployed();
+  console.log("Contract deployed to:", contract.address);
   
-  console.log("before balance");
-  await consolebalance(addresses);
+  await getbalance(deployeraddress);
 
-  const amount = { value : hre.ethers.utils.parseEther("1") };
+  await contract.connect(deployer).rateMovie(1, "nice movie", 5);
+  await contract.connect(deployer).rateMovie(1, "best hahahaha", 10);
+  
+  console.log("Movie rating is: ");
+  const Movierating = await contract.connect(deployer).getMovieRating(1);
+  console.log(Movierating);
 
-  // vote
-  await voteContract.connect(user1).givevote("makima",amount);
-
-  console.log("after balance");
-  await consolebalance(addresses);
-
-  const votes = await voteContract.getvotes();
-  await consolevotes(votes);
+  console.log("Movie Review is: ");
+  const MovieReview = await contract.GetMovieReviews(1);
+  console.log(MovieReview);
+  
 }
 
 main().catch((error) => {

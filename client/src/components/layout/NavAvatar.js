@@ -7,10 +7,7 @@ const NavAvatar = ({ address }) => {
         <div className="flex items-center justify-center">
           <Jazzicon
             diameter={30}
-            seed={parseInt(
-              address && address.slice(2, 10),
-              16
-            )}
+            seed={parseInt(address && address.slice(2, 10), 16)}
           />
         </div>
         <div className="flex items-center justify-center">

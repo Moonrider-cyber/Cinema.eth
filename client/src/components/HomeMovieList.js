@@ -11,12 +11,10 @@ const HomeMovieList = ({ moviedata, setMoviedata }) => {
     const fetchData = async () => {
       const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
 
-      const res = await fetch(url);
-      if (!res.ok) {
-        console.log("Failed to fetch data");
-      }
-      const data = await res.json();
-      setMoviedata(data);
+      await fetch(url)
+        .then((res) => res.json())
+        .then((data) => setMoviedata(data))
+        .catch((err) => console.log(err));
     };
     fetchData();
   }, [setMoviedata]);

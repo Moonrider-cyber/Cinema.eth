@@ -1,26 +1,57 @@
 "use client";
 
-import React,{ useContext } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
 import AuthContext from "../../utils/AuthContext";
+import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 
 let user = require("../../asset/user.png");
 
-export const ReviewComp = ({ moviedetails }) => {
-  
-  const { isLogged } = useContext(AuthContext);
-  
-  const [isRiview, setIsRiview] = React.useState(false);
+const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
+  itemShapes,
+  activeFillColor: "#f59e0b",
+  inactiveFillColor: "#ffedd5",
+}));
 
-  const reviewpost = (e) => {
-    e.preventDefault();
-    if(isLogged){
-      
-    }else{
+export const ReviewComp = ({ moviedetails }) => {
+  const { isLogged, contract } = useContext(AuthContext);
+
+  const [isReview, setIsReview] = useState(false);
+  const [Review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
+
+  const reviewposthandler = async () => {
+    if (isLogged) {
+      await contract
+        .rateMovie(moviedetails.id, Review, rating)
+        .then((res) => {
+          console.log(res);
+          alert("Review posted successfully");
+          setIsReview(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
       alert("Please connect wallet");
     }
   };
-  
+
+  // TODO:- LOAD CONTRACT ON WEBSITE FIRST LOAD
+  // React.useEffect(() => {
+  //   async function getmovierating(){
+
+  //     await contract.getMovieRating(1)
+  //     .then((res)=>{
+  //       console.log(res);
+  //     })
+  //     .catch((err)=>{
+  //       console.log(err);
+  //     })
+  //   }
+  //   if (isLogged) {
+  //   getmovierating();
+  // }, [contract])
 
   return (
     <>
@@ -31,35 +62,58 @@ export const ReviewComp = ({ moviedetails }) => {
           </h2>
         </div>
 
-        {!isRiview && (
-          <form onSubmit={reviewpost}>
-            <div className="w-full mb-4 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600">
-              <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-[#202225]">
-                <label htmlFor="comment" className="sr-only">
-                  Your Review
-                </label>
+        {!isReview && (
+          <div className="container border border-gray-600 px-5 py-5 rounded-lg">
+            <div className="flex items-center space-x-4">
+              <Image
+                className="w-10 h-10 rounded-full"
+                src={user}
+                alt="user pfp"
+              />
+              <div className="space-y-1 font-medium dark:text-white">
+                <p>
+                  You
+                  <span className="block text-sm text-gray-500 dark:text-gray-400">
+                    Posting publicly
+                  </span>
+                </p>
+                <div style={{ maxWidth: 280, width: "100%" }}>
+                  {includedShapesStyles.map((itemStyles, index) => (
+                    <Rating
+                      key={`shape_${index}`}
+                      value={rating}
+                      onChange={setRating}
+                      itemStyles={itemStyles}
+                      items={10}
+                      spaceBetween="small"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-start items-start ml-14 mb-3 space-x-4">
+              <div className="flex flex-col items-start w-3/4 mt-5">
                 <textarea
                   id="comment"
                   rows="4"
-                  className="w-full p-2 text-sm border-0 bg-[#202225] focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="Write a reviews..."
-                  required
+                  className="w-10/12 bg-transparent p-5 border border-gray-600 rounded-lg"
+                  placeholder="Write your review here..."
+                  value={Review}
+                  onChange={(e) => setReview(e.target.value)}
                 ></textarea>
-              </div>
-              <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                 <button
-                  type="submit"
-                  className="inline-flex items-center py-3 px-8 text-sm text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+                  className="mt-5 w-1/3 text-center font-bold text-base bg-blue-700 px-5 py-3 rounded-lg text-white"
+                  onClick={reviewposthandler}
                 >
                   Post Review
                 </button>
-                
-                <span className="text-sm text-gray-300 pr-2">Cost of review is 0.5 gas</span>
               </div>
             </div>
-          </form>
+          </div>
         )}
 
+        {/* other user reviews */}
         <div>
           <article className="my-5 border border-gray-600 px-5 py-5">
             <div className="flex justify-between items-center mb-3 space-x-4">
@@ -159,9 +213,7 @@ export const ReviewComp = ({ moviedetails }) => {
         </div>
 
         <div className="flex justify-center">
-          <button
-            className=" text-white bg-transparent border border-gray-600 py-3 px-10 rounded-lg transition-colors"
-          >
+          <button className=" text-white bg-transparent border border-gray-600 py-3 px-10 rounded-lg transition-colors">
             <span>View More</span>
           </button>
         </div>

@@ -2,17 +2,18 @@ const hre = require("hardhat");
 
 async function main() {
 
-    // get contracts and deploy
-    const vote = await hre.ethers.getContractFactory("CreateMovieRate");
-    const voteContract = await vote.deploy();  
+  const contractFactory = await hre.ethers.getContractFactory("MovieRatings");
+  const contract = await contractFactory.deploy();
   
-    await voteContract.deployed();
-  
-    console.log("MovieRate deployed to:", voteContract.address);
+  await contract.deployed();
+  console.log("Contract deployed to:", contract.address);
 }  
 
-main().catch((error) => {
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
     console.error(error);
-    process.exitCode = 1;
-  });
-  
+    process.exit(1);
+});
+// cmd:npx hardhat run --network sepolia scripts/finaldeploy.js
+//0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1

@@ -150,7 +150,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
           className="block md:hidden md:my-8 my-18"
           naturalSlideWidth={500}
           isIntrinsicHeight={true}
-          totalSlides={moviedata && moviedata.results.length }
+          totalSlides={moviedata && moviedata.results.length}
           visibleSlides={1}
           step={1}
           infinite={true}
@@ -185,7 +185,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
               </svg>
             </ButtonBack>
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-            <Slider>
+              <Slider>
                 <div
                   id="slider"
                   className="mx-6 h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
@@ -410,8 +410,7 @@ export const SeriesCarousel = ({ seriesdata }) => {
             </div>
           </div>
         </CarouselProvider>
-        
-        
+
         {/* Carousel for mobile and Small size Devices */}
         <CarouselProvider
           className="block md:hidden md:my-8 my-18"
@@ -423,9 +422,7 @@ export const SeriesCarousel = ({ seriesdata }) => {
           infinite={true}
         >
           <div className="flex justify-center items-center">
-            <h1 className="my-8 text-3xl font-bold">
-              Latest Popular Series
-            </h1>
+            <h1 className="my-8 text-3xl font-bold">Latest Popular Series</h1>
           </div>
 
           <div className="w-full relative flex items-center justify-start">
@@ -452,7 +449,7 @@ export const SeriesCarousel = ({ seriesdata }) => {
               </svg>
             </ButtonBack>
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-            <Slider>
+              <Slider>
                 <div
                   id="slider"
                   className="mx-6 h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
