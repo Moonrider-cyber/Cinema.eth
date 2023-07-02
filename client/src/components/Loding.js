@@ -45,14 +45,14 @@ export const HeroImgLoading = () => {
     <>
       <div className="my-0 text-center">
         <div className="animate-pulse pl-0">
-          <div className="text-white flex flex-row" >
-              <div className="w-full h-full bg-gray-700/50 lg:h-96 rounded-2xl my-8"></div>
-            </div>
+          <div className="text-white flex flex-row">
+            <div className="w-full h-full bg-gray-700/50 lg:h-96 rounded-2xl my-8"></div>
+          </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export const HomeMovieListLoding = () => {
   return (
@@ -75,11 +75,11 @@ export const HomeCarouselLoding = () => {
     <>
       <div className="mx-28 text-center">
         <div className="animate-pulse pl-0">
-          <div className="text-white flex flex-row" >
-              <div className="w-[98%] h-60 bg-gray-700/50 rounded-2xl my-5"></div>
-            </div>
+          <div className="text-white flex flex-row">
+            <div className="w-[98%] h-60 bg-gray-700/50 rounded-2xl my-5"></div>
+          </div>
         </div>
       </div>
     </>
   );
-}
+};

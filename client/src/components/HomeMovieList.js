@@ -2,18 +2,26 @@ import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
-import { HeroImgLoading, HomeCarouselLoding, HomeMovieListLoding } from "./Loding";
+import {
+  HeroImgLoading,
+  HomeCarouselLoding,
+  HomeMovieListLoding,
+} from "./Loding";
 
 const noresultimg = require("../asset/noresult.png");
 
 const HomeMovieList = ({ moviedata, Loading }) => {
-
   return (
     <>
-      {Loading ? (<HomeCarouselLoding />) :moviedata && moviedata.total_results !== 0 && (
-        <div>
-          <MovieCarousel moviedata={moviedata} Loading={Loading} />
-        </div>
+      {Loading ? (
+        <HomeCarouselLoding />
+      ) : (
+        moviedata &&
+        moviedata.total_results !== 0 && (
+          <div>
+            <MovieCarousel moviedata={moviedata} Loading={Loading} />
+          </div>
+        )
       )}
     </>
   );
@@ -22,13 +30,17 @@ const HomeMovieList = ({ moviedata, Loading }) => {
 export default HomeMovieList;
 
 export const HomeSeriesList = ({ seriesdata, Loading }) => {
-
   return (
     <>
-      {Loading ? (<HomeCarouselLoding />) :seriesdata && seriesdata.total_results !== 0 && (
-        <div>
-          <SeriesCarousel seriesdata={seriesdata} Loading={Loading} />
-        </div>
+      {Loading ? (
+        <HomeCarouselLoding />
+      ) : (
+        seriesdata &&
+        seriesdata.total_results !== 0 && (
+          <div>
+            <SeriesCarousel seriesdata={seriesdata} Loading={Loading} />
+          </div>
+        )
       )}
     </>
   );
@@ -64,7 +76,7 @@ export const SearchMovieList = ({
         Search Movies For {searchtext}
       </h1>
 
-       {searchmoviedata && searchmoviedata.total_results !== 0 ? (
+      {searchmoviedata && searchmoviedata.total_results !== 0 ? (
         <div className="gap-x-10 gap-y-10 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
           {searchmoviedata &&
             searchmoviedata.results &&
