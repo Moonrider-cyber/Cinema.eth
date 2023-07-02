@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { SingleMovieLoding } from "./Loding";
+import { SingleMovieLoding } from "./Loding.js";
 import Link from "next/link";
 import Image from "next/image";
 import { ReviewComp } from "./layout/ReviewComp";

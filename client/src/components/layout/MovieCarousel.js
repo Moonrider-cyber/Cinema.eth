@@ -9,8 +9,9 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import Link from "next/link";
+import { HomeMovieListLoding } from "../Loding";
 
-export default function MovieCarousel({ moviedata, seriesdata }) {
+export default function MovieCarousel({ moviedata, Loading }) {
   return (
     <div className="container mx-auto">
       <div className="">
@@ -78,6 +79,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
 
           <div className="w-full relative flex items-center justify-center">
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+              {Loading ? (<HomeMovieListLoding/>) :
               <Slider>
                 <div
                   id="slider"
@@ -141,6 +143,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
                     )}
                 </div>
               </Slider>
+              }
             </div>
           </div>
         </CarouselProvider>
@@ -278,7 +281,7 @@ export default function MovieCarousel({ moviedata, seriesdata }) {
   );
 }
 
-export const SeriesCarousel = ({ seriesdata }) => {
+export const SeriesCarousel = ({ seriesdata, Loading }) => {
   return (
     <div className="container mx-auto">
       <div className="">
@@ -346,6 +349,7 @@ export const SeriesCarousel = ({ seriesdata }) => {
 
           <div className="w-full relative flex items-center justify-center">
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+              {Loading ? (<HomeMovieListLoding />) : (
               <Slider>
                 <div
                   id="slider"
@@ -407,6 +411,7 @@ export const SeriesCarousel = ({ seriesdata }) => {
                     )}
                 </div>
               </Slider>
+              )}
             </div>
           </div>
         </CarouselProvider>

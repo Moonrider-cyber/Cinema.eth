@@ -103,7 +103,7 @@ export const ReviewComp = ({ moviedetails }) => {
                   onChange={(e) => setReview(e.target.value)}
                 ></textarea>
                 <button
-                  className="mt-5 w-1/3 text-center font-bold text-base bg-blue-700 px-5 py-3 rounded-lg text-white"
+                  className="mt-5 w-1/3 text-center font-bold text-base bg-blue-700 px-5 py-3 rounded-lg text-white hover:bg-blue-800"
                   onClick={reviewposthandler}
                 >
                   Post Review

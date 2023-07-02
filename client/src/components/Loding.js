@@ -1,4 +1,4 @@
-const Loding = () => {
+export const SearchLoding = () => {
   return (
     <>
       <div className="my-24 text-center">
@@ -13,8 +13,6 @@ const Loding = () => {
     </>
   );
 };
-
-export default Loding;
 
 export const SingleMovieLoding = () => {
   return (
@@ -41,3 +39,47 @@ export const SingleMovieLoding = () => {
     </>
   );
 };
+
+export const HeroImgLoading = () => {
+  return (
+    <>
+      <div className="my-0 text-center">
+        <div className="animate-pulse pl-0">
+          <div className="text-white flex flex-row" >
+              <div className="w-full h-full bg-gray-700/50 lg:h-96 rounded-2xl my-8"></div>
+            </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export const HomeMovieListLoding = () => {
+  return (
+    <>
+      <div>
+        <div className="animate-pulse grid lg:grid-cols-6">
+          {Array.from({ length: 6 }, (movie, i) => (
+            <div className="text-white flex flex-row" key={i}>
+              <div className="w-[90%] h-full bg-gray-700/50 rounded-2xl mb-52"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const HomeCarouselLoding = () => {
+  return (
+    <>
+      <div className="mx-28 text-center">
+        <div className="animate-pulse pl-0">
+          <div className="text-white flex flex-row" >
+              <div className="w-[98%] h-60 bg-gray-700/50 rounded-2xl my-5"></div>
+            </div>
+        </div>
+      </div>
+    </>
+  );
+}

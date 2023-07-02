@@ -2,28 +2,17 @@ import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
-import Loding from "./Loding";
+import { HeroImgLoading, HomeCarouselLoding, HomeMovieListLoding } from "./Loding";
 
 const noresultimg = require("../asset/noresult.png");
 
-const HomeMovieList = ({ moviedata, setMoviedata }) => {
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-
-      await fetch(url)
-        .then((res) => res.json())
-        .then((data) => setMoviedata(data))
-        .catch((err) => console.log(err));
-    };
-    fetchData();
-  }, [setMoviedata]);
+const HomeMovieList = ({ moviedata, Loading }) => {
 
   return (
     <>
-      {moviedata && moviedata.total_results !== 0 && (
+      {Loading ? (<HomeCarouselLoding />) :moviedata && moviedata.total_results !== 0 && (
         <div>
-          <MovieCarousel moviedata={moviedata} />
+          <MovieCarousel moviedata={moviedata} Loading={Loading} />
         </div>
       )}
     </>
@@ -32,29 +21,13 @@ const HomeMovieList = ({ moviedata, setMoviedata }) => {
 
 export default HomeMovieList;
 
-export const HomeSeriesList = ({ seriesdata, setSeriesdata }) => {
-  useEffect(() => {
-    try {
-      const fetchData = async () => {
-        const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
-
-        await fetch(url1)
-          .then((res) => res.json())
-          .then((data) => setSeriesdata(data))
-          .catch((err) => console.log(err));
-      };
-
-      fetchData();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [setSeriesdata]);
+export const HomeSeriesList = ({ seriesdata, Loading }) => {
 
   return (
     <>
-      {seriesdata && seriesdata.total_results !== 0 && (
+      {Loading ? (<HomeCarouselLoding />) :seriesdata && seriesdata.total_results !== 0 && (
         <div>
-          <SeriesCarousel seriesdata={seriesdata} />
+          <SeriesCarousel seriesdata={seriesdata} Loading={Loading} />
         </div>
       )}
     </>
@@ -91,9 +64,7 @@ export const SearchMovieList = ({
         Search Movies For {searchtext}
       </h1>
 
-      {movieloading ? (
-        <Loding />
-      ) : searchmoviedata && searchmoviedata.total_results !== 0 ? (
+       {searchmoviedata && searchmoviedata.total_results !== 0 ? (
         <div className="gap-x-10 gap-y-10 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
           {searchmoviedata &&
             searchmoviedata.results &&
