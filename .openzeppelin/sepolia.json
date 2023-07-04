@@ -1,0 +1,123 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x86FbC84Fd8E14269abbdE9a5Df32FE68551916D4",
+    "txHash": "0x1f429a6ce90da0810be8615c274813150ac616b1c2a6bae7f561ad21c88c22e6"
+  },
+  "proxies": [
+    {
+      "address": "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f",
+      "txHash": "0x239f8f5bc2c01de45751e99f26b080959d12c49afbf451276afd8c5293e80438",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "110ba75b85312caff790a160e339e7f49f1d8ce487104ba7bb6745102f47cbf5": {
+      "address": "0x2a82fF1Cf889c45294EE124c2b01f73769145008",
+      "txHash": "0x0b27685ab40980eb493091329174cbb8cf2029dd96ba992b0d7be3d6d116a897",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "movies",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_uint256,t_struct(Movie)8_storage)",
+            "contract": "MovieRatings_V1",
+            "src": "contracts\\MovieRatings_V1.sol:20"
+          },
+          {
+            "label": "ratings",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_struct(Rateing)19_storage)dyn_storage",
+            "contract": "MovieRatings_V1",
+            "src": "contracts\\MovieRatings_V1.sol:22"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(Rateing)19_storage)dyn_storage": {
+            "label": "struct MovieRatings_V1.Rateing[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Movie)8_storage)": {
+            "label": "mapping(uint256 => struct MovieRatings_V1.Movie)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Movie)8_storage": {
+            "label": "struct MovieRatings_V1.Movie",
+            "members": [
+              {
+                "label": "movieId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "totalRatings",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "avgRating",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(Rateing)19_storage": {
+            "label": "struct MovieRatings_V1.Rateing",
+            "members": [
+              {
+                "label": "useraddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "movieId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "comment",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "rate",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "timestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    }
+  }
+}

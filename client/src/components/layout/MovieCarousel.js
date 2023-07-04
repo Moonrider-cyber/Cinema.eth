@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import {
   CarouselProvider,
@@ -11,7 +11,8 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import Link from "next/link";
 import { HomeMovieListLoding } from "../Loding";
 
-export default function MovieCarousel({ moviedata, Loading }) {
+export default function MovieCarousel({ moviedata, Loading, setMovieSort }) {
+  
   return (
     <div className="container mx-auto">
       <div className="">
@@ -26,9 +27,16 @@ export default function MovieCarousel({ moviedata, Loading }) {
           infinite={true}
         >
           <div className="flex justify-between items-center">
-            <h1 className="mt-10 mb-5 text-3xl font-bold">
-              Latest Popular Movies
+            <div className="flex items-center my-6">
+            <h1 className="text-3xl font-bold">
+              Trending Today
             </h1>
+            {/* <div className="ml-6 mt-1 border border-gray-500 rounded-full">
+              <button className="px-7 py-1 rounded-full" onClick={setMovieSort("day")}>Today</button>
+              <button className={`px-5 py-1 rounded-full`} onClick={setMovieSort("week")}>This week</button>
+            </div> */}
+              
+            </div>
             <div className="pr-5">
               <ButtonBack
                 role="button"

@@ -10,7 +10,7 @@ import {
 
 const noresultimg = require("../asset/noresult.png");
 
-const HomeMovieList = ({ moviedata, Loading }) => {
+const HomeMovieList = ({ moviedata, Loading, setMovieSort }) => {
   return (
     <>
       {Loading ? (
@@ -19,7 +19,7 @@ const HomeMovieList = ({ moviedata, Loading }) => {
         moviedata &&
         moviedata.total_results !== 0 && (
           <div>
-            <MovieCarousel moviedata={moviedata} Loading={Loading} />
+            <MovieCarousel moviedata={moviedata} Loading={Loading} setMovieSort={setMovieSort} />
           </div>
         )
       )}

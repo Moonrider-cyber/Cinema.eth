@@ -15,10 +15,14 @@ export default function Home() {
   const [movieLoading, setMovieLoading] = useState(true);
   const [seriesLoading, setSeriesLoading] = useState(true);
 
+  const [moviesort, setMovieSort] = React.useState("day");
+  
+  
   useEffect(() => {
     const fetchMovieData = async () => {
-      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-      await fetch(url)
+      // const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      const url1 = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      await fetch(url1)
         .then((res) => res.json())
         .then((data) => setMoviedata(data))
         .catch((err) => console.log(err));
@@ -40,16 +44,26 @@ export default function Home() {
     fetchSeriseData();
     setSeriesLoading(false);
   }, []);
-
+  
+  // useEffect(() => {
+  //   const fetchMovieData = async (moviesort) => {
+  //     const url1 = `https://api.themoviedb.org/3/trending/movie/${moviesort}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+  //     await fetch(url1)
+  //       .then((res) => res.json())
+  //       .then((data) => setMoviedata(data))
+  //       .catch((err) => console.log(err));
+  //   };
+  //   fetchMovieData(moviesort);
+  // }, [moviesort]);
+  
   return (
     <>
       <Head>
         <title>Ethcinemanation</title>
       </Head>
-
       <HeroSection moviedata={moviedata} Loading={heroImgLoading} />
       <Search setMoviedata={setMoviedata} />
-      <HomeMovieList moviedata={moviedata} Loading={movieLoading} />
+      <HomeMovieList moviedata={moviedata} Loading={movieLoading} setMovieSort={setMovieSort} />
       <HomeSeriesList seriesdata={seriesdata} Loading={seriesLoading} />
     </>
   );

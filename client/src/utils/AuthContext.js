@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, createContext } from "react";
-import abi from "../contracts/MovieRatings.json";
-import { ethers } from "ethers";
+import { useState, createContext, useEffect } from "react";
+// import abi from "../contracts/MovieRatings.json";
+import abi from "../contracts/MovieRatings_V1.json";
+import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
 
 const AuthContext = createContext();
@@ -18,9 +19,38 @@ export const AuthProvider = ({ children }) => {
     address: null,
     balance: null,
   });
+  
+  async function connectcontract() {
+    const provider = new JsonRpcProvider('https://eth-sepolia.g.alchemy.com/v2/vZ27K8ZtNERkM4E-hnXSBf96Hjt26HIe');
+    
+    // const contractAddress = '0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1';
+    const contractAddress = '0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f';
+    const contractABI = abi.abi;
 
+    const contract = new ethers.Contract(contractAddress, contractABI, provider);
+    
+    setValue({ provider, signer: null, contract, isLogged: false });
+  }
+  
+  useEffect(() => {
+    connectcontract();
+  }, []);
+  
+  // get user balance
+  const getaccountdetails  =async (accounts) => {
+    const web3 = new Web3(Web3.givenProvider);
+    await web3.eth.getBalance(accounts[0]).then((balance) => {
+      balance = web3.utils.fromWei(balance, "ether");
+      setAccount({
+        address: accounts[0],
+        balance: balance,
+      });
+    });
+  }
+  
   const connectwallet = async () => {
-    const contractAddress = "0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1";
+    // const contractAddress = "0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1";
+    const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
     const contractAbi = abi.abi;
     try {
       const { ethereum } = window;
@@ -29,7 +59,7 @@ export const AuthProvider = ({ children }) => {
         window.ethereum.on("chainChanged", () => window.location.reload());
 
         window.ethereum.on("accountsChanged", (accounts) => {
-          setAccount({ address: accounts[0] });
+          getaccountdetails(accounts);
         });
 
         const accounts = await ethereum.request({
@@ -44,17 +74,11 @@ export const AuthProvider = ({ children }) => {
           contractAbi,
           signer
         );
+     
         setValue({ provider, signer, contract, isLogged: true });
-
-        // get user balance
-        const web3 = new Web3(Web3.givenProvider);
-        await web3.eth.getBalance(accounts[0]).then((balance) => {
-          balance = web3.utils.fromWei(balance, "ether");
-          setAccount({
-            address: accounts[0],
-            balance: balance,
-          });
-        });
+          
+        getaccountdetails(accounts);
+        
       } else {
         alert("Please install MetaMask");
       }
@@ -72,22 +96,24 @@ export const AuthProvider = ({ children }) => {
     balance: account.balance,
     isLogged: Value.isLogged,
   };
-
-  const callFunction = async () => {
-    // await Value.contract.getMovieRating(1)
-    // .then((res)=>{
-    //   console.log("successfully called" + res);
-    // })
-    // .catch((err)=>{
-    //   console.log(err)
-    // })
-    await Value.contract.testfunction().then((res) => {
-      console.log(res);
-    });
-  };
-  if (Value.contract != null) {
-    callFunction();
-  }
+  
+  useEffect(()=>{
+    console.log(account)
+  },[account])
+  
+  // const callFunction = async () => {
+  //   await Value.contract.getMovieRating(1)
+  //   .then((res)=>{
+  //     console.log("successfully called" + res);
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
+  // };
+  // if (Value.contract != null) {
+    
+  //   callFunction();
+  // }
 
   return (
     <AuthContext.Provider value={AuthValue}>{children}</AuthContext.Provider>

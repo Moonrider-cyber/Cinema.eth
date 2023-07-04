@@ -14,7 +14,7 @@ const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
 }));
 
 export const ReviewComp = ({ moviedetails }) => {
-  const { isLogged, contract } = useContext(AuthContext);
+  const { isLogged, contract, address } = useContext(AuthContext);
 
   const [isReview, setIsReview] = useState(false);
   const [Review, setReview] = useState("");
@@ -23,9 +23,8 @@ export const ReviewComp = ({ moviedetails }) => {
   const reviewposthandler = async () => {
     if (isLogged) {
       await contract
-        .rateMovie(moviedetails.id, Review, rating)
+        .rateMovie(moviedetails.id, Review, rating, address)
         .then((res) => {
-          console.log(res);
           alert("Review posted successfully");
           setIsReview(true);
         })
@@ -36,22 +35,39 @@ export const ReviewComp = ({ moviedetails }) => {
       alert("Please connect wallet");
     }
   };
-
+  
   // TODO:- LOAD CONTRACT ON WEBSITE FIRST LOAD
-  // React.useEffect(() => {
-  //   async function getmovierating(){
+  React.useEffect(() => {
+    async function getmovierating(){
 
-  //     await contract.getMovieRating(1)
-  //     .then((res)=>{
-  //       console.log(res);
-  //     })
-  //     .catch((err)=>{
-  //       console.log(err);
-  //     })
-  //   }
-  //   if (isLogged) {
-  //   getmovierating();
-  // }, [contract])
+      await contract.getMovieRating(569094)
+      .then((res)=>{
+        console.log("res 1  " + res[0]);
+        console.log("res 2  " + res[1]);
+        console.log("res 3  " + res[2]);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+    
+    async function getmoviereviews(){
+        
+        const res = await contract.GetMovieReviews(569094)
+        if(res){
+          console.log("res " + res);
+        }
+        else{
+          console.log(err);
+        }
+      }
+      
+      if(contract != null){
+        // getmovierating();
+        // getmoviereviews();
+      }
+    
+  }, [contract,moviedetails])
 
   return (
     <>
@@ -97,7 +113,7 @@ export const ReviewComp = ({ moviedetails }) => {
                 <textarea
                   id="comment"
                   rows="4"
-                  className="w-10/12 bg-transparent p-5 border border-gray-600 rounded-lg"
+                  className="w-10/12 bg-transparent p-3 border border-gray-600 rounded-lg"
                   placeholder="Write your review here..."
                   value={Review}
                   onChange={(e) => setReview(e.target.value)}

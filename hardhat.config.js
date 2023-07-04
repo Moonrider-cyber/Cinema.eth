@@ -1,5 +1,10 @@
-require("@nomicfoundation/hardhat-toolbox");
+require("@nomiclabs/hardhat-ethers");
+require('@openzeppelin/hardhat-upgrades');
 require('dotenv').config();
+
+// not using now 
+// require("@nomicfoundation/hardhat-toolbox");
+
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
@@ -13,5 +18,4 @@ module.exports = {
       accounts: [PRIVATE_KEY]
     },
   },
-
 };
