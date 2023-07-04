@@ -2,11 +2,8 @@ import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
-import {
-  HeroImgLoading,
-  HomeCarouselLoding,
-  HomeMovieListLoding,
-} from "./Loding";
+import { HomeCarouselLoding } from "./Loding";
+import { toast } from 'react-toastify';
 
 const noresultimg = require("../asset/noresult.png");
 
@@ -62,7 +59,8 @@ export const SearchMovieList = ({
       const res = await fetch(url);
 
       if (!res.ok) {
-        console.log("Failed to fetch data");
+        toast("Something went wrong!");
+        console.error("Failed to fetch data");
       }
       const data = await res.json();
       setsearchMoviedata(data);

@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import AuthContext from "../../utils/AuthContext";
 import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
+import Jazzicon from "react-jazzicon/dist/Jazzicon";
+import { toast } from 'react-toastify';
 
 let user = require("../../asset/user.png");
 
@@ -13,47 +15,60 @@ const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
   inactiveFillColor: "#ffedd5",
 }));
 
-export const ReviewComp = ({ moviedetails }) => {
+export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
   const { isLogged, contract, address } = useContext(AuthContext);
-
-  const [isReview, setIsReview] = useState(false);
+  
   const [Review, setReview] = useState("");
   const [rating, setRating] = useState(0);
 
-  
+  // toast.promise(
+  //   reviewposthandler(),
+  //   {
+  //     pending: 'posting review...',
+  //     success: 'Review posted successfully! 🎉',
+  //     error: 'Something went wrong 😕',
+  //   }
+  // );
   
   const reviewposthandler = async () => {
     if (isLogged) {
-      await contract
-        .rateMovie(moviedetails.id, Review, rating, address)
-        .then((res) => {
-          alert("Review posted successfully");
-          setIsReview(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      toast.promise(
+        contract
+          .rateMovie(moviedetails.id, Review, rating, address)
+          .then((res) => {
+              setIsReview(true);
+          })
+          .catch((err) => {
+            toast.error("Something went wrong!");
+            console.log("error while postreview ", err);
+          }),
+        {
+          pending: 'posting review...',
+          success: 'Review posted successfully! 🎉',
+          error: 'Something went wrong 😕',
+        }
+      );
+      
     } else {
-      alert("Please connect wallet");
+      toast.error("Please connect your wallet");
     }
   };
   
-  React.useEffect(() => {
-    
+  useEffect(() => {  
     
     async function getmoviereviews(){
         
-        const res = await contract.GetMovieReviews(569094)
+        const res = await contract.GetMovieReviews(moviedetails.id)
         if(res){
           console.log("res " + res);
         }
         else{
-          console.log(err);
+          toast("Something went wrong!");
+          console.log("error while getmoviereviews ",err);
         }
       }
-      
-      if(contract != null){
-        // getmoviereviews();
+      if(contract != null && moviedetails != undefined){
+        getmoviereviews();
       }
     
   }, [contract,moviedetails])
@@ -70,11 +85,18 @@ export const ReviewComp = ({ moviedetails }) => {
         {!isReview && (
           <div className="container border border-gray-600 px-5 py-5 rounded-lg">
             <div className="flex items-center space-x-4">
-              <Image
-                className="w-10 h-10 rounded-full"
-                src={user}
-                alt="user pfp"
-              />
+              {!address ? (
+                <Image
+                  className="w-10 h-10 rounded-full"
+                  src={user}
+                  alt="user pfp"
+                />):(
+                  <Jazzicon
+                    diameter={40}
+                    seed={parseInt(address && address.slice(2, 10), 16)}
+                  />
+                )
+              }
               <div className="space-y-1 font-medium dark:text-white">
                 <p>
                   You

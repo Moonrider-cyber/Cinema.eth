@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
 import Search from "../components/layout/Search";
 import HeroSection from "../components/layout/HeroSection";
+import { toast } from 'react-toastify';
 
 export default function Home() {
   const [HeroImgData, setHeroImgData] = useState(null);
@@ -29,17 +30,22 @@ export default function Home() {
         setMoviedata(data);
         setHeroImgData(data);  
       } catch (err) {
-        console.log(err)
+        toast("Something went wrong!")
+        console.error("error while fetchMovieData",err)
       }
     };
       
     const fetchSeriseData = async () => {
-      const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
-
-      await fetch(url1)
-        .then((res) => res.json())
-        .then((data) => setSeriesdata(data))
-        .catch((err) => console.log(err));
+      try {
+      const url = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
+      const res = await fetch(url)
+      const data = await res.json();
+      setSeriesdata(data);
+      
+      } catch (err) {
+        toast("Something went wrong!")
+        console.error("error while fetchSeriseData",err)  
+      }  
     };
 
     fetchMovieData();
@@ -57,10 +63,12 @@ export default function Home() {
       await fetch(url1)
         .then((res) => res.json())
         .then((data) => setMoviedata(data))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          toast("Something went wrong!");
+          console.error("error while fetchMovieData when sorting",err);
+        });
     };
     
-    console.log(moviesort)
     fetchMovieData(moviesort);
     
     let timer;

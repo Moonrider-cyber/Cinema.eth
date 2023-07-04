@@ -5,6 +5,7 @@ import { useState, createContext, useEffect } from "react";
 import abi from "../contracts/MovieRatings_V1.json";
 import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
 
@@ -83,7 +84,7 @@ export const AuthProvider = ({ children }) => {
         alert("Please install MetaMask");
       }
     } catch (error) {
-      console.log(error);
+      toast("Please install MetaMask");
     }
   };
 
