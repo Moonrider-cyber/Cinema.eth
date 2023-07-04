@@ -96,11 +96,6 @@ export const AuthProvider = ({ children }) => {
     balance: account.balance,
     isLogged: Value.isLogged,
   };
-  
-  useEffect(()=>{
-    console.log(account)
-  },[account])
-  
   // const callFunction = async () => {
   //   await Value.contract.getMovieRating(1)
   //   .then((res)=>{

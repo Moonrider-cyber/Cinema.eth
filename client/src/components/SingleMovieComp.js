@@ -1,19 +1,27 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useContext } from "react";
 import { SingleMovieLoding } from "./Loding.js";
 import Link from "next/link";
 import Image from "next/image";
 import { ReviewComp } from "./layout/ReviewComp";
 import { useRouter } from "next/navigation";
+import AuthContext from "../utils/AuthContext";
+
 
 const SingleMovieComp = ({ movieid, seriesid }) => {
+  const { isLogged, contract, address } = useContext(AuthContext);
+  
   const [movieloading, setMovieLoading] = useState(true);
-
   const [moviedetails, setMoviedetails] = useState();
   const [featcherr, setFeatcherr] = useState(false);
 
+  const [Ratingdetails,setRatingdetails] = useState({
+    totalRate:null,
+    avgRate:null
+  });
+    
   const router = useRouter();
 
-  const fetchData = React.useCallback(async () => {
+  const fetchData = useCallback(async () => {
     try {
       const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${
         movieid ? movieid : seriesid
@@ -32,11 +40,30 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
       console.log("failed to fetch data in SingleMovieComp");
     }
   }, [movieid, seriesid]);
-
-  useEffect(() => {
+  
+  
+  const getmovierating = useCallback(async () => {
+    if(contract != null){
+      
+      await contract.getMovieRating(movieid)
+      .then((res)=>{
+        setRatingdetails({
+          totalRate:parseInt(res[1]),
+          avgRate:parseInt(res[2])
+        })
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+  },[contract, movieid]);
+  
+  useEffect(() => {  
     fetchData();
-  }, [fetchData, movieid, seriesid]);
+    getmovierating();
+  }, [contract, fetchData, getmovierating, movieid, seriesid]);
 
+  
   const handle_retry = useCallback(() => {
     setFeatcherr(false);
     fetchData();
@@ -162,7 +189,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                     {/* Movie Cinema rating */}
                     <div className="flex items-center mt-4">
                       <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-2xl font-bold">
-                        {moviedetails && moviedetails.vote_average.toFixed(1)}
+                        {Ratingdetails && Ratingdetails.avgRate}.0
                       </div>
                       <div className="ml-4">
                         <div className="text-sm text-gray-400">
@@ -181,8 +208,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                             </g>
                           </svg>
                           <span className="ml-1">
-                            {moviedetails &&
-                              moviedetails.vote_average.toFixed(2)}
+                            {Ratingdetails && Ratingdetails.avgRate}.0 
                           </span>
                         </div>
                       </div>
@@ -241,8 +267,8 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                         </button>
                       </div>
                     )}
-                    <button className="bg-orange-500 text-gray-900 rounded font-semibold px-4 py-2 hover:bg-orange-600 transition ease-in-out duration-150">
-                      <a href={"#cast"} className="flex items-center">
+                      <a href={"#cast"} >
+                    <button className="bg-orange-500 flex h-full items-center text-gray-900 rounded font-semibold px-4 py-2 hover:bg-orange-600 transition ease-in-out duration-150">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="18"
@@ -258,8 +284,8 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                           <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                         <span className="ml-2">Movie cast</span>
-                      </a>
                     </button>
+                      </a>
                   </div>
                 </div>
               </div>

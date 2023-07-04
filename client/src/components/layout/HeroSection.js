@@ -1,35 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { HeroImgLoading } from "../Loding";
 
-const HeroSection = ({ moviedata, Loading }) => {
-  // const [movieImg, setMovieImg] = useState(null);
-
-  // useState(() => {
-  // try {
-  //   const res = await fetch(
-  //     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`
-  //   );
-
-  //   if (!res.ok) {
-  //     console.log("Failed to fetch hero section data");
-  //   }
-  //   const data = await res.json();
-  //   console.log("file data"+data["results"][0]["poster_path"])
-  //   console.log("not my data"+moviedata["results"][0]["poster_path"])
-  //   setMovieImg(data);
-  //   setLoading(false);
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  // console.log(moviedata)
-  // moviedata && setMovieImg(moviedata);
-  // setLoading(false);
-  // }, [moviedata]);
-
+const HeroSection = ({ HeroImgData, Loading, setLoading }) => {
+  
   return (
     <>
       <section className="my-6 pb-6">
@@ -67,8 +44,8 @@ const HeroSection = ({ moviedata, Loading }) => {
                 {Loading ? (
                   <HeroImgLoading />
                 ) : (
-                  moviedata &&
-                  moviedata.results.slice(0, 5).map((movie, index) => (
+                  HeroImgData &&
+                  HeroImgData.results.slice(0, 5).map((movie, index) => (
                     <Slide
                       index={index}
                       key={index}
@@ -76,6 +53,7 @@ const HeroSection = ({ moviedata, Loading }) => {
                     >
                       <div className="flex justify-center">
                         <Image
+                          onLoad={() => setLoading(false)}
                           loader={({ src }) =>
                             `https://image.tmdb.org/t/p/w500${src}`
                           }

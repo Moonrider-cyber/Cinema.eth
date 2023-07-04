@@ -10,18 +10,19 @@ import {
 
 const noresultimg = require("../asset/noresult.png");
 
-const HomeMovieList = ({ moviedata, Loading, setMovieSort }) => {
+const HomeMovieList = ({ moviedata, Loading, setLoading, setMovieSort }) => {
   return (
     <>
-      {Loading ? (
-        <HomeCarouselLoding />
-      ) : (
+      {
+      // Loading ? (
+      //   <HomeCarouselLoding />
+      // ) : (
         moviedata &&
         moviedata.total_results !== 0 && (
           <div>
-            <MovieCarousel moviedata={moviedata} Loading={Loading} setMovieSort={setMovieSort} />
+            <MovieCarousel moviedata={moviedata} Loading={Loading} setLoading={setLoading} setMovieSort={setMovieSort} />
           </div>
-        )
+        // )
       )}
     </>
   );

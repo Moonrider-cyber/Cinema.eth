@@ -20,6 +20,8 @@ export const ReviewComp = ({ moviedetails }) => {
   const [Review, setReview] = useState("");
   const [rating, setRating] = useState(0);
 
+  
+  
   const reviewposthandler = async () => {
     if (isLogged) {
       await contract
@@ -36,20 +38,8 @@ export const ReviewComp = ({ moviedetails }) => {
     }
   };
   
-  // TODO:- LOAD CONTRACT ON WEBSITE FIRST LOAD
   React.useEffect(() => {
-    async function getmovierating(){
-
-      await contract.getMovieRating(569094)
-      .then((res)=>{
-        console.log("res 1  " + res[0]);
-        console.log("res 2  " + res[1]);
-        console.log("res 3  " + res[2]);
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
-    }
+    
     
     async function getmoviereviews(){
         
@@ -63,7 +53,6 @@ export const ReviewComp = ({ moviedetails }) => {
       }
       
       if(contract != null){
-        // getmovierating();
         // getmoviereviews();
       }
     

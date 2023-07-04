@@ -8,6 +8,7 @@ import Search from "../components/layout/Search";
 import HeroSection from "../components/layout/HeroSection";
 
 export default function Home() {
+  const [HeroImgData, setHeroImgData] = useState(null);
   const [moviedata, setMoviedata] = useState(null);
   const [seriesdata, setSeriesdata] = useState(null);
 
@@ -21,13 +22,17 @@ export default function Home() {
   useEffect(() => {
     const fetchMovieData = async () => {
       // const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-      const url1 = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-      await fetch(url1)
-        .then((res) => res.json())
-        .then((data) => setMoviedata(data))
-        .catch((err) => console.log(err));
+      try {
+        const url1 = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+        const res = await fetch(url1);
+        const data = await res.json();
+        setMoviedata(data);
+        setHeroImgData(data);  
+      } catch (err) {
+        console.log(err)
+      }
     };
-
+      
     const fetchSeriseData = async () => {
       const url1 = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US`;
 
@@ -39,31 +44,41 @@ export default function Home() {
 
     fetchMovieData();
     setHeroImgLoading(false);
-    setMovieLoading(false);
+    // setMovieLoading(false);
 
     fetchSeriseData();
     setSeriesLoading(false);
   }, []);
   
-  // useEffect(() => {
-  //   const fetchMovieData = async (moviesort) => {
-  //     const url1 = `https://api.themoviedb.org/3/trending/movie/${moviesort}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
-  //     await fetch(url1)
-  //       .then((res) => res.json())
-  //       .then((data) => setMoviedata(data))
-  //       .catch((err) => console.log(err));
-  //   };
-  //   fetchMovieData(moviesort);
-  // }, [moviesort]);
+  useEffect(() => {
+    
+    const fetchMovieData = async (moviesort) => {
+      const url1 = `https://api.themoviedb.org/3/trending/movie/${moviesort}?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
+      await fetch(url1)
+        .then((res) => res.json())
+        .then((data) => setMoviedata(data))
+        .catch((err) => console.log(err));
+    };
+    
+    console.log(moviesort)
+    fetchMovieData(moviesort);
+    
+    let timer;
+    
+    timer = setTimeout(() => {
+      setMovieLoading(false);
+    }
+    , 1000);
+  }, [moviesort]);
   
   return (
     <>
       <Head>
         <title>Ethcinemanation</title>
       </Head>
-      <HeroSection moviedata={moviedata} Loading={heroImgLoading} />
+      <HeroSection HeroImgData={HeroImgData} Loading={heroImgLoading} setLoading={setMovieLoading} />
       <Search setMoviedata={setMoviedata} />
-      <HomeMovieList moviedata={moviedata} Loading={movieLoading} setMovieSort={setMovieSort} />
+      <HomeMovieList moviedata={moviedata} Loading={movieLoading} setLoading={setMovieLoading} setMovieSort={setMovieSort} />
       <HomeSeriesList seriesdata={seriesdata} Loading={seriesLoading} />
     </>
   );

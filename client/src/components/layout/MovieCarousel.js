@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   CarouselProvider,
@@ -11,8 +11,22 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import Link from "next/link";
 import { HomeMovieListLoding } from "../Loding";
 
-export default function MovieCarousel({ moviedata, Loading, setMovieSort }) {
+const dummyimg = require("../../asset/DummyImg.png")
+
+export default function MovieCarousel({ moviedata, Loading, setLoading, setMovieSort }) {
   
+  const [sortoption, setSortoption] = useState("day");
+  
+  const handletoday = () => {
+    setSortoption("day");
+    setLoading(true);
+    setMovieSort("day");
+  };
+  const handleweek = () => {
+    setSortoption("week");
+    setLoading(true);
+    setMovieSort("week");
+  };
   return (
     <div className="container mx-auto">
       <div className="">
@@ -29,12 +43,12 @@ export default function MovieCarousel({ moviedata, Loading, setMovieSort }) {
           <div className="flex justify-between items-center">
             <div className="flex items-center my-6">
             <h1 className="text-3xl font-bold">
-              Trending Today
+              Trending
             </h1>
-            {/* <div className="ml-6 mt-1 border border-gray-500 rounded-full">
-              <button className="px-7 py-1 rounded-full" onClick={setMovieSort("day")}>Today</button>
-              <button className={`px-5 py-1 rounded-full`} onClick={setMovieSort("week")}>This week</button>
-            </div> */}
+            <div className="ml-6 mt-2 border border-gray-500 rounded-full">
+              <button className={`px-7 py-1 rounded-full ${sortoption == "day" && "bg-gray-700"}`} onClick={handletoday}>Today</button>
+              <button className={`px-5 py-1 rounded-full ${sortoption == "week" && "bg-gray-700"}`} onClick={handleweek}>This week</button>
+            </div>
               
             </div>
             <div className="pr-5">
@@ -103,6 +117,8 @@ export default function MovieCarousel({ moviedata, Loading, setMovieSort }) {
                             <Link href={`/movie/${movie.id}`}>
                               <div className="cursor-pointer w-[11.5rem] bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in ">
                                 <Image
+                                  placeholder="blur"
+                                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABA4AAAUAAQMAAAD9bYLHAAAACXBIWXMAAB7CAAAewgFu0HU+AAAAA1BMVEX///+nxBvIAAAAuElEQVR42u3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8GSPHgAB6wmOvAAAAABJRU5ErkJggg=="
                                   loader={({ src }) =>
                                     `https://image.tmdb.org/t/p/w500${src}`
                                   }

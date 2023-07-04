@@ -61,7 +61,7 @@ export const HomeMovieListLoding = () => {
         <div className="animate-pulse grid lg:grid-cols-6">
           {Array.from({ length: 6 }, (movie, i) => (
             <div className="text-white flex flex-row" key={i}>
-              <div className="w-[90%] h-full bg-gray-700/50 rounded-2xl mb-52"></div>
+              <div className="w-[90%] h-full bg-gray-700/50 rounded-2xl mb-72"></div>
             </div>
           ))}
         </div>
@@ -73,11 +73,20 @@ export const HomeMovieListLoding = () => {
 export const HomeCarouselLoding = () => {
   return (
     <>
-      <div className="mx-28 text-center">
+      {/* <div className="mx-28 text-center">
         <div className="animate-pulse pl-0">
           <div className="text-white flex flex-row">
             <div className="w-[98%] h-60 bg-gray-700/50 rounded-2xl my-5"></div>
           </div>
+        </div>
+      </div> */}
+      <div className="mx-24 my-12">
+        <div className="animate-pulse grid lg:grid-cols-6">
+          {Array.from({ length: 6 }, (movie, i) => (
+            <div className="text-white flex flex-row" key={i}>
+              <div className="w-[90%] h-full bg-gray-700/50 rounded-2xl mb-80"></div>
+            </div>
+          ))}
         </div>
       </div>
     </>
