@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
 import { HomeCarouselLoding } from "./Loding";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const noresultimg = require("../asset/noresult.png");
 
@@ -11,16 +11,21 @@ const HomeMovieList = ({ moviedata, Loading, setLoading, setMovieSort }) => {
   return (
     <>
       {
-      // Loading ? (
-      //   <HomeCarouselLoding />
-      // ) : (
-        moviedata &&
-        moviedata.total_results !== 0 && (
+        // Loading ? (
+        //   <HomeCarouselLoding />
+        // ) : (
+        moviedata && moviedata.total_results !== 0 && (
           <div>
-            <MovieCarousel moviedata={moviedata} Loading={Loading} setLoading={setLoading} setMovieSort={setMovieSort} />
+            <MovieCarousel
+              moviedata={moviedata}
+              Loading={Loading}
+              setLoading={setLoading}
+              setMovieSort={setMovieSort}
+            />
           </div>
-        // )
-      )}
+          // )
+        )
+      }
     </>
   );
 };

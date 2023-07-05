@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 
 import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
 import { HeroImgLoading } from "../Loding";
 
 const HeroSection = ({ HeroImgData, Loading, setLoading }) => {
-  
   return (
     <>
       <section className="my-6 pb-6">

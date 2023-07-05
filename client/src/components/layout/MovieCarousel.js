@@ -11,10 +11,14 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import Link from "next/link";
 import { HomeMovieListLoding } from "../Loding";
 
-export default function MovieCarousel({ moviedata, Loading, setLoading, setMovieSort }) {
-  
+export default function MovieCarousel({
+  moviedata,
+  Loading,
+  setLoading,
+  setMovieSort,
+}) {
   const [sortoption, setSortoption] = useState("day");
-  
+
   const handletoday = () => {
     setSortoption("day");
     setLoading(true);
@@ -40,14 +44,25 @@ export default function MovieCarousel({ moviedata, Loading, setLoading, setMovie
         >
           <div className="flex justify-between items-center">
             <div className="flex items-center my-6">
-            <h1 className="text-3xl font-bold">
-              Trending
-            </h1>
-            <div className="ml-6 mt-2 border border-gray-500 rounded-full">
-              <button className={`px-7 py-1 rounded-full ${sortoption == "day" && "bg-gray-700"}`} onClick={handletoday}>Today</button>
-              <button className={`px-5 py-1 rounded-full ${sortoption == "week" && "bg-gray-700"}`} onClick={handleweek}>This week</button>
-            </div>
-              
+              <h1 className="text-3xl font-bold">Trending</h1>
+              <div className="ml-6 mt-2 border border-gray-500 rounded-full">
+                <button
+                  className={`px-7 py-1 rounded-full ${
+                    sortoption == "day" && "bg-gray-700"
+                  }`}
+                  onClick={handletoday}
+                >
+                  Today
+                </button>
+                <button
+                  className={`px-5 py-1 rounded-full ${
+                    sortoption == "week" && "bg-gray-700"
+                  }`}
+                  onClick={handleweek}
+                >
+                  This week
+                </button>
+              </div>
             </div>
             <div className="pr-5">
               <ButtonBack
@@ -126,7 +141,7 @@ export default function MovieCarousel({ moviedata, Loading, setLoading, setMovie
                                   width={300}
                                   height={450}
                                   as="image"
-                                  priority={key < 4 ? true : false}
+                                  priority={key < 1 ? true : false}
                                 />
 
                                 <div className="px-5">
@@ -234,7 +249,7 @@ export default function MovieCarousel({ moviedata, Loading, setLoading, setMovie
                                 width={500}
                                 height={500}
                                 as="image"
-                                priority={key < 2 ? true : false}
+                                priority={key < 1 ? true : false}
                               />
 
                               <div className="px-5">
@@ -502,9 +517,8 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
                                 width={500}
                                 height={500}
                                 as="image"
-                                priority={key < 2 ? true : false}
+                                priority={key < 1 ? true : false}
                               />
-
                               <div className="px-5">
                                 <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">
                                   {series.title}

@@ -102,7 +102,6 @@ contract MovieRatings_V1 {
                 count++;
             }
         }
-
         return result;
     }
 

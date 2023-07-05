@@ -5,7 +5,7 @@ import { useState, createContext, useEffect } from "react";
 import abi from "../contracts/MovieRatings_V1.json";
 import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -20,25 +20,31 @@ export const AuthProvider = ({ children }) => {
     address: null,
     balance: null,
   });
-  
+
   async function connectcontract() {
-    const provider = new JsonRpcProvider('https://eth-sepolia.g.alchemy.com/v2/vZ27K8ZtNERkM4E-hnXSBf96Hjt26HIe');
-    
+    const provider = new JsonRpcProvider(
+      "https://eth-sepolia.g.alchemy.com/v2/vZ27K8ZtNERkM4E-hnXSBf96Hjt26HIe"
+    );
+
     // const contractAddress = '0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1';
-    const contractAddress = '0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f';
+    const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
     const contractABI = abi.abi;
 
-    const contract = new ethers.Contract(contractAddress, contractABI, provider);
-    
+    const contract = new ethers.Contract(
+      contractAddress,
+      contractABI,
+      provider
+    );
+
     setValue({ provider, signer: null, contract, isLogged: false });
   }
-  
+
   useEffect(() => {
     connectcontract();
   }, []);
-  
+
   // get user balance
-  const getaccountdetails  =async (accounts) => {
+  const getaccountdetails = async (accounts) => {
     const web3 = new Web3(Web3.givenProvider);
     await web3.eth.getBalance(accounts[0]).then((balance) => {
       balance = web3.utils.fromWei(balance, "ether");
@@ -47,8 +53,8 @@ export const AuthProvider = ({ children }) => {
         balance: balance,
       });
     });
-  }
-  
+  };
+
   const connectwallet = async () => {
     // const contractAddress = "0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1";
     const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
@@ -75,11 +81,10 @@ export const AuthProvider = ({ children }) => {
           contractAbi,
           signer
         );
-     
+
         setValue({ provider, signer, contract, isLogged: true });
-          
+
         getaccountdetails(accounts);
-        
       } else {
         alert("Please install MetaMask");
       }
@@ -107,7 +112,7 @@ export const AuthProvider = ({ children }) => {
   //   })
   // };
   // if (Value.contract != null) {
-    
+
   //   callFunction();
   // }
 
