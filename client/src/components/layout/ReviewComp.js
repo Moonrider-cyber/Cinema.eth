@@ -20,17 +20,10 @@ export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
 
   const [Review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  
+  const [popup, setPopup] = useState(false);
 
   const [userReviews, setUserReviews] = useState([]);
-
-  // toast.promise(
-  //   reviewposthandler(),
-  //   {
-  //     pending: 'posting review...',
-  //     success: 'Review posted successfully! 🎉',
-  //     error: 'Something went wrong 😕',
-  //   }
-  // );
 
   const reviewposthandler = async () => {
     if (isLogged) {
@@ -49,7 +42,7 @@ export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
           success: "Review posted successfully! 🎉",
           error: "Something went wrong 😕",
         }
-      );
+      ); 
     } else {
       toast.error("Please connect your wallet");
     }
@@ -65,21 +58,123 @@ export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
         console.log("error while getmoviereviews ", err);
       }
     }
+    
     if (contract != null && moviedetails != undefined) {
       getmoviereviews();
     }
   }, [contract, moviedetails]);
 
+  const addreviewhandler = async () => {
+    if (isLogged) {
+      const body = document.querySelector("body");
+      body.style.overflow = "hidden";
+      setPopup(true);
+    }
+    else {
+      toast.error("Please connect your wallet");
+    }
+  };
+  
+  const closePopupHandle = () => {
+    setPopup(false);
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
+  };
+  
+  
   return (
     <>
-      <div className="md:container mx-auto px-4 py-1">
+      <div className={`md:container mx-auto px-4 py-1 ${popup && "overflow-hidden"}`}>
         <div className="flex justify-between items-center">
-          <h2 className="my-5 text-4xl font-semibold flex">
+          <h2 className="my-3 text-4xl font-semibold flex">
             <div className="mr-3 w-1 bg-yellow-400"></div> User reviews
           </h2>
+          <div className="flex justify-center">
+            {
+              !isReview && 
+                <button 
+              className=" text-white bg-transparent border border-gray-600 py-3 px-5 rounded-lg transition-colors"
+              onClick={addreviewhandler}
+            >
+            <span className="flex">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Review
+              </span>
+            </button>      
+            }
+            
+          </div>
         </div>
-
-        {!isReview && (
+        
+        {/* add review popup model */}
+        {popup && (
+         <>
+         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+          
+          <div className="w-full h-full z-10 absolute" onClick={closePopupHandle}></div>
+          {/* open popup with transform */}
+          <div className="px-8 py-4 bg-gray-700 z-20 rounded-lg overflow-hidden shadow-black ">  
+            <div className="flex justify-center items-center px-5 py-3">
+              <h2 className="text-2xl font-semibold flex">
+                What is your rating?
+              </h2>
+            </div>
+            <div className="flex flex-col justify-center items-center px-5 py-3">
+              <div style={{ maxWidth: 380, width: "100%" }}>
+                {includedShapesStyles.map((itemStyles, index) => (
+                  <Rating
+                    key={`shape_${index}`}
+                    value={rating}
+                    onChange={setRating}
+                    itemStyles={itemStyles}
+                    items={10}
+                    spaceBetween="small"
+                  />
+                ))}
+              </div>
+              
+              <div className="flex justify-center items-center mx-5 my-3 w-full">
+                <textarea
+                  className="w-full h-32 bg-transparent border border-white mx-2 mt-3 rounded-lg p-3 "
+                  placeholder="Write your review here..."
+                  value={Review}
+                  onChange={(e) => setReview(e.target.value)}
+                ></textarea>
+              </div>
+              
+              <div className="flex justify-end items-center mr-6 my-3 w-full">
+                <button
+                  className="text-white bg-transparent border border-gray-600 py-3 px-5 rounded-lg transition-colors mr-3"
+                  onClick={closePopupHandle}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="text-white bg-blue-600 py-3 px-5 rounded-lg transition-colors"
+                  onClick={reviewposthandler}
+                >
+                  Post
+                </button>
+              </div>
+            </div>        
+            </div>  
+            
+         </div>
+         </> 
+        )}
+        
+        {/* {!isReview && (
           <div className="container border border-gray-600 px-5 py-5 rounded-lg">
             <div className="flex items-center space-x-4">
               {!address ? (
@@ -135,7 +230,7 @@ export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* other user reviews */}
         <div>

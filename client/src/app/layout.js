@@ -10,6 +10,7 @@ import "@smastrom/react-rating/style.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
+
 export const metadata = {
   title: "Ethcinemanation",
   description: "Ethcinemanation is a decentralized movie streaming platform.",

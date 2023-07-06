@@ -186,7 +186,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                     {/* ETHMovieCinema rating */}
                     <div className="flex items-center mt-4">
                       <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-2xl font-bold">
-                        {Ratingdetails.avgRate}.0
+                        {Ratingdetails.avgRate == 0 ? "N/A" : Ratingdetails.avgRate}
                       </div>
                       <div className="ml-4">
                         <div className="text-sm text-gray-400">
@@ -205,7 +205,7 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
                             </g>
                           </svg>
                           <span className="ml-1">
-                            {Ratingdetails && Ratingdetails.avgRate}.0
+                        {Ratingdetails.avgRate == 0 ? "N/A" : Ratingdetails.avgRate}
                           </span>
                         </div>
                       </div>
