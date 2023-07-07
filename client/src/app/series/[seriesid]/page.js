@@ -1,7 +1,7 @@
 "use client";
 
 import Head from "next/head";
-import SingleMovieComp from "../../../components/SingleMovieComp";
+import {SingleMovie} from "../../../components/SingleMovie/index";
 import { usePathname } from "next/navigation";
 
 const SingleSeries = () => {
@@ -14,7 +14,7 @@ const SingleSeries = () => {
       <Head>
         <title>Ethcinemanation/series</title>
       </Head>
-      <SingleMovieComp seriesid={seriesid} />
+      <SingleMovie seriesid={seriesid} />
     </>
   );
 };

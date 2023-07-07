@@ -1,98 +1,16 @@
 import React, { useCallback, useEffect, useState, useContext } from "react";
-import { SingleMovieLoding } from "./Loding.js";
+import { SingleMovieLoding } from "../Loding.js";
 import Link from "next/link";
 import Image from "next/image";
-import { ReviewComp } from "./layout/ReviewComp";
 import { useRouter } from "next/navigation";
-import AuthContext from "../utils/AuthContext";
-import { toast } from "react-toastify";
 
-const SingleMovieComp = ({ movieid, seriesid }) => {
-  const { isLogged, contract, address } = useContext(AuthContext);
-
-  const [movieloading, setMovieLoading] = useState(true);
-  const [moviedetails, setMoviedetails] = useState();
-  const [featcherr, setFeatcherr] = useState(false);
-
-  const [isReview, setIsReview] = useState(false);
-  const [Ratingdetails, setRatingdetails] = useState({
-    totalRate: 0,
-    avgRate: 0,
-  });
-
+export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry, Ratingdetails, seriesid} ) => {
   const router = useRouter();
-
-  const fetchData = useCallback(async () => {
-    try {
-      const url = `https://api.themoviedb.org/3/${movieid ? "movie" : "tv"}/${
-        movieid ? movieid : seriesid
-      }?api_key=${
-        process.env.THEMOVIEDB_API_KEY
-      }&language=en-US&page=1&append_to_response=videos,images,credits,reviews,external_ids`;
-
-      await fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          setMoviedetails(data);
-          setMovieLoading(false);
-        });
-    } catch (err) {
-      toast("Something went wrong!");
-      setFeatcherr(true);
-      console.error("failed to fetch data in SingleMovieComp", err);
-    }
-  }, [movieid, seriesid]);
-
-  const getmovierating = useCallback(async () => {
-    if (contract != null && movieid != null) {
-      await contract
-        .getMovieRating(movieid)
-        .then((res) => {
-          setRatingdetails({
-            totalRate: parseInt(res[1]),
-            avgRate: parseInt(res[2]),
-          });
-        })
-        .catch((err) => {
-          toast.error("Something went wrong!");
-          console.error("error getting while single movie getting rating", err);
-        });
-    }
-  }, [contract, movieid]);
-
-  const checkAlreadyRated = useCallback(async () => {
-    if (address != null) {
-      await contract
-        .checkRatingExists(movieid, address)
-        .then((res) => {
-          setIsReview(res);
-        })
-        .catch((err) => {
-          toast("Something went wrong!");
-          console.error("error while checking user already rated", err);
-        });
-    }
-  }, [address, contract, movieid]);
-
-  useEffect(() => {
-    fetchData();
-    getmovierating();
-  }, [contract, fetchData, getmovierating, movieid, seriesid]);
-
-  useEffect(() => {
-    if (isLogged) {
-      checkAlreadyRated();
-    }
-  }, [address, checkAlreadyRated, isLogged]);
-
-  const handle_retry = useCallback(() => {
-    setFeatcherr(false);
-    fetchData();
-  }, [fetchData]);
-
+  
+  
   return (
     <>
-      {featcherr ? (
+      {IsError ? (
         <div className="container mx-auto px-4 py-16">
           <div className="text-center text-2xl"> Something went wrong</div>
           {/* try data featch again */}
@@ -313,58 +231,10 @@ const SingleMovieComp = ({ movieid, seriesid }) => {
               </div>
             )}
 
-            <ReviewComp
-              moviedetails={moviedetails}
-              isReview={isReview}
-              setIsReview={setIsReview}
-            />
           </div>
-          <div className="border-b border-gray-800" id="cast">
-            <div className="md:container mx-auto px-4 py-5">
-              <h2 className="text-4xl font-semibold flex">
-                <div className="mr-3 w-1 bg-yellow-400"></div> Top Cast
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
-                {moviedetails &&
-                  moviedetails.credits &&
-                  moviedetails.credits.cast.slice(0, 12).map(
-                    (cast, index) =>
-                      cast.profile_path && (
-                        <div className="mt-8" key={index}>
-                          <Link href="/">
-                            <Image
-                              width={200}
-                              height={200}
-                              loader={({ src }) =>
-                                `https://image.tmdb.org/t/p/w185${src}`
-                              }
-                              src={`https://image.tmdb.org/t/p/w185${cast.profile_path}`}
-                              alt="cast"
-                              // priority={false}
-                              className="hover:opacity-75 transition ease-in-out duration-150"
-                            />
-                          </Link>
-                          <div className="mt-2">
-                            <Link
-                              href="/"
-                              className="text-lg mt-2 hover:text-gray:300"
-                            >
-                              {cast.name}
-                            </Link>
-                            <div className="text-sm text-gray-400">
-                              {cast.character}
-                            </div>
-                          </div>
-                        </div>
-                      )
-                  )}
-              </div>
-            </div>
-          </div>
+
         </>
       )}
     </>
   );
 };
-
-export default SingleMovieComp;

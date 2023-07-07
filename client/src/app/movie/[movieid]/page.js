@@ -2,8 +2,8 @@
 
 import Head from "next/head";
 
-import SingleMovieComp from "../../../components/SingleMovieComp";
 import { usePathname } from "next/navigation";
+import {SingleMovie} from "../../../components/SingleMovie";
 
 const SingleMoviePage = () => {
   const router = usePathname();
@@ -15,7 +15,7 @@ const SingleMoviePage = () => {
       <Head>
         <title>Ethcinemanation/Movie</title>
       </Head>
-      <SingleMovieComp movieid={movieid} />
+      <SingleMovie movieid={movieid} />
     </>
   );
 };

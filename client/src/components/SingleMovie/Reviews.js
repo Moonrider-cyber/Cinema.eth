@@ -7,15 +7,13 @@ import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import Jazzicon from "react-jazzicon/dist/Jazzicon";
 import { toast } from "react-toastify";
 
-let user = require("../../asset/user.png");
-
 const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
   itemShapes,
   activeFillColor: "#f59e0b",
   inactiveFillColor: "#ffedd5",
 }));
 
-export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
+export const Reviews = ({ moviedetails, isReview, setIsReview }) => {
   const { isLogged, contract, address } = useContext(AuthContext);
 
   const [Review, setReview] = useState("");
@@ -117,14 +115,14 @@ export const ReviewComp = ({ moviedetails, isReview, setIsReview }) => {
           </div>
         </div>
         
-        {/* add review popup model */}
         {popup && (
          <>
          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
           
-          <div className="w-full h-full z-10 absolute" onClick={closePopupHandle}></div>
-          {/* open popup with transform */}
-          <div className="px-8 py-4 bg-gray-700 z-20 rounded-lg overflow-hidden shadow-black ">  
+          
+          <div className="w-full h-full z-10 absolute backdrop-blur-md" onClick={closePopupHandle}></div>
+          
+          <div className={`px-8 py-4 bg-gray-700 z-20 rounded-lg overflow-hidden shadow-xl shadow-gray-800`}>
             <div className="flex justify-center items-center px-5 py-3">
               <h2 className="text-2xl font-semibold flex">
                 What is your rating?
