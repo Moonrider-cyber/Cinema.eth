@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, createContext, useEffect } from "react";
-// import abi from "../contracts/MovieRatings.json";
 import abi from "../contracts/MovieRatings_V1.json";
 import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
       "https://eth-sepolia.g.alchemy.com/v2/vZ27K8ZtNERkM4E-hnXSBf96Hjt26HIe"
     );
 
-    // const contractAddress = '0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1';
     const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
     const contractABI = abi.abi;
 

@@ -4,10 +4,13 @@ coverage
 coverage.json
 typechain
 typechain-types
+.vercel
+
+# OpenZeppelin
+.openzeppelin
 
 # Hardhat files
 cache
 artifacts
 
 
-.vercel
