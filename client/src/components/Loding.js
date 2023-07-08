@@ -92,3 +92,18 @@ export const HomeCarouselLoding = () => {
     </>
   );
 };
+
+export const ReviewsLoding = () => {
+  return (
+    <>
+      {/* movie reviews tailwind loding skaliton */}
+      <div className="w-full my-5">
+        <div className="animate-pulse w-full grid">
+            <div className="text-white flex flex-row">
+              <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
+            </div>
+        </div>
+      </div>
+    </>
+  );
+};

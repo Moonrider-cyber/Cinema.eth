@@ -10,16 +10,18 @@ export const SingleMovie = ({movieid, seriesid}) => {
     
   const { isLogged, contract, address } = useContext(AuthContext);
 
-  const [movieloading, setMovieLoading] = useState(true);
   const [moviedetails, setMoviedetails] = useState();
+  const [movieloading, setMovieLoading] = useState(true);
+  
   const [IsError, setIsError] = useState(false);
-
+  
   const [isReview, setIsReview] = useState(false);
   const [Ratingdetails, setRatingdetails] = useState({
     totalRate: 0,
     avgRate: 0,
   });
   const [userReviews, setUserReviews] = useState([]);
+  const [reviewloading, setReviewLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
     try {
@@ -81,6 +83,7 @@ export const SingleMovie = ({movieid, seriesid}) => {
         await contract.GetMovieReviews(movieid)
         .then((res) => {
           setUserReviews(res);
+          setReviewLoading(false);
         })
         .catch((err) => {
           toast.error("Something went wrong!");
@@ -91,6 +94,7 @@ export const SingleMovie = ({movieid, seriesid}) => {
         await contract.GetSeriesReviews(seriesid)
         .then((res) => {
           setUserReviews(res);
+          setReviewLoading(false);
         })
         .catch((err) => {
           toast.error("Something went wrong!");
@@ -152,13 +156,16 @@ export const SingleMovie = ({movieid, seriesid}) => {
       <div id='moviedetails'>
         <MovieDetails moviedetails={moviedetails} movieloading={movieloading} IsError={IsError} setIsError={setIsError} handle_retry={handle_retry} Ratingdetails={Ratingdetails} seriesid={seriesid} />
         <Reviews
-              movieid={movieid}
-              seriesid={seriesid}
-              isReview={isReview}
-              setIsReview={setIsReview}
-              userReviews={userReviews}
-              IsError={IsError}
-              />
+            movieid={movieid}
+            seriesid={seriesid}
+            isReview={isReview}
+            setIsReview={setIsReview}
+            userReviews={userReviews}
+            IsError={IsError}
+            getmoviereviews={getmoviereviews}
+            getmovierating={getmovierating}
+            reviewloading={reviewloading}
+          />
         <Casts 
           moviedetails={moviedetails}
           IsError={IsError}

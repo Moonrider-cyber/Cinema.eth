@@ -84,10 +84,14 @@ export const AuthProvider = ({ children }) => {
 
         getaccountdetails(accounts);
       } else {
-        alert("Please install MetaMask");
+        toast.warning("Please install MetaMask");
       }
     } catch (error) {
-      toast("Please install MetaMask");
+      if(error.code === -32002){
+        toast.warning("Please login to metamask");
+      }
+        
+      console.log("something went wrong at connecting metamask",error);
     }
   };
 

@@ -107,11 +107,11 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                     {/* ETHMovieCinema rating */}
                     <div className="flex items-center mt-4">
                       <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-2xl font-bold">
-                        {Ratingdetails.avgRate == 0 ? "N/A" : Ratingdetails.avgRate}
+                        {Ratingdetails.avgRate == 0 ? "N/A" : Ratingdetails.avgRate + ".0"}
                       </div>
                       <div className="ml-4">
                         <div className="text-sm text-gray-400">
-                          Movie Cinema Rating
+                          ETHCinemaNation Rating
                         </div>
                         <div className="flex items-center text-sm text-gray-400">
                           <svg
@@ -126,7 +126,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                             </g>
                           </svg>
                           <span className="ml-1">
-                        {Ratingdetails.avgRate == 0 ? "N/A" : Ratingdetails.avgRate}
+                        {Ratingdetails.avgRate == 0 ? "N/A" : Ratingdetails.avgRate + ".0"}
                           </span>
                         </div>
                       </div>
