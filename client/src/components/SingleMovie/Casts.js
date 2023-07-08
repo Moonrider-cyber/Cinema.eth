@@ -2,11 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 
 
-export const Casts = ({moviedetails}) => {
+export const Casts = ({moviedetails, IsError}) => {
   
   return (
     <>
-    
+    {!IsError && 
         <div className="border-b border-gray-800" id="cast">
             <div className="md:container mx-auto px-4 py-5">
               <h2 className="text-4xl font-semibold flex">
@@ -49,6 +49,7 @@ export const Casts = ({moviedetails}) => {
               </div>
             </div>
           </div>
+        }
     </>
   )
 }

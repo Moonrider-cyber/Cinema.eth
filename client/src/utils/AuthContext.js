@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, createContext, useEffect } from "react";
-import abi from "../contracts/MovieRatings_V1.json";
+import abi from "../contracts/MovieRatings_V2.json";
 import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
 import { toast } from "react-toastify";
@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     );
 
     const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
+    // const contractAddress = "0x6105146776f153f92215bce59a104d7158594d13";
     const contractABI = abi.abi;
 
     const contract = new ethers.Contract(
@@ -54,7 +55,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const connectwallet = async () => {
-    // const contractAddress = "0x9E5F3878E7ffFDEb451e757B01ba391e3bC4CFa1";
     const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
     const contractAbi = abi.abi;
     try {

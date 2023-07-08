@@ -4,10 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry, Ratingdetails, seriesid} ) => {
+export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry, Ratingdetails, seriesid, setIsError} ) => {
   const router = useRouter();
   
-  
+  if(moviedetails && moviedetails.success === false){
+    setIsError(true);
+  }
+
   return (
     <>
       {IsError ? (
@@ -89,7 +92,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                     <span className="mx-2">|</span>
                     <span>
                       {moviedetails &&
-                        moviedetails.genres.map((genre, index) => (
+                        moviedetails.genres && moviedetails.genres.map((genre, index) => (
                           <span key={index}>
                             {genre.name}{" "}
                             {index === moviedetails.genres.length - 1
@@ -131,7 +134,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                     {/* tmdb rating*/}
                     <div className="flex items-center mt-4">
                       <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-2xl font-bold">
-                        {moviedetails && moviedetails.vote_average.toFixed(1)}
+                        {moviedetails && moviedetails.vote_average && moviedetails.vote_average.toFixed(1)}
                       </div>
                       <div className="ml-4">
                         <div className="text-sm text-gray-400">TMDB Rating</div>
@@ -149,7 +152,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                           </svg>
                           <span className="ml-1">
                             {moviedetails &&
-                              moviedetails.vote_average.toFixed(2)}
+                              moviedetails.vote_average && moviedetails.vote_average.toFixed(2)}
                           </span>
                         </div>
                       </div>
@@ -164,7 +167,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                   <div className="mt-8">
                     <div className="flex mt-2">
                       {moviedetails &&
-                        moviedetails.credits.crew
+                        moviedetails.credits && moviedetails.credits.crew
                           .slice(0, 4)
                           .map((crew, key) => (
                             <div className="mr-8" key={key}>
@@ -179,7 +182,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
 
                   <div className="flex gap-14 md:mt-8 md:justify-start justify-center">
                     {/* trailer button */}
-                    {moviedetails && moviedetails.videos.results.length > 0 && (
+                    {moviedetails && moviedetails.videos && moviedetails.videos.results.length > 0 && (
                       <div>
                         {/* youtube trailer link   */}
 

@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useContext, use } from "react";
-import Image from "next/image";
+import React, { useState, useContext } from "react";
 import AuthContext from "../../utils/AuthContext";
 import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import Jazzicon from "react-jazzicon/dist/Jazzicon";
@@ -13,54 +12,63 @@ const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
   inactiveFillColor: "#ffedd5",
 }));
 
-export const Reviews = ({ moviedetails, isReview, setIsReview }) => {
-  const { isLogged, contract, address } = useContext(AuthContext);
+export const Reviews = ({ movieid, seriesid, isReview, setIsReview, userReviews, IsError }) => {
+  const { isLogged, contract } = useContext(AuthContext);
 
   const [Review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   
   const [popup, setPopup] = useState(false);
 
-  const [userReviews, setUserReviews] = useState([]);
 
   const reviewposthandler = async () => {
     if (isLogged) {
-      toast.promise(
-        contract
-          .rateMovie(moviedetails.id, Review, rating, address)
-          .then((res) => {
-            setIsReview(true);
-          })
-          .catch((err) => {
-            toast.error("Something went wrong!");
-            console.log("error while postreview ", err);
-          }),
-        {
-          pending: "posting review...",
-          success: "Review posted successfully! 🎉",
-          error: "Something went wrong 😕",
-        }
-      ); 
+      if(movieid){
+        toast.promise(
+          contract
+            .rateMovie(movieid, Review, rating)
+            .then(() => {
+              setIsReview(true);
+              setPopup(false);
+            })
+            .catch((err) => {
+              console.log("error while postreview ", err);
+            }),
+          {
+            pending: "posting review...",
+            success: "Review posted successfully! 🎉",
+            error: "Something went wrong 😕",
+          }
+        );
+      }
+      else if(seriesid){
+        toast.promise(
+          contract
+            .rateSeries(seriesid, Review, rating),
+          {
+            pending: "posting review...",
+            success: {
+              render() {
+                setIsReview(true);
+                setPopup(false);
+                return (
+                  "Review posted successfully! 🎉"
+              )}
+            },
+            error: {
+              render({err}) {
+                console.log("error while postreview ", err);
+                return (
+                  "Something went wrong 😕"
+              )},
+            },
+          }
+        );
+      } 
     } else {
       toast.error("Please connect your wallet");
     }
   };
-
-  useEffect(() => {
-    async function getmoviereviews() {
-      const res = await contract.GetMovieReviews(moviedetails.id);
-      if (res) {
-        setUserReviews(res);
-      } else {
-        toast("Something went wrong!");
-        console.log("error while getmoviereviews ", err);
-      }
-    }
-    
-    if (contract != null && moviedetails != undefined) {
-      getmoviereviews();
-    }
-  }, [contract, moviedetails]);
 
   const addreviewhandler = async () => {
     if (isLogged) {
@@ -82,6 +90,7 @@ export const Reviews = ({ moviedetails, isReview, setIsReview }) => {
   
   return (
     <>
+      {!IsError && 
       <div className={`md:container mx-auto px-4 py-1 ${popup && "overflow-hidden"}`}>
         <div className="flex justify-between items-center">
           <h2 className="my-3 text-4xl font-semibold flex">
@@ -171,65 +180,6 @@ export const Reviews = ({ moviedetails, isReview, setIsReview }) => {
          </div>
          </> 
         )}
-        
-        {/* {!isReview && (
-          <div className="container border border-gray-600 px-5 py-5 rounded-lg">
-            <div className="flex items-center space-x-4">
-              {!address ? (
-                <Image
-                  className="w-10 h-10 rounded-full"
-                  src={user}
-                  alt="user pfp"
-                />
-              ) : (
-                <Jazzicon
-                  diameter={40}
-                  seed={parseInt(address && address.slice(2, 10), 16)}
-                />
-              )}
-              <div className="space-y-1 font-medium dark:text-white">
-                <p>
-                  You
-                  <span className="block text-sm text-gray-500 dark:text-gray-400">
-                    Posting publicly
-                  </span>
-                </p>
-                <div style={{ maxWidth: 280, width: "100%" }}>
-                  {includedShapesStyles.map((itemStyles, index) => (
-                    <Rating
-                      key={`shape_${index}`}
-                      value={rating}
-                      onChange={setRating}
-                      itemStyles={itemStyles}
-                      items={10}
-                      spaceBetween="small"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-start items-start ml-14 mb-3 space-x-4">
-              <div className="flex flex-col items-start w-3/4 mt-5">
-                <textarea
-                  id="comment"
-                  rows="4"
-                  className="w-10/12 bg-transparent p-3 border border-gray-600 rounded-lg"
-                  placeholder="Write your review here..."
-                  value={Review}
-                  onChange={(e) => setReview(e.target.value)}
-                ></textarea>
-                <button
-                  className="mt-5 w-1/3 text-center font-bold text-base bg-blue-700 px-5 py-3 rounded-lg text-white hover:bg-blue-800"
-                  onClick={reviewposthandler}
-                >
-                  Post Review
-                </button>
-              </div>
-            </div>
-          </div>
-        )} */}
-
         {/* other user reviews */}
         <div>
           {userReviews && userReviews.length > 0 ? (
@@ -300,6 +250,7 @@ export const Reviews = ({ moviedetails, isReview, setIsReview }) => {
           </div>
         )}
       </div>
+    }
     </>
   );
 };

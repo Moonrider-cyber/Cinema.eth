@@ -59,18 +59,7 @@ const NavBar = () => {
                 </svg>
               </button>
             </div>
-            <nav className="hidden md:flex space-x-10">
-              {/* <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Home </Link> */}
-              {/* <Link href="#" className="text-base font-medium text-gray-300 hover:text-white"> Movies </Link> */}
-              {/* <a href="#" className="text-base font-medium text-gray-300 hover:text-white"> Anime </a> */}
-            </nav>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              {/* <a
-                  href="#"
-                  className=" text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  Sign in
-                </a> */}
               {iswalletconnected ? (
                 <>
                   <NavAvatar address={address} />
@@ -210,7 +199,12 @@ const NavBar = () => {
                     Events
                   </a>
                 </div> */}
-              <div>
+              <div className="flex justify-center">
+              {iswalletconnected ? (
+                <>
+                  <NavAvatar address={address} />
+                </>
+              ) : (
                 <button
                   href="#"
                   className=" w-full whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#1f6feb] hover:bg-indigo-700"
@@ -218,6 +212,7 @@ const NavBar = () => {
                 >
                   Connect Wallet
                 </button>
+              )}
               </div>
             </div>
           </div>
