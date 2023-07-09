@@ -6,10 +6,10 @@ ETHCinemaNation is a decentralized voting platform built on the Ethereum blockch
 <table>
   <tr>
     <td>
-        <img src="https://github.com/Jainex17/ETHCinemaNation/assets/81921291/3bcc32da-bdcc-4402-80fa-aab0fe6bcfb2" alt="ss1" />
+        <img src="https://github.com/Jainex17/ETHCinemaNation/assets/81921291/cf26824f-2631-450b-a9c6-ff321b3c8220" alt="ss1" />
     </td>
     <td>
-      <img src="https://github.com/Jainex17/ETHCinemaNation/assets/81921291/736a2003-fd45-4e0c-b208-2b3bf67b1cb3" alt="ss2" />
+      <img src="https://github.com/Jainex17/ETHCinemaNation/assets/81921291/9ef2400a-d8b4-4826-8b2b-067b457bb5bd" alt="ss2" />
     </td>
   </tr>
 </table>
