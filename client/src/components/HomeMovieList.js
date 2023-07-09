@@ -2,7 +2,7 @@ import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieCarousel, { SeriesCarousel } from "./layout/MovieCarousel";
-import { HomeCarouselLoding } from "./Loding";
+import { HomeCarouselLoding, SearchLoding } from "./Loding";
 import { toast } from "react-toastify";
 
 const noresultimg = require("../asset/noresult.png");
@@ -11,9 +11,6 @@ const HomeMovieList = ({ moviedata, Loading, setLoading, setMovieSort }) => {
   return (
     <>
       {
-        // Loading ? (
-        //   <HomeCarouselLoding />
-        // ) : (
         moviedata && moviedata.total_results !== 0 && (
           <div>
             <MovieCarousel
@@ -23,7 +20,6 @@ const HomeMovieList = ({ moviedata, Loading, setLoading, setMovieSort }) => {
               setMovieSort={setMovieSort}
             />
           </div>
-          // )
         )
       }
     </>
@@ -54,7 +50,7 @@ export const SearchMovieList = ({
   searchmoviedata,
   setsearchMoviedata,
 }) => {
-  const [movieloading, setMovieLoading] = useState(true);
+  const [searchLoading, setSearchLoading] = useState(true);
 
   useEffect(() => {
     const fetchsearchData = async () => {
@@ -69,7 +65,7 @@ export const SearchMovieList = ({
       }
       const data = await res.json();
       setsearchMoviedata(data);
-      setMovieLoading(false);
+      setSearchLoading(false);
     };
     fetchsearchData();
   }, [searchtext, setsearchMoviedata]);
@@ -80,7 +76,11 @@ export const SearchMovieList = ({
         Search Movies For {searchtext}
       </h1>
 
-      {searchmoviedata && searchmoviedata.total_results !== 0 ? (
+      {
+      searchLoading ? (
+        <SearchLoding />
+      ) :
+      searchmoviedata && searchmoviedata.total_results !== 0 ? (
         <div className="gap-x-10 gap-y-10 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
           {searchmoviedata &&
             searchmoviedata.results &&

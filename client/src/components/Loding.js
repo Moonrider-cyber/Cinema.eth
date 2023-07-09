@@ -2,7 +2,7 @@ export const SearchLoding = () => {
   return (
     <>
       <div className="my-24 text-center">
-        <div className="animate-pulse pl-20 grid lg:grid-cols-4">
+        <div className="animate-pulse pl-11 grid lg:grid-cols-4">
           {Array.from({ length: 8 }, (movie, i) => (
             <div className="text-white flex flex-row" key={i}>
               <div className="w-24 lg:w-72 bg-gray-700/50 h-44 lg:h-96 rounded-2xl my-8"></div>
