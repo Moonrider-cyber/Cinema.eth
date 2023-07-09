@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie,sortoption }) => {
   return (
     <>
-      <Link href={`/movie/${movie.id}`}>
+      <Link href={`/${sortoption == "tv" ? "series" : sortoption}/${movie.id}`}>
         <div className="cursor-pointer bg-[#303339]  rounded-md shadow-xl hover:transform hover:-translate-y-1 transition ease-in">
           <Image
             loader={({ src }) => `https://image.tmdb.org/t/p/w500${src}`}
@@ -16,8 +16,8 @@ export const MovieCard = ({ movie }) => {
           />
 
           <div className="px-5">
-            <h2 className="text-md py-2 font-bold mt-3 overflow-hidden truncate ">
-              {movie.title}
+            <h2 className="text-md py-1 font-bold mt-3 overflow-hidden truncate ">
+              {sortoption == "movie" ? movie.title : movie.name}
             </h2>
             <p className="text-gray-400 text-sm mb-2 ">
               {movie.overview.slice(0, 67)}...
@@ -39,7 +39,7 @@ export const MovieCard = ({ movie }) => {
                 </svg>
                 <span className="pl-2">{movie.vote_average.toFixed(2)}</span>
               </p>
-              <p className="text-gray-400 pb-2">{movie.release_date}</p>
+              <p className="text-gray-400 pb-2">{sortoption == "movie" ? movie.release_date : movie.first_air_date}</p>
             </div>
             <p className="bg-gray-600 h-[2px] w-full my-2"></p>
           </div>

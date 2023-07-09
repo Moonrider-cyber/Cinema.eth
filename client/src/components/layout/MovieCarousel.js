@@ -45,6 +45,7 @@ export default function MovieCarousel({
           <div className="flex justify-between items-center">
             <div className="flex items-center my-6">
               <h1 className="text-3xl font-bold">Trending</h1>
+              {/* sorting */}
               <div className="ml-6 mt-2 border border-gray-500 rounded-full">
                 <button
                   className={`px-7 py-1 rounded-full ${

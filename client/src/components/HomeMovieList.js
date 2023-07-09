@@ -10,18 +10,16 @@ const noresultimg = require("../asset/noresult.png");
 const HomeMovieList = ({ moviedata, Loading, setLoading, setMovieSort }) => {
   return (
     <>
-      {
-        moviedata && moviedata.total_results !== 0 && (
-          <div>
-            <MovieCarousel
-              moviedata={moviedata}
-              Loading={Loading}
-              setLoading={setLoading}
-              setMovieSort={setMovieSort}
-            />
-          </div>
-        )
-      }
+      {moviedata && moviedata.total_results !== 0 && (
+        <div>
+          <MovieCarousel
+            moviedata={moviedata}
+            Loading={Loading}
+            setLoading={setLoading}
+            setMovieSort={setMovieSort}
+          />
+        </div>
+      )}
     </>
   );
 };
@@ -50,12 +48,14 @@ export const SearchMovieList = ({
   searchmoviedata,
   setsearchMoviedata,
 }) => {
+  
   const [searchLoading, setSearchLoading] = useState(true);
+  const [sortoption, setSortoption] = useState("movie");
 
   useEffect(() => {
     const fetchsearchData = async () => {
       let urlencode = encodeURI(searchtext);
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
+      const url = `https://api.themoviedb.org/3/search/${sortoption}?api_key=${process.env.THEMOVIEDB_API_KEY}&page=1&query=${urlencode}&limit=10`;
 
       const res = await fetch(url);
 
@@ -68,25 +68,53 @@ export const SearchMovieList = ({
       setSearchLoading(false);
     };
     fetchsearchData();
-  }, [searchtext, setsearchMoviedata]);
+  }, [searchtext, setsearchMoviedata, sortoption]);
+
+
+  const handlemovie = () => {
+    setSortoption("movie");
+    setSearchLoading(true);
+  };
+  const handleseries = () => {
+    setSortoption("tv");
+    setSearchLoading(true);
+  };
 
   return (
     <>
+      <div className="flex justify-center">
+      <div className="border rounded-full border-gray-700">
+        <button
+          className={`px-12 py-3 rounded-full ${
+            sortoption == "movie" && "bg-gray-700"
+          }`}
+          onClick={handlemovie}
+          >
+          Movies
+        </button>
+        <button
+          className={`px-12 py-3 rounded-full ${
+            sortoption == "tv" && "bg-gray-700"
+          }`}
+          onClick={handleseries}
+          >
+          Series
+        </button>
+          </div>
+      </div>  
       <h1 className="my-10 text-5xl font-bold text-center">
         Search Movies For {searchtext}
       </h1>
-
-      {
-      searchLoading ? (
+    
+      {searchLoading ? (
         <SearchLoding />
-      ) :
-      searchmoviedata && searchmoviedata.total_results !== 0 ? (
+      ) : searchmoviedata && searchmoviedata.total_results !== 0 ? (
         <div className="gap-x-10 gap-y-10 mx-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
           {searchmoviedata &&
             searchmoviedata.results &&
             searchmoviedata.results.map((movie, key) =>
               movie.poster_path === null ? null : (
-                <MovieCard key={key} movie={movie} />
+                <MovieCard key={key} movie={movie} sortoption={sortoption} />
               )
             )}
         </div>
