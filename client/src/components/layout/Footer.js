@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+const logo = require("../../asset/logo.png");
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
           <div className="sm:flex sm:items-center sm:justify-between">
             <Link href="/" className="flex items-center mb-4 sm:mb-0">
               <Image
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                src={logo}
                 className="h-8 mr-3"
                 width={32}
                 height={32}

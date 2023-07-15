@@ -32,7 +32,7 @@ const HeroSection = ({ HeroImgData, Loading, setLoading }) => {
               isPlaying={true}
               infinite={true}
               interval={3000}
-              className="w-[70%]"
+              className="w-[70%] z-[-1]"
             >
               <Slider>
                 {Loading ? (

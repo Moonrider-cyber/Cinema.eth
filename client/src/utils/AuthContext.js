@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const connectwallet = async () => {
+  const connectMetaMask = async () => {
     const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
     const contractAbi = abi.abi;
     try {
@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const AuthValue = {
-    connectwallet,
+    connectMetaMask,
     provider: Value.provider,
     signer: Value.signer,
     contract: Value.contract,

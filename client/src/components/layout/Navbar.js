@@ -1,13 +1,17 @@
 "use client";
 
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import NavAvatar from "./NavAvatar";
 import Link from "next/link";
 import Image from "next/image";
 import AuthContext from "../../utils/AuthContext";
+import CoonectWalletModel from "./CoonectWalletModel";
+
+const logo = require("../../asset/logo.png");
+
 
 const NavBar = () => {
-  const { connectwallet, address, signer } = useContext(AuthContext);
+  const { address, signer, connectMetaMask,isLogged } = useContext(AuthContext);
 
   const [open, setOpen] = useState(false);
 
@@ -15,6 +19,27 @@ const NavBar = () => {
   if (signer !== null) {
     iswalletconnected = true;
   }
+  
+  const [popup, setPopup] = useState(false);
+    
+    const openPopupHandle = async () => {
+          const body = document.querySelector("body");
+          body.style.overflow = "hidden";
+          setPopup(true);    
+    };
+      
+    const closePopupHandle = () => {
+        setPopup(false);
+        const body = document.querySelector("body");
+        body.style.overflow = "auto";
+    };
+    
+    useEffect(() => {
+      if(isLogged){
+        closePopupHandle();
+      }
+    }, [isLogged])
+    
 
   return (
     <>
@@ -25,7 +50,7 @@ const NavBar = () => {
               <Link href="/" className="flex">
                 <Image
                   className="h-8 w-auto sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  src={logo}
                   width={32}
                   height={32}
                   alt="logo"
@@ -68,7 +93,7 @@ const NavBar = () => {
                 <button
                   href="#"
                   className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#1f6feb] hover:bg-indigo-700"
-                  onClick={() => connectwallet()}
+                  onClick={() => openPopupHandle()}
                 >
                   Connect Wallet
                 </button>
@@ -149,56 +174,6 @@ const NavBar = () => {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              {/* <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Pricing
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Docs
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Enterprise
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Blog
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Help Center
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Guides
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Security
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Events
-                  </a>
-                </div> */}
               <div className="flex justify-center">
               {iswalletconnected ? (
                 <>
@@ -208,16 +183,18 @@ const NavBar = () => {
                 <button
                   href="#"
                   className=" w-full whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#1f6feb] hover:bg-indigo-700"
-                  onClick={() => connectwallet()}
+                  onClick={() => openPopupHandle()}
                 >
                   Connect Wallet
                 </button>
+                
               )}
               </div>
             </div>
           </div>
         </div>
       </div>
+      <CoonectWalletModel popup={popup} closePopupHandle={closePopupHandle} connectMetaMask={connectMetaMask} />
     </>
   );
 };

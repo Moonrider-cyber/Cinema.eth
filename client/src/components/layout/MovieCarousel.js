@@ -208,7 +208,7 @@ export default function MovieCarousel({
             <ButtonBack
               role="button"
               aria-label="slide backward"
-              className="absolute contents z-30 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+              className="absolute contents z-3 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
               id="prev"
             >
               <svg
@@ -295,7 +295,7 @@ export default function MovieCarousel({
             <ButtonNext
               role="button"
               aria-label="slide forward"
-              className="absolute contents z-30 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+              className="absolute contents z-3 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
               id="next"
             >
               <svg
@@ -476,7 +476,7 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
             <ButtonBack
               role="button"
               aria-label="slide backward"
-              className="absolute contents z-30 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+              className="absolute contents z-3 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
               id="prev"
             >
               <svg
@@ -562,7 +562,7 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
             <ButtonNext
               role="button"
               aria-label="slide forward"
-              className="absolute contents z-30 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+              className="absolute contents z-3 right-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
               id="next"
             >
               <svg

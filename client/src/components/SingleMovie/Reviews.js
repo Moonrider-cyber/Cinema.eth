@@ -43,30 +43,29 @@ export const Reviews = ({
         if (movieid) {
           toast.promise(
             contract
-              .rateMovie(movieid, Review, rating)
-              .then(() => {
-                setIsReview(true);
-                getmovierating();
-                getmoviereviews();
-                closePopupHandle();
-                setIsReview("");
-              })
-              .catch((err) => {
-                console.log("error while postreview ", err);
-              }),
+              .rateMovie(movieid, Review, rating),
             {
               pending: "posting review...",
-              success: "Review posted successfully! 🎉",
+              success: {
+                render() {
+                  setIsReview(true);
+                  closePopupHandle();
+                  getmovierating();
+                  getmoviereviews();
+                  return "Review posted successfully! 🎉";
+                },
+              },
               error: "Something went wrong 😕",
             }
           );
+          
         } else if (seriesid) {
           toast.promise(contract.rateSeries(seriesid, Review, rating), {
             pending: "posting review...",
             success: {
               render() {
                 setIsReview(true);
-                setPopup(false);
+                closePopupHandle();
                 return "Review posted successfully! 🎉";
               },
             },
@@ -93,9 +92,9 @@ export const Reviews = ({
   };
 
   const closePopupHandle = () => {
-    setPopup(false);
     const body = document.querySelector("body");
-    body.style.overflow = "auto";
+    body.style.overflow = "unset";
+    setPopup(false);
   };
 
   return (
