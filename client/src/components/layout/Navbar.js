@@ -7,8 +7,7 @@ import Image from "next/image";
 import AuthContext from "../../utils/AuthContext";
 import CoonectWalletModel from "./CoonectWalletModel";
 
-const logo = require("../../asset/logo.png");
-
+import logo from "../../asset/logo.png";
 
 const NavBar = () => {
   const { address, signer, connectMetaMask,isLogged } = useContext(AuthContext);

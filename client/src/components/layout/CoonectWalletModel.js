@@ -1,12 +1,19 @@
 import Image from "next/image";
 import React from "react";
 import { toast } from "react-toastify";
+import { CSSTransition } from 'react-transition-group';
 
 const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask }) => {
+  
+  
   return (
     <>
-      {popup && (
-        <>
+       <CSSTransition
+        in={popup}
+        timeout={300}
+        classNames="popup"
+        unmountOnExit
+      >
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
             {/* outer layer */}
             <div
@@ -15,9 +22,7 @@ const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask }) => {
             ></div>
 
             {/* inner layer */}
-            {/* connect wallet popup in dark mode */}
-
-            <div className="w-11/12 md:w-1/2 lg:w-1/3 h-3/4 bg-gray-800 rounded-lg z-50 overflow-y-auto">
+            <div className={`w-11/12 md:w-1/2 lg:w-1/3 h-3/4 bg-gray-800 rounded-lg z-50 overflow-y-auto navpopup`}>
               <div className="flex justify-between items-center px-4 py-3 border-b border-gray-600">
                 <h1 className="text-3xl font-bold text-gray-300">
                   Connect Wallet
@@ -273,8 +278,8 @@ const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask }) => {
               </div>
             </div>
           </div>
-        </>
-      )}
+          
+        </CSSTransition>
     </>
   );
 };

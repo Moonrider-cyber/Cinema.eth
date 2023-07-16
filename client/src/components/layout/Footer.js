@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-const logo = require("../../asset/logo.png");
 
+import logo from "../../asset/logo.png";
 const Footer = () => {
   return (
     <>

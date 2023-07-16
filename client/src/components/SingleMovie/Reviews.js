@@ -6,6 +6,7 @@ import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import Jazzicon from "react-jazzicon/dist/Jazzicon";
 import { toast } from "react-toastify";
 import {ReviewsLoding} from '../Loding';
+import { CSSTransition } from 'react-transition-group';
 
 const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
   itemShapes,
@@ -138,8 +139,13 @@ export const Reviews = ({
             </div>
           </div>
 
-          {popup && (
-            <>
+          
+       <CSSTransition
+        in={popup}
+        timeout={300}
+        classNames="popup"
+        unmountOnExit
+      >
               <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
                 <div
                   className="w-full h-full z-10 absolute backdrop-blur-md"
@@ -205,8 +211,8 @@ export const Reviews = ({
                   </div>
                 </div>
               </div>
-            </>
-          )}
+            
+      </CSSTransition>
           {/* other user reviews */}
           <div>
             {reviewloading ? <ReviewsLoding/> : userReviews && userReviews.length > 0 ? (
