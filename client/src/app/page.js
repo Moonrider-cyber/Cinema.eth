@@ -48,7 +48,7 @@ export default function Home() {
 
     fetchMovieData();
     setHeroImgLoading(false);
-    // setMovieLoading(false);
+    setMovieLoading(false);
 
     fetchSeriseData();
     setSeriesLoading(false);

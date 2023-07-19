@@ -5,12 +5,12 @@ import NavAvatar from "./NavAvatar";
 import Link from "next/link";
 import Image from "next/image";
 import AuthContext from "../../utils/AuthContext";
-import CoonectWalletModel from "./CoonectWalletModel";
+import ConnectWalletModel from "./ConnectWalletModel";
 
 import logo from "../../asset/logo.png";
 
 const NavBar = () => {
-  const { address, signer, connectMetaMask,isLogged } = useContext(AuthContext);
+  const { address, signer, connectMetaMask, connectCoinBase, isLogged } = useContext(AuthContext);
 
   const [open, setOpen] = useState(false);
 
@@ -193,7 +193,12 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      <CoonectWalletModel popup={popup} closePopupHandle={closePopupHandle} connectMetaMask={connectMetaMask} />
+      <ConnectWalletModel 
+        popup={popup} 
+        closePopupHandle={closePopupHandle} 
+        connectMetaMask={connectMetaMask} 
+        connectCoinBase={connectCoinBase}
+      />
     </>
   );
 };

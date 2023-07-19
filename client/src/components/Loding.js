@@ -2,7 +2,7 @@ export const SearchLoding = () => {
   return (
     <>
       <div className="my-0 text-center">
-        <div className="animate-pulse pl-11 grid lg:grid-cols-4">
+        <div className="animate-pulse pl-11 grid lg:grid-cols-4 relative z-[-1]">
           {Array.from({ length: 8 }, (movie, i) => (
             <div className="text-white flex flex-row" key={i}>
               <div className="w-24 lg:w-80 bg-gray-700/50 h-44 lg:h-96 rounded-2xl my-8"></div>
@@ -44,7 +44,7 @@ export const HeroImgLoading = () => {
   return (
     <>
       <div className="my-0 text-center">
-        <div className="animate-pulse pl-0">
+        <div className="animate-pulse pl-0 relative z-[-1]">
           <div className="text-white flex flex-row">
             <div className="w-full h-full bg-gray-700/50 lg:h-96 rounded-2xl my-8"></div>
           </div>
@@ -58,7 +58,7 @@ export const HomeMovieListLoding = () => {
   return (
     <>
       <div>
-        <div className="animate-pulse grid lg:grid-cols-6">
+        <div className="animate-pulse grid lg:grid-cols-6 relative z-[-1]">
           {Array.from({ length: 6 }, (movie, i) => (
             <div className="text-white flex flex-row" key={i}>
               <div className="w-[90%] h-full bg-gray-700/50 rounded-2xl mb-72"></div>
@@ -98,7 +98,7 @@ export const ReviewsLoding = () => {
     <>
       {/* movie reviews tailwind loding skaliton */}
       <div className="w-full my-5">
-        <div className="animate-pulse w-full grid">
+        <div className="animate-pulse w-full grid relative z-[-1]">
             <div className="text-white flex flex-row">
               <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext, useEffect, useCallback } from "react";
 import abi from "../contracts/MovieRatings_V2.json";
 import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
@@ -19,16 +19,14 @@ export const AuthProvider = ({ children }) => {
     address: null,
     balance: null,
   });
+  const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
+  const contractABI = abi.abi;
 
-  async function connectcontract() {
+  const connectcontract = useCallback(() => {
     const provider = new JsonRpcProvider(
       "https://eth-sepolia.g.alchemy.com/v2/vZ27K8ZtNERkM4E-hnXSBf96Hjt26HIe"
     );
-
-    const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
-    // const contractAddress = "0x6105146776f153f92215bce59a104d7158594d13";
-    const contractABI = abi.abi;
-
+    
     const contract = new ethers.Contract(
       contractAddress,
       contractABI,
@@ -36,12 +34,13 @@ export const AuthProvider = ({ children }) => {
     );
 
     setValue({ provider, signer: null, contract, isLogged: false });
-  }
-
+  }, [])
   useEffect(() => {
     connectcontract();
-  }, []);
+  }, [connectcontract]);
 
+  
+  
   // get user balance
   const getaccountdetails = async (accounts) => {
     const web3 = new Web3(Web3.givenProvider);
@@ -55,8 +54,46 @@ export const AuthProvider = ({ children }) => {
   };
 
   const connectMetaMask = async () => {
-    const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
-    const contractAbi = abi.abi;
+    try {
+      let { ethereum } = window;
+
+      if (ethereum) {
+        window.ethereum.on("chainChanged", () => window.location.reload());
+
+        window.ethereum.on("accountsChanged", (accounts) => {
+          getaccountdetails(accounts);
+        });
+        
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        
+        const provider = new ethers.BrowserProvider(ethereum);
+        const signer = await provider.getSigner();
+
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+
+        setValue({ provider, signer, contract, isLogged: true });
+
+        getaccountdetails(accounts);
+      } else {
+        toast.warning("Please install MetaMask");
+      }
+    } catch (err) {
+      if(err.code === -32002){
+        toast.warning("Please login to metamask");
+      }
+        
+      console.error("something went wrong at connecting metamask",err);
+    }
+  };
+  
+  
+  const connectCoinBase = async () => {
     try {
       const { ethereum } = window;
 
@@ -70,13 +107,12 @@ export const AuthProvider = ({ children }) => {
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-
         const provider = new ethers.BrowserProvider(ethereum);
         const signer = await provider.getSigner();
 
         const contract = new ethers.Contract(
           contractAddress,
-          contractAbi,
+          contractABI,
           signer
         );
 
@@ -84,19 +120,17 @@ export const AuthProvider = ({ children }) => {
 
         getaccountdetails(accounts);
       } else {
-        toast.warning("Please install MetaMask");
+        toast.warning("Please install Coinbase Wallet");
       }
-    } catch (error) {
-      if(error.code === -32002){
-        toast.warning("Please login to metamask");
-      }
-        
-      console.log("something went wrong at connecting metamask",error);
+    } catch (err) {
+      console.error("something went wrong at connecting coinbase",err);
     }
-  };
+  }
+  
 
   const AuthValue = {
     connectMetaMask,
+    connectCoinBase,
     provider: Value.provider,
     signer: Value.signer,
     contract: Value.contract,
@@ -104,19 +138,6 @@ export const AuthProvider = ({ children }) => {
     balance: account.balance,
     isLogged: Value.isLogged,
   };
-  // const callFunction = async () => {
-  //   await Value.contract.getMovieRating(1)
-  //   .then((res)=>{
-  //     console.log("successfully called" + res);
-  //   })
-  //   .catch((err)=>{
-  //     console.log(err)
-  //   })
-  // };
-  // if (Value.contract != null) {
-
-  //   callFunction();
-  // }
 
   return (
     <AuthContext.Provider value={AuthValue}>{children}</AuthContext.Provider>
