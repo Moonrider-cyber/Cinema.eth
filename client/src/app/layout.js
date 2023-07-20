@@ -22,7 +22,14 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="google-site-verification" content="MDrnSZIfnlUSB2wDuhYFwx5zS6bjf-5utJ2AqLFqtX8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <meta name="title" content={metadata.title} />
         <meta name="description" content={metadata.description} />
+        <meta name="keywords" content="Ethcinemanation, blockchain, movie rating, movie reviews, reviews, movie, film, cinema, decentralized, decentralized movie rating" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:description" content={metadata.description} />
+        <meta property="og:url" content="https://ethcinemanation.vercel.app/" />
       </head>
       <body className={inter.className}>
         <AuthProvider>
