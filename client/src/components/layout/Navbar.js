@@ -20,17 +20,19 @@ const NavBar = () => {
   }
   
   const [popup, setPopup] = useState(false);
-    
+  const body = document.querySelector("body");
+  const searchinput = document.querySelector("#searchinput");
+  
     const openPopupHandle = async () => {
-          const body = document.querySelector("body");
-          body.style.overflow = "hidden";
-          setPopup(true);    
+      searchinput.style.zIndex = "-1";
+      body.classList.add("overflow-hidden");
+      setPopup(true);    
     };
       
     const closePopupHandle = () => {
-        setPopup(false);
-        const body = document.querySelector("body");
-        body.style.overflow = "auto";
+      searchinput.style.zIndex = "0";
+      body.classList.remove("overflow-hidden");
+      setPopup(false);
     };
     
     useEffect(() => {

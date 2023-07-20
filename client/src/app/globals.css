@@ -18,6 +18,9 @@ body {
   background-color: #202225;
   color: #ffffff;
 }
+.overflow-hidden{
+  overflow: hidden;
+}
 .popup-enter {
   opacity: 0;
   /* transform: scale(-100%); */

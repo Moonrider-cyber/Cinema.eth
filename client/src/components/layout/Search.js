@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { id } from "ethers";
 
 const Search = () => {
   const [searchtext, setSearchtext] = useState(null);
@@ -14,7 +14,8 @@ const Search = () => {
     }
     router.push(`/search/${searchtext}`);
   };
-
+  
+  
   return (
     <>
       <form
@@ -27,7 +28,7 @@ const Search = () => {
         >
           Search
         </label>
-        <div className="relative w-3/5 z-[-1]">
+        <div id="searchinput" className={`relative w-3/5`}>
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               aria-hidden="true"

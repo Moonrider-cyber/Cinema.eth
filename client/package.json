@@ -18,6 +18,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.39.0",
     "ethers": "^6.6.2",
+    "next-seo": "^6.1.0",
     "node-fetch": "^3.3.1",
     "postcss": "8.4.23",
     "pure-react-carousel": "^1.30.1",

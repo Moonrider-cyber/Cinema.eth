@@ -7,6 +7,7 @@ import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
 import Search from "../components/layout/Search";
 import HeroSection from "../components/layout/HeroSection";
 import { toast } from "react-toastify";
+import { DefaultSeo } from "next-seo";
 
 export default function Home() {
   const [HeroImgData, setHeroImgData] = useState(null);
@@ -77,9 +78,17 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Ethcinemanation</title>
-      </Head>
+      <DefaultSeo
+        title="Ethcinemanation"
+        description="Ethcinemanation is a decentralized movie rating platform."
+        openGraph={{
+          type: "website",
+          url: "https://ethcinemanation.com/",
+          title: "Ethcinemanation",
+          description: "Ethcinemanation is a decentralized movie rating platform.",
+          site_name: "Ethcinemanation"
+        }}
+      />
       <HeroSection
         HeroImgData={HeroImgData}
         Loading={heroImgLoading}
