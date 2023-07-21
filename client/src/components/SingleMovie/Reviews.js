@@ -86,8 +86,7 @@ export const Reviews = ({
 
   const addreviewhandler = async () => {
     if (isLogged) {
-      const body = document.querySelector("body");
-      body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
       setPopup(true);
     } else {
       toast.error("Please connect your wallet");
@@ -95,8 +94,7 @@ export const Reviews = ({
   };
 
   const closePopupHandle = () => {
-    const body = document.querySelector("body");
-    body.style.overflow = "unset";
+    document.body.style.overflow = "unset";
     setPopup(false);
   };
 

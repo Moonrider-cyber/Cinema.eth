@@ -1,7 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-  <loc>https://ethcinemanation.vercel.app/</loc>
-  <lastmod>2023-07-20T16:21:45+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
+  <url>
+    <loc>https://ethcinemanation.vercel.app/</loc>
+    <lastmod>2023-07-21</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://ethcinemanation.vercel.app/search/</loc>
+  </url>
+  <url>
+    <loc>https://ethcinemanation.vercel.app/movie/</loc>
+  </url>
+  <url>
+    <loc>https://ethcinemanation.vercel.app/series/</loc>
+  </url>
 </urlset>
