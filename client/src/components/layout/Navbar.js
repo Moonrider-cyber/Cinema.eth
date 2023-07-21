@@ -20,22 +20,18 @@ const NavBar = () => {
   }
   
   const [popup, setPopup] = useState(false);
-  const body = document.querySelector("body");
-  const searchinput = document.querySelector("#searchinput");
   
+    const searchinput = document.querySelector("#searchinput");
+
     const openPopupHandle = async () => {
-      if(searchinput){
-        searchinput.style.zIndex = "-1";
-      }
-      body.classList.add("overflow-hidden");
+      searchinput.style.zIndex = "-1";      
+      document.body.classList.add("overflow-hidden");
       setPopup(true);    
     };
       
     const closePopupHandle = () => {
-      if(searchinput){
-        searchinput.style.zIndex = "0";
-      }
-      body.classList.remove("overflow-hidden");
+      searchinput.style.zIndex = "0";
+      document.body.classList.remove("overflow-hidden");
       setPopup(false);
     };
     
