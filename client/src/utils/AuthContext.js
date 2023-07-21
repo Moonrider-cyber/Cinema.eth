@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, createContext, useEffect, useCallback } from "react";
-import abi from "../contracts/MovieRatings_V2.json";
+import abi from "../contracts/MovieRatings_V3.json";
 import { ethers, JsonRpcProvider } from "ethers";
 var Web3 = require("web3");
 import { toast } from "react-toastify";
@@ -19,7 +19,8 @@ export const AuthProvider = ({ children }) => {
     address: null,
     balance: null,
   });
-  const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
+  // const contractAddress = "0xa374c30b039F0e9B019C1f0C623D57aE94A3B94f";
+  const contractAddress = "0xbB7c8D046d4c1fd17723aB71A8a6e32af3b34aE5";
   const contractABI = abi.abi;
 
   const connectcontract = useCallback(() => {

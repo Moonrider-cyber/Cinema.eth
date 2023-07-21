@@ -5,6 +5,7 @@ import Footer from "../components/layout/Footer";
 import { AuthProvider } from "../utils/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
+import Head from "next/head";
 
 import "@smastrom/react-rating/style.css";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -19,11 +20,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         <meta name="google-site-verification" content="MDrnSZIfnlUSB2wDuhYFwx5zS6bjf-5utJ2AqLFqtX8" />
         <meta name="keywords" content="Ethcinemanation, blockchain, movie rating, movie reviews, reviews, movie, film, cinema, decentralized, decentralized movie rating" />
-        <link rel="icon" href="../asset/logo.png" />
-      </head>
+        <link rel="icon" type="image/png" href="../asset/logo.png" />
+      </Head>
       <body className={inter.className}>
         <AuthProvider>
           <ToastContainer

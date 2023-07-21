@@ -157,7 +157,9 @@ export const SingleMovie = ({movieid, seriesid}) => {
         <MovieDetails moviedetails={moviedetails} movieloading={movieloading} IsError={IsError} setIsError={setIsError} handle_retry={handle_retry} Ratingdetails={Ratingdetails} seriesid={seriesid} />
         <Reviews
             movieid={movieid}
+            moviename={moviedetails?.title}
             seriesid={seriesid}
+            seriesname={moviedetails?.name}
             isReview={isReview}
             setIsReview={setIsReview}
             userReviews={userReviews}

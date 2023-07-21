@@ -24,13 +24,17 @@ const NavBar = () => {
   const searchinput = document.querySelector("#searchinput");
   
     const openPopupHandle = async () => {
-      searchinput.style.zIndex = "-1";
+      if(searchinput){
+        searchinput.style.zIndex = "-1";
+      }
       body.classList.add("overflow-hidden");
       setPopup(true);    
     };
       
     const closePopupHandle = () => {
-      searchinput.style.zIndex = "0";
+      if(searchinput){
+        searchinput.style.zIndex = "0";
+      }
       body.classList.remove("overflow-hidden");
       setPopup(false);
     };

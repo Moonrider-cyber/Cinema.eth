@@ -16,7 +16,9 @@ const includedShapesStyles = [ThinRoundedStar].map((itemShapes) => ({
 
 export const Reviews = ({
   movieid,
+  moviename,
   seriesid,
+  seriesname,
   isReview,
   setIsReview,
   userReviews,
@@ -44,7 +46,7 @@ export const Reviews = ({
         if (movieid) {
           toast.promise(
             contract
-              .rateMovie(movieid, Review, rating),
+              .rateMovie(movieid, moviename, Review, rating),
             {
               pending: "posting review...",
               success: {
@@ -61,7 +63,7 @@ export const Reviews = ({
           );
           
         } else if (seriesid) {
-          toast.promise(contract.rateSeries(seriesid, Review, rating), {
+          toast.promise(contract.rateSeries(seriesid, seriesname, Review, rating), {
             pending: "posting review...",
             success: {
               render() {

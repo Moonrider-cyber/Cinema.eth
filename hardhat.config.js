@@ -17,5 +17,8 @@ module.exports = {
       url: SEPOLIA_URL,
       accounts: [PRIVATE_KEY]
     },
+    hardhat: {
+      chainId: 1337
+    }
   },
 };
