@@ -31,7 +31,7 @@ export default function MovieCarousel({
   };
   return (
     <div className="container mx-auto">
-      <div className="">
+      <div>
         {/* Carousel for desktop and large size devices and tablets */}
         <CarouselProvider
           className="md:block hidden"
@@ -149,7 +149,7 @@ export default function MovieCarousel({
                                   <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">
                                     {movie.title}
                                   </h2>
-                                  <p className="text-gray-400 text-xs mb-2 ">
+                                  <p className="text-gray-400 text-xs mb-2">
                                     {movie.overview.slice(0, 34)}...
                                   </p>
                                   <div className="flex justify-between items-center text-xs">
@@ -323,7 +323,7 @@ export default function MovieCarousel({
 
 export const SeriesCarousel = ({ seriesdata, Loading }) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mb-14">
       <div className="">
         {/* Carousel for desktop and large size devices and tablets */}
         <CarouselProvider
@@ -522,7 +522,7 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
                               />
                               <div className="px-5">
                                 <h2 className="text-sm py-2 font-bold mt-1 overflow-hidden truncate ">
-                                  {series.title}
+                                  {series.name}
                                 </h2>
                                 <p className="text-gray-400 text-xs mb-2 ">
                                   {series.overview.slice(0, 34)}...

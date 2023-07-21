@@ -12,7 +12,8 @@ export const theme = {
   extend: {},
   screens: {
     // => @media (min-width: 440px) { ... }
-    sm: "440px",
+    xs: "100px",
+    sm: "481px",
     // => @media (min-width: 768px) { ... }
     md: "768px",
     lg: "1024px",

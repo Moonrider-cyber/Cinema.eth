@@ -19,7 +19,7 @@ const Search = () => {
   return (
     <>
       <form
-        className="flex justify-center items-center mb-5"
+        className="flex justify-center items-center mb-5 mt-10"
         onSubmit={searchhandle}
       >
         <label

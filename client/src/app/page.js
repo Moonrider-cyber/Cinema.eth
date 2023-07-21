@@ -1,24 +1,29 @@
 "use client";
 
-import Head from "next/head";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
 import Search from "../components/layout/Search";
 import HeroSection from "../components/layout/HeroSection";
 import { toast } from "react-toastify";
 import { DefaultSeo } from "next-seo";
+import {LatestMovieReviews} from "../components/LatestReviews/LatestMovieReviews";
+import AuthContext from "../utils/AuthContext";
 
 export default function Home() {
+  
+  const { contract } = useContext(AuthContext);
+  
   const [HeroImgData, setHeroImgData] = useState(null);
   const [moviedata, setMoviedata] = useState(null);
   const [seriesdata, setSeriesdata] = useState(null);
+  const [latestReviews, setLatestReviews] = useState(null);
 
   const [heroImgLoading, setHeroImgLoading] = useState(true);
   const [movieLoading, setMovieLoading] = useState(true);
   const [seriesLoading, setSeriesLoading] = useState(true);
 
-  const [moviesort, setMovieSort] = React.useState("day");
+  const [moviesort, setMovieSort] = useState("day");
+  const [latestSort, setLatestSort] = useState("movie");
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -76,6 +81,35 @@ export default function Home() {
     }, 1000);
   }, [moviesort]);
 
+  useEffect(() => {
+    const getlatestreviews = async (latestSort) => {
+      try {
+        if(latestSort === "movie"){
+        await contract.getLatestMovieReviews()
+          .then((res) => {
+            setLatestReviews(res);
+          })
+          .catch((err) => {
+            console.error("error while getlatestreviews", err);
+          });
+        }else if(latestSort === "series"){
+          await contract.getLatestSeriesReviews()
+          .then((res) => {
+            setLatestReviews(res);
+          })
+          .catch((err) => {
+            console.error("error while getlatestreviews", err);
+          });
+        }
+      } catch (err) {
+        console.error("error while getlatestreviews", err);
+      }
+    }
+    if(contract){ 
+      getlatestreviews(latestSort);
+    }
+  }, [contract, latestSort]);
+  
   return (
     <>
       <DefaultSeo
@@ -100,6 +134,11 @@ export default function Home() {
         Loading={movieLoading}
         setLoading={setMovieLoading}
         setMovieSort={setMovieSort}
+      />
+      <LatestMovieReviews 
+        latestReviews={latestReviews} 
+        latestSort={latestSort}
+        setLatestSort={setLatestSort}
       />
       <HomeSeriesList seriesdata={seriesdata} Loading={seriesLoading} />
     </>
