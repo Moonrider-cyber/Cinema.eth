@@ -107,3 +107,15 @@ export const ReviewsLoding = () => {
     </>
   );
 };
+
+export const LatestReviewsLoading = () => {
+  return (
+    <>
+      <div className="flex relative z-[-1]">
+        <div className="w-[90%]">
+          <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
+        </div>
+      </div>
+    </>
+  );
+}

@@ -8,14 +8,17 @@ import {
 } from "pure-react-carousel";
 import Jazzicon from "react-jazzicon/dist/Jazzicon";
 import Link from "next/link";
+import {LatestReviewsLoading} from "../Loding"; 
 
-export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort }) => {
+export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort, latestReviewsLoading, setLatestReviewsLoading }) => {
 
   const handlemovie = () => {
     setLatestSort("movie");
+    setLatestReviewsLoading(true);
   };
   const handleseries = () => {
     setLatestSort("tv");
+    setLatestReviewsLoading(true);
   };
   
   return (
@@ -61,8 +64,11 @@ export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort })
               >
                 <Slider>
                   {latestReviews?.map((reviews,key) => (
+                    
                     <Slide index={key} key={key} className="cursor-grab">
-                      
+                    {latestReviewsLoading ? 
+                    <LatestReviewsLoading/>
+                  :  (
                       <div className="p-2">
                         <div className="rounded-3xl" style={{"background":"linear-gradient(180deg,rgba(255,255,255,.10126057258841037) 0,rgba(255,255,255,0) 100%)"}}>
                           {/* card */}
@@ -86,14 +92,14 @@ export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort })
                             
                             <div className="flex pt-10 gap-2 text-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="gray" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="bevel"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"/></svg>
-                              <Link href={"/"} className="text-sm truncate">
-                                {reviews.moviename}
-                                title
+                              <Link href={latestSort == "movie" ? `/movie/${reviews.movieId}` : `/series/${reviews.seriesId}`} className="text-sm truncate">
+                                {latestSort == "movie" ? reviews.moviename : reviews.seriesname}
                               </Link>
                             </div>
                           </div>
                         </div>
                       </div>
+                  )}
                     </Slide>
                   ))}
                 </Slider>

@@ -17,10 +17,11 @@ export default function Home() {
   const [moviedata, setMoviedata] = useState(null);
   const [seriesdata, setSeriesdata] = useState(null);
   const [latestReviews, setLatestReviews] = useState(null);
-
+  
   const [heroImgLoading, setHeroImgLoading] = useState(true);
   const [movieLoading, setMovieLoading] = useState(true);
   const [seriesLoading, setSeriesLoading] = useState(true);
+  const [latestReviewsLoading, setLatestReviewsLoading] = useState(true);
 
   const [moviesort, setMovieSort] = useState("day");
   const [latestSort, setLatestSort] = useState("movie");
@@ -47,7 +48,6 @@ export default function Home() {
         const data = await res.json();
         setSeriesdata(data);
       } catch (err) {
-        toast("Something went wrong!");
         console.error("error while fetchSeriseData", err);
       }
     };
@@ -67,7 +67,6 @@ export default function Home() {
         .then((res) => res.json())
         .then((data) => setMoviedata(data))
         .catch((err) => {
-          toast("Something went wrong!");
           console.error("error while fetchMovieData when sorting", err);
         });
     };
@@ -88,14 +87,17 @@ export default function Home() {
         await contract.getLatestMovieReviews()
           .then((res) => {
             setLatestReviews(res);
+            setLatestReviewsLoading(false);
           })
           .catch((err) => {
             console.error("error while getlatestreviews", err);
           });
-        }else if(latestSort === "series"){
+        }else if(latestSort === "tv"){
           await contract.getLatestSeriesReviews()
           .then((res) => {
             setLatestReviews(res);
+            setLatestReviewsLoading(false);
+            
           })
           .catch((err) => {
             console.error("error while getlatestreviews", err);
@@ -107,8 +109,9 @@ export default function Home() {
     }
     if(contract){ 
       getlatestreviews(latestSort);
+      console.log(latestReviews);
     }
-  }, [contract, latestSort]);
+  }, [latestSort]);
   
   return (
     <>
@@ -139,6 +142,8 @@ export default function Home() {
         latestReviews={latestReviews} 
         latestSort={latestSort}
         setLatestSort={setLatestSort}
+        latestReviewsLoading={latestReviewsLoading}
+        setLatestReviewsLoading={setLatestReviewsLoading}
       />
       <HomeSeriesList seriesdata={seriesdata} Loading={seriesLoading} />
     </>
