@@ -73,13 +73,6 @@ export const HomeMovieListLoding = () => {
 export const HomeCarouselLoding = () => {
   return (
     <>
-      {/* <div className="mx-28 text-center">
-        <div className="animate-pulse pl-0">
-          <div className="text-white flex flex-row">
-            <div className="w-[98%] h-60 bg-gray-700/50 rounded-2xl my-5"></div>
-          </div>
-        </div>
-      </div> */}
       <div className="mx-24 my-12">
         <div className="animate-pulse grid lg:grid-cols-6">
           {Array.from({ length: 6 }, (movie, i) => (
@@ -111,11 +104,16 @@ export const ReviewsLoding = () => {
 export const LatestReviewsLoading = () => {
   return (
     <>
-      <div className="flex relative z-[-1]">
-        <div className="w-[90%]">
+    <div className="w-full h-full animate-pulse">
+      <div className=" grid relative z-[-1] mb-5">
+        <div className="w-[93%] flex gap-5">
+          <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
+          <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
+          <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
           <div className="w-full h-full bg-gray-700/50 rounded-2xl mb-64"></div>
         </div>
       </div>
+    </div>
     </>
   );
 }

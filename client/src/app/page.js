@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useState, useEffect,useContext } from "react";
 import HomeMovieList, { HomeSeriesList } from "../components/HomeMovieList";
 import Search from "../components/layout/Search";
@@ -36,7 +37,7 @@ export default function Home() {
         setMoviedata(data);
         setHeroImgData(data);
       } catch (err) {
-        toast("Something went wrong!");
+        toast("Check Your Internet connection");
         console.error("error while fetchMovieData", err);
       }
     };
@@ -81,7 +82,7 @@ export default function Home() {
   }, [moviesort]);
 
   useEffect(() => {
-    const getlatestreviews = async (latestSort) => {
+    const getlatestreviews = async (latestSort = "movie") => {
       try {
         if(latestSort === "movie"){
         await contract.getLatestMovieReviews()
@@ -97,7 +98,6 @@ export default function Home() {
           .then((res) => {
             setLatestReviews(res);
             setLatestReviewsLoading(false);
-            
           })
           .catch((err) => {
             console.error("error while getlatestreviews", err);
@@ -109,9 +109,9 @@ export default function Home() {
     }
     if(contract){ 
       getlatestreviews(latestSort);
-      console.log(latestReviews);
     }
-  }, [latestSort]);
+    
+  }, [contract, latestSort]);
   
   return (
     <>
