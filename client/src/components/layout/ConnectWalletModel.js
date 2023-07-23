@@ -10,7 +10,7 @@ import phantom from "../../asset/phantom.svg";
 import rainbow from "../../asset/rainbow.png";
 
 
-const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask, connectCoinBase }) => {
+const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask, connectCoinBase, connectPhantom }) => {
   
   
   return (
@@ -61,7 +61,7 @@ const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask, connectCo
 
                 <div className="px-4 py-2">
                   <button className="w-full py-3 px-7 flex items-center gap-6 bg-gray-600 hover:bg-gray-500 text-gray-300 rounded-lg"
-                  onClick={()=> toast.info("coming soon")}>
+                  onClick={()=> toast.info("Coming soon...")}>
                     <Image
                       src={coinbase}
                       width={45}
@@ -92,7 +92,7 @@ const CoonectWalletModel = ({ popup, closePopupHandle,connectMetaMask, connectCo
                 
                 <div className="px-4 py-2">
                   <button className="w-full py-3 px-7 flex items-center gap-6 bg-gray-600 hover:bg-gray-500 text-gray-300 rounded-lg"
-                  onClick={()=> toast.info("coming soon") }
+                    onClick={()=> toast.info("Coming soon...")}
                   >
                     <Image
                         src={phantom}

@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
         address: accounts[0],
         balance: balance,
       });
+      
     });
   };
 
@@ -73,14 +74,16 @@ export const AuthProvider = ({ children }) => {
         const signer = await provider.getSigner();
 
         const contract = new ethers.Contract(
-          contractAddress,
-          contractABI,
           signer
         );
 
         setValue({ provider, signer, contract, isLogged: true });
 
         getaccountdetails(accounts);
+        
+        console.log("signer ", signer);
+        console.log("contract ", contract);
+        
       } else {
         toast.warning("Please install MetaMask");
       }
@@ -127,11 +130,53 @@ export const AuthProvider = ({ children }) => {
       console.error("something went wrong at connecting coinbase",err);
     }
   }
+  const connectPhantom = async () => {
+    try {
+      let { ethereum } = window;
+
+      if (ethereum) {
+        window.ethereum.on("chainChanged", () => window.location.reload());
+
+        window.ethereum.on("accountsChanged", (accounts) => {
+          getaccountdetails(accounts);
+        });
+        
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        
+        const provider = new ethers.BrowserProvider(ethereum);
+        const signer = await provider.getSigner();
+
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+
+        setValue({ provider, signer, contract, isLogged: true });
+
+        getaccountdetails(accounts);
+        
+        
+      } else {
+        toast.warning("Please install Phantom Wallet");
+      }
+    } catch (err) {
+      if(err.code === -32002){
+        toast.warning("Please login to Phantom");
+      }
+        
+      console.error("something went wrong at connecting phantom",err);
+    }
+  }
+  
   
 
   const AuthValue = {
     connectMetaMask,
     connectCoinBase,
+    connectPhantom,
     provider: Value.provider,
     signer: Value.signer,
     contract: Value.contract,

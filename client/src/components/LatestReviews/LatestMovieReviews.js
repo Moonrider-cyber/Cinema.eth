@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import latestreview from "../../asset/latestreview.png";
 import Image from "next/image";
 import {
@@ -20,6 +20,17 @@ export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort, l
     setLatestSort("tv");
     setLatestReviewsLoading(true);
   };
+  
+  const reverse = (arr) => {
+    if(arr){      
+      let temp = [];
+      for (let i = arr.length - 1; i >= 0; i--) {
+        temp.push(arr[i]);
+      }
+      return temp;
+    }
+  };
+  const newlatestReviews = reverse(latestReviews);
   
   return (
     <>
@@ -67,7 +78,7 @@ export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort, l
               >
                 
                 <Slider>
-                  {latestReviews?.map((reviews,key) => (
+                  {newlatestReviews?.map((reviews,key) => (
                     
                     <Slide index={key} key={key} className="cursor-grab">
                       
@@ -168,8 +179,7 @@ export const LatestMovieReviews = ({ latestReviews, latestSort, setLatestSort, l
                 visibleSlides={1}
               >
                 <Slider>
-                  {latestReviews?.map((reviews,key) => (
-                    
+                  {latestReviews?.map((reviews,key) => (  
                     <Slide index={key} key={key} className="cursor-grab">
                       
                       <div className="p-2">

@@ -29,7 +29,6 @@ export default function Home() {
 
   useEffect(() => {
     const fetchMovieData = async () => {
-      // const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
       try {
         const url1 = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.THEMOVIEDB_API_KEY}&language=en-US&page=1`;
         const res = await fetch(url1);
@@ -91,7 +90,7 @@ export default function Home() {
             setLatestReviewsLoading(false);
           })
           .catch((err) => {
-            console.error("error while getlatestreviews", err);
+            console.error("error while getlatestreviews for movie", err);
           });
         }else if(latestSort === "tv"){
           await contract.getLatestSeriesReviews()
@@ -100,11 +99,11 @@ export default function Home() {
             setLatestReviewsLoading(false);
           })
           .catch((err) => {
-            console.error("error while getlatestreviews", err);
+            console.error("error while getlatestreviews for series", err);
           });
         }
       } catch (err) {
-        console.error("error while getlatestreviews", err);
+        console.error("error while getlatestreviews movie,series", err);
       }
     }
     if(contract){ 

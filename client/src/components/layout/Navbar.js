@@ -10,7 +10,7 @@ import ConnectWalletModel from "./ConnectWalletModel";
 import logo from "../../asset/logo.png";
 
 const NavBar = () => {
-  const { address, signer, connectMetaMask, connectCoinBase, isLogged } = useContext(AuthContext);
+  const { address, signer, connectMetaMask, connectCoinBase, connectPhantom, isLogged } = useContext(AuthContext);
 
   const [open, setOpen] = useState(false);
 
@@ -21,9 +21,9 @@ const NavBar = () => {
   
   const [popup, setPopup] = useState(false);
   
-    
+    let searchinput = null;
     useEffect(() => {
-      const searchinput = document.querySelector("#searchinput");
+      searchinput = document.querySelector("#searchinput");
     }, [])
     
     const openPopupHandle = async () => {
@@ -207,6 +207,7 @@ const NavBar = () => {
         closePopupHandle={closePopupHandle} 
         connectMetaMask={connectMetaMask} 
         connectCoinBase={connectCoinBase}
+        connectPhantom={connectPhantom}
       />
     </>
   );
