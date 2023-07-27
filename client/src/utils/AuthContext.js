@@ -74,6 +74,8 @@ export const AuthProvider = ({ children }) => {
         const signer = await provider.getSigner();
 
         const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
           signer
         );
 
@@ -91,7 +93,6 @@ export const AuthProvider = ({ children }) => {
       if(err.code === -32002){
         toast.warning("Please login to metamask");
       }
-        
       console.error("something went wrong at connecting metamask",err);
     }
   };
