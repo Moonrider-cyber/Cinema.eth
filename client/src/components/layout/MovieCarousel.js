@@ -331,7 +331,7 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
           totalSlides={seriesdata && seriesdata.results.length - 6.5}
-          visibleSlides={3}
+          visibleSlides={4}
           step={1}
           infinite={true}
         >
