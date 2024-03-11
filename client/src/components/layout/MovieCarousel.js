@@ -30,7 +30,7 @@ export default function MovieCarousel({
     setMovieSort("week");
   };
   return (
-    <div className="container mx-auto">
+    <div className="md:mx-32 mx-5">
       <div>
         {/* Carousel for desktop and large size devices and tablets */}
         <CarouselProvider
@@ -191,7 +191,7 @@ export default function MovieCarousel({
         {/* Carousel for mobile and Small size Devices */}
         <CarouselProvider
           className="block md:hidden md:my-8 my-18"
-          naturalSlideWidth={500}
+          naturalSlideWidth={100}
           isIntrinsicHeight={true}
           totalSlides={moviedata && moviedata.results.length}
           visibleSlides={1}
@@ -204,7 +204,7 @@ export default function MovieCarousel({
             </h1>
           </div>
 
-          <div className="w-full relative flex items-center justify-start">
+          <div className="w-full relative flex items-center justify-start gap-4">
             <ButtonBack
               role="button"
               aria-label="slide backward"
@@ -231,7 +231,7 @@ export default function MovieCarousel({
               <Slider>
                 <div
                   id="slider"
-                  className="mx-6 h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+                  className="h-full flex lg:gap-8 md:gap-6 gap-5 items-center justify-start transition ease-out duration-700"
                 >
                   {moviedata &&
                     moviedata.results &&
@@ -323,7 +323,7 @@ export default function MovieCarousel({
 
 export const SeriesCarousel = ({ seriesdata, Loading }) => {
   return (
-    <div className="container mx-auto mb-14">
+    <div className="md:mx-32 mx-5 mb-14">
       <div className="">
         {/* Carousel for desktop and large size devices and tablets */}
         <CarouselProvider
@@ -472,7 +472,7 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
             <h1 className="my-8 text-3xl font-bold">Latest Popular Series</h1>
           </div>
 
-          <div className="w-full relative flex items-center justify-start">
+          <div className="w-full relative flex items-center justify-start gap-4">
             <ButtonBack
               role="button"
               aria-label="slide backward"
@@ -499,7 +499,7 @@ export const SeriesCarousel = ({ seriesdata, Loading }) => {
               <Slider>
                 <div
                   id="slider"
-                  className="mx-6 h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+                  className="h-full flex lg:gap-8 md:gap-6 gap-4 items-center justify-start transition ease-out duration-700"
                 >
                   {seriesdata &&
                     seriesdata.results &&
