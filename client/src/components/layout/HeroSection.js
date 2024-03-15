@@ -18,7 +18,7 @@ const HeroSection = ({ HeroImgData, Loading, setLoading }) => {
               decentralized movie rating platform!
             </p>
             <a
-              href="#"
+              href="#TrendingMovies"
               className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
               Explore Now

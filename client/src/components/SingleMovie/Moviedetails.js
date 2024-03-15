@@ -186,6 +186,8 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                       <div>
                         {/* youtube trailer link   */}
 
+                        {moviedetails &&
+                              moviedetails.videos.results.length > 0 &&
                         <button className="bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
                           <Link
                             href={`https://www.youtube.com/watch?v=${
@@ -208,6 +210,7 @@ export const MovieDetails = ( {moviedetails, movieloading, IsError, handle_retry
                             <span className="ml-2">Play Trailer</span>
                           </Link>
                         </button>
+                        }
                       </div>
                     )}
                     <a href={"#cast"}>

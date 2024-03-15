@@ -30,7 +30,7 @@ export default function MovieCarousel({
     setMovieSort("week");
   };
   return (
-    <div className="md:mx-32 mx-5">
+    <div className="md:mx-32 mx-5" id="TrendingMovies">
       <div>
         {/* Carousel for desktop and large size devices and tablets */}
         <CarouselProvider
